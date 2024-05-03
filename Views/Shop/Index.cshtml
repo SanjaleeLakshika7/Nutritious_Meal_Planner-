@@ -1,0 +1,143 @@
+﻿@model List<CartItem>
+
+
+
+@{
+
+    ViewData["ShopActive"] = "active";
+
+
+    var HiddenClass = "";
+    if (Model.Count == 0)
+    {
+        HiddenClass = "d-none";
+    }
+
+    var CountString = Model.Count.ToString() + " items, " + Model.Sum(x => x.ItemQty).ToString() + " peices";
+    var TotalString = Model.Sum(x => x.LineTotal).ToString("N");
+}
+@inject DropDown.ICommonDDL CommonDDL
+@inject DropDown.IPageMetaTag TagManager
+
+@{
+    var tag = await TagManager.Get("MTG005");
+    var URL = TagManager.GetURL();
+
+}
+
+
+@section MetaContent{
+
+    <title>Shopping Cart</title>
+   
+}
+
+
+<div class="page-content pt-3 pb-10">
+
+    <div class="container mt-3 mb-2">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 pr-lg-4">
+                <h3 class="summary-title text-left">Shopping Cart</h3>
+
+                @if (Model.Count == 0)
+                {
+                    <div class="alert alert-warning alert-dark alert-round alert-inline">You do not have items in the shopping cart yet</div>
+                }
+
+                <table class="shop-table cart-table @HiddenClass">
+                    <thead>
+                        <tr>
+                            <th><span>Product</span></th>
+                            <th></th>
+                            <th><span>Price</span></th>
+                            <th><span>Quantity</span></th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var itm in Model)
+                        {
+                            <tr>
+                                <td class="product-thumbnail" width="80">
+                                    <figure>
+                                        <a href="~/Item/Details/@(itm.Item.ItemID)">
+                                            <img src="~/Uploads/@(itm.Item.ItemID).jpg" width="80" height="90"
+                                                 alt="product">
+                                        </a>
+                                    </figure>
+                                </td>
+                                <td class="product-name">
+                                    <div class="product-name-section">
+                                        <a href="~/Item/Details/@(itm.Item.ItemID)">@itm.Item.ItemName @itm.Remarks</a>
+                                    </div>
+                                </td>
+                                <td class="product-subtotal">
+                                    <span class="amount">@AppData.GetCurrency() @itm.ItemPriceDisplay</span>
+                                </td>
+                                <td class="product-quantity">
+                                    <div class="input-group">
+                                        <button class="quantity-minus d-icon-minus"></button>
+                                        <input class="quantity form-control" type="number" min="1"
+                                               max="1000000" value="@itm.ItemQty" data-itemid="@itm.Item.ItemID" data-ItemSizeName="@itm.Remarks">
+                                        <button class="quantity-plus d-icon-plus"></button>
+                                    </div>
+                                </td>
+                                <td class="product-price">
+                                    <span class="amount text-dark font-weight-bold">@AppData.GetCurrency() @itm.LineTotalDisplay</span>
+                                </td>
+                                <td class="product-close">
+                                    <a href="#" onclick="RemoveCart('@itm.Item.ItemID', '@itm.Remarks')" class="product-remove" title="Remove this product">
+                                        <i class="fas fa-times"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+                <div class="cart-actions mb-6 pt-4 ">
+                    <a href="~/Item" class="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"><i class="d-icon-arrow-left"></i>Continue Shopping</a>
+                    <button onclick="UpdateCart();" type="submit" class="btn btn-outline btn-dark btn-md btn-rounded @HiddenClass">Update Cart</button>
+                </div>
+
+            </div>
+            <aside class="col-lg-4 sticky-sidebar-wrapper @HiddenClass">
+                <div class="sticky-sidebar" data-sticky-options="{'bottom': 20}">
+                    <div class="summary mb-4">
+                        <table class="total">
+                            <tr class="">
+                                <td>
+                                    <p class="">Items</p>
+                                </td>
+                                <td>
+                                    <p class="">@CountString</p>
+                                </td>
+                            </tr>
+                            <tr class="summary-subtotal">
+                                <td>
+                                    <h4 class="summary-subtitle">Total</h4>
+                                </td>
+                                <td>
+                                    <p class="summary-total-price ls-s">@AppData.GetCurrency() @TotalString</p>
+                                </td>
+                            </tr>
+                        </table>
+                        <a href="~/Shop/Checkout" class="btn btn-dark btn-rounded btn-order">Proceed to checkout<i class="d-icon-arrow-right"></i></a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+
+    <script>
+
+
+
+
+    </script>
+}

@@ -1,0 +1,106 @@
+﻿@model SaleOrderDetailsView
+@inject ISessionData Session
+@inject DropDown.ICommonDDL CommonDDL
+@{
+    ViewData["Title"] = "Order Details";
+}
+@inject DropDown.IPageMetaTag TagManager
+@{
+
+    var URL = TagManager.GetURL();
+}
+@section MetaContent{
+
+    <title>Order Details - nutriplanner.softwareengineer.lk</title>
+    <meta name="description" content="Order Details for nutriplanner.softwareengineer.lk Site">
+    <meta name="keywords" content="">
+
+    <meta name="og:url" content="@URL">
+    <meta name="og:type" content="website">
+    <meta name="og:title" content="Order Details - nutriplanner.softwareengineer.lk">
+    <meta name="og:description" content="Order Details for nutriplanner.softwareengineer.lk Site">
+    <meta name="og:image" content="">
+
+}
+
+@{
+    await Session.CheckToken();
+    var HasLogged = true;
+    var User = Session.GetUser();
+
+    if (User == null)
+    {
+
+        HasLogged = false;
+
+    }
+
+}
+<div class=" pl-4 pr-4">
+
+    <h1 class="page-title font-weight-bold lh-1 text-center text-capitalize">Order Details</h1>
+
+
+</div>
+
+@if (HasLogged)
+{
+    <div class="page-content pt-10 pb-10 mb-2">
+        <div class="container">
+            <table class="shop-table wishlist-table mt-2 mb-4">
+                <thead>
+                    <tr>
+                        <th class="product-name"><span>Product</span></th>
+                        <th class="product-name"><span>@Html.DisplayNameFor(model => model.ItemList.First().ItemCode)</span></th>
+                        <th>@Html.DisplayNameFor(model => model.ItemList.First().ItemName)</th>
+                        <th class="product-price"><span>@Html.DisplayNameFor(model => model.ItemList.First().ItemPriceDisplay)</span></th>
+                        <th class="product-price"><span>@Html.DisplayNameFor(model => model.ItemList.First().ItemDiscountDisplay)</span></th>
+                        <th class="product-stock-status"><span>@Html.DisplayNameFor(model => model.ItemList.First().ItemQty)</span></th>
+                        <th class="product-stock-status">@Html.DisplayNameFor(model => model.ItemList.First().LineTotalDisplay)</th>
+
+
+
+
+                    </tr>
+                </thead>
+                <tbody class="wishlist-items-wrapper">
+                    @foreach (var item in Model.ItemList)
+                    {
+                        <tr>
+                            <td class="product-thumbnail">
+                                <a href="#">
+                                    <figure>
+                                        <img src="~/Uploads/@(CommonDDL.CheckFile(item.ItemID))" width="100" height="100"
+                                             alt="product">
+                                    </figure>
+                                </a>
+                            </td>
+
+                            <td class="product-name">
+                                @Html.DisplayFor(modelItem => item.ItemCode)
+                            </td>
+                            <td class="product-name">
+                                @Html.DisplayFor(modelItem => item.ItemName) @Html.DisplayFor(modelItem => item.Remarks)
+                            </td>
+                            <td class="product-price">
+                                <span class="amount">@Html.DisplayFor(modelItem => item.ItemPriceDisplay)</span>
+                            </td>
+                            <td class="product-price">
+                                <span class="amount">@Html.DisplayFor(modelItem => item.ItemDiscountDisplay)</span>
+                            </td>
+                            <td class="product-stock-status">
+                                <span class="wishlist-in-stock">@Html.DisplayFor(modelItem => item.ItemQty)</span>
+                            </td>
+                            <td class="product-stock-status">
+                                <span>@Html.DisplayFor(modelItem => item.LineTotalDisplay)</span>
+                            </td>
+
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+}

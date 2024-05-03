@@ -1,0 +1,130 @@
+﻿
+@model IEnumerable<SaleOrder>
+@inject ISessionData Session
+@{
+    ViewData["Title"] = "Track My Orders";
+}
+
+@inject DropDown.IPageMetaTag TagManager
+@{
+
+    var URL = TagManager.GetURL();
+}
+
+@section MetaContent{
+
+    <title>Track My Orders - nutriplanner.softwareengineer.lk</title>
+    <meta name="description" content="Track My Orders for nutriplanner.softwareengineer.lk Site">
+    <meta name="keywords" content="">
+
+    <meta name="og:url" content="@URL">
+    <meta name="og:type" content="website">
+    <meta name="og:title" content="Track My Orders - nutriplanner.softwareengineer.lk">
+    <meta name="og:description" content="Track My Orders for nutriplanner.softwareengineer.lk Site">
+    <meta name="og:image" content="">
+
+}
+
+@{
+    await Session.CheckToken();
+    var HasLogged = false;
+    var User = Session.GetUser();
+
+    if (User != null)
+    {
+        HasLogged = true;
+
+    }
+
+}
+<div class=" pl-4 pr-4">
+
+    <h1 class="page-title font-weight-bold lh-1 text-center text-capitalize ">Track My Orders</h1>
+
+
+</div>
+
+@if (HasLogged)
+{
+    <div class="page-content pt-10 pb-10 mb-2">
+        <div class="container">
+            <table class="shop-table wishlist-table mt-2 mb-4">
+                <thead>
+                    <tr>
+                        <th class="product-name"><span>@Html.DisplayNameFor(model => model.First().OrderID)</span></th>
+                        <th class="product-stock-status">@Html.DisplayNameFor(model => model.First().AddressDisplay)</th>
+                        <th class="product-stock-status">@Html.DisplayNameFor(model => model.First().OrderDateDisplay)</th>
+                        <th class="product-price"><span>@Html.DisplayNameFor(model => model.First().ItemTotalDisplay)</span></th>
+                        <th>@Html.DisplayNameFor(model => model.First().SheduledTime)</th>
+                        <th>@Html.DisplayNameFor(model => model.First().NextRecurringDate)</th>
+                        <th class="product-stock-status"><span>@Html.DisplayNameFor(model => model.First().OrderStatusText)</span></th>
+                        <th class="product-stock-status"><span>@Html.DisplayNameFor(model => model.First().PaidStatusText)</span></th>
+                        <th class="product-add-to-cart"></th>
+
+                    </tr>
+                </thead>
+                <tbody class="wishlist-items-wrapper">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="product-thumbnail">
+                                @Html.DisplayFor(modelItem => item.OrderID)
+                            </td>
+                            <td class="product-stock-status">
+                                <span class="wishlist-in-stock"> @Html.DisplayFor(modelItem => item.ShipAddressLine1) @Html.DisplayFor(modelItem => item.ShipCity) @Html.DisplayFor(modelItem => item.ShipPostalCode) @Html.DisplayFor(modelItem => item.ShipCountry)</span>
+                            </td>
+                            <td class="product-stock-status">
+                                <span class="wishlist-in-stock DateOrder">@Html.DisplayFor(modelItem => item.OrderDateDisplay)</span>
+                            </td>
+                            <td class="product-price">
+                                <span class="amount">@Html.DisplayFor(modelItem => item.ItemTotalDisplay)</span>
+                            </td>
+                            <td class="product-stock-status">@item.SheduledTime</td>
+                            <td class="product-stock-status">
+                                @if (item.PeriodIndex == "O")
+                                {
+                                    @item.PeriodIndexText
+                                }
+                                else
+                                {
+                                    @item.NextRecurringDate.ToString("dd MMM yyyy") <br /> @item.PeriodIndexText
+
+                                }
+                            </td>
+                            <td class="product-stock-status">
+                                <span class="wishlist-in-stock text-@item.OrderStatusClass">@item.OrderStatusText</span>
+                            </td>
+                            <td class="product-stock-status">
+                                <span class="wishlist-in-stock text-@item.PaidStatusClass">@item.PaidStatusText</span>
+                            </td>
+                            <td class="product-add-to-cart">
+                                <a href="@Url.Action("Details", new { id = item.OrderID })" class="btn-product btn-primary"><span>View</span></a>
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+            <div class="social-links share-on">
+                <h5 class="text-uppercase font-weight-bold mb-0 mr-4 ls-s"><a href="~/Account/Index">Go to Manage My Account Page</a></h5>
+            </div>
+        </div>
+    </div>
+}
+@section Scripts {
+
+    <script>
+        $('.DateOrder').each(function () {
+
+            var someS = $(this).html();
+
+            var day_string = moment(someS, "MM.DD.YYYY").format('dddd');
+            var date_string = moment(someS, "MM.DD.YYYY").format('ll');
+            $(this).text(date_string);
+        });
+
+
+
+    </script>
+}

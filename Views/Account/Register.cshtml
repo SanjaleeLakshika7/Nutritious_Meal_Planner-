@@ -1,0 +1,163 @@
+﻿@model Customer
+@{
+    ViewData["Title"] = "Register";
+}
+@inject DropDown.IPageMetaTag TagManager
+@{
+
+    var URL = TagManager.GetURL();
+}
+
+@section MetaContent{
+
+    <title>Register - nutriplanner.softwareengineer.lk</title>
+    <meta name="description" content="Register Account for nutriplanner.softwareengineer.lk Customer">
+    <meta name="keywords" content="">
+
+    <meta name="og:url" content="@URL">
+    <meta name="og:type" content="website">
+    <meta name="og:title" content="Register - nutriplanner.softwareengineer.lk">
+    <meta name="og:description" content="Register Account for nutriplanner.softwareengineer.lk Customer">
+    <meta name="og:image" content="">
+}
+
+@inject DropDown.ICommonDDL CommonDDL
+@inject DropDown.ISalesDDL SalesDDL
+
+<div class="page-content pt-2 pb-4">
+    <div class="container mt-1">
+        <div class="row gutter-lg">
+            <div class="col-lg-8 mb-6">
+                <h2 class="title-simple text-left">Register</h2>
+                <div class="alert alert-danger alert-dark alert-round alert-inline @(ViewData["ErrorMessage"] == null ? "d-none" : "")">
+                    @(ViewData["ErrorMessage"])
+                </div>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="row form-group">
+                        <div class="col-xs-4 col-md-2">
+                            @Html.LabelFor(model => model.Salutation, htmlAttributes: new { @class = "" })
+                            @Html.DropDownList("Salutation", CommonDDL.SalutationList(), htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Salutation, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-xs-4 col-md-5">
+                            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "" })
+                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-xs-4 col-md-5">
+                            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "" })
+                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-xs-12">
+                            <label>Company name (Optional)</label>
+                            @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                            @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-xs-6">
+                            @Html.LabelFor(model => model.AddressLine1, htmlAttributes: new { @class = "" })
+                            @Html.EditorFor(model => model.AddressLine1, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                            @Html.ValidationMessageFor(model => model.AddressLine1, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-xs-6">
+                            @Html.LabelFor(model => model.AddressLine2, htmlAttributes: new { @class = "" })
+                            @Html.EditorFor(model => model.AddressLine2, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                            @Html.ValidationMessageFor(model => model.AddressLine2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-xs-6">
+                            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "" })
+                            @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                            @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-xs-6">
+                            @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "" })
+                            @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                            @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-xs-6">
+                            @Html.LabelFor(model => model.PostalCode, htmlAttributes: new { @class = "" })
+                            @Html.EditorFor(model => model.PostalCode, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                            @Html.ValidationMessageFor(model => model.PostalCode, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-xs-6">
+                            @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "" })
+                            @Html.DropDownList("Country", await SalesDDL.CountryList(), "(Please select)", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-xs-6">
+                            @Html.LabelFor(model => model.TelephoneMobile, htmlAttributes: new { @class = "" })
+                            @Html.EditorFor(model => model.TelephoneMobile, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                            @Html.ValidationMessageFor(model => model.TelephoneMobile, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-xs-6">
+                            @Html.LabelFor(model => model.TelephoneOther, htmlAttributes: new { @class = "" })
+                            @Html.EditorFor(model => model.TelephoneOther, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                            @Html.ValidationMessageFor(model => model.TelephoneOther, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-xs-12">
+                            <label>Email address* (login)</label>
+                            @Html.EditorFor(model => model.LoginEmail, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                            @Html.ValidationMessageFor(model => model.LoginEmail, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-xs-6">
+                            @Html.LabelFor(model => model.LoginPassword, htmlAttributes: new { @class = "" })
+                            @Html.EditorFor(model => model.LoginPassword, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                            @Html.ValidationMessageFor(model => model.LoginPassword, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-xs-6">
+                            @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "" })
+                            @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <button class="btn btn-dark btn-block btn-rounded mt-2" type="submit">Register</button>
+
+                }
+            </div>
+            <aside class="col-lg-4 sticky-sidebar-wrapper">
+                <div class="sticky-sidebar" data-sticky-options="{'bottom': 50}">
+                    <h2 class="title title-simple text-left">Already registered?</h2>
+                    <a href="~/Account/Login" class="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4">Login <i class="d-icon-arrow-right ml-2"></i></a>
+
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+    <script>
+
+    </script>
+
+}

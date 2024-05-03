@@ -1,0 +1,90 @@
+﻿@model LoginView
+@{
+    ViewData["Title"] = "Login";
+}
+
+@inject DropDown.IPageMetaTag TagManager
+@{
+
+    var URL = TagManager.GetURL();
+}
+
+@section MetaContent{
+
+    <title>Login - nutriplanner.softwareengineer.lk</title>
+    <meta name="description" content="Customer Login for nutriplanner.softwareengineer.lk">
+    <meta name="keywords" content="">
+
+    <meta name="og:url" content="@URL">
+    <meta name="og:type" content="website">
+    <meta name="og:title" content="Login - nutriplanner.softwareengineer.lk">
+    <meta name="og:description" content="Customer Login for nutriplanner.softwareengineer.lk">
+    <meta name="og:image" content="">
+}
+
+
+<div class="page-content pt-2 pb-4">
+    <div class="container mt-1">
+
+        <div class="row gutter-lg">
+
+            <div class="col-lg-8 mb-6">
+                <h2 class="title-simple text-left">Login</h2>
+                <div class="alert alert-danger alert-dark alert-round alert-inline @(ViewData["ErrorMessage"] == null ? "d-none" : "")">
+                    @(ViewData["ErrorMessage"])
+                </div>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="row form-group">
+                        <div class="col-xs-12 col-md-6">
+                            @Html.LabelFor(model => model.LoginEmail, htmlAttributes: new { @class = "" })
+                            @Html.EditorFor(model => model.LoginEmail, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                            @Html.ValidationMessageFor(model => model.LoginEmail, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "" })
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group d-none">
+                        @Html.LabelFor(model => model.ReturnURL)
+                        @Html.EditorFor(model => model.ReturnURL, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ReturnURL, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group pt-2 pb-2">
+                        @Html.CheckBoxFor(model => model.RememberMe, new { @class = "custom-checkbox" })
+                        @Html.LabelFor(model => model.RememberMe)
+                        @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
+                    </div>
+
+                    <button class="btn btn-dark btn-block btn-rounded mt-2" type="submit">Login</button>
+                    <div class="form-footer mt-2">
+                        <a href="~/Account/ForgotPassword" class="lost-link">Lost your password?</a>
+                    </div>
+                }
+            </div>
+            <aside class="col-lg-4 sticky-sidebar-wrapper">
+                <div class="sticky-sidebar" data-sticky-options="{'bottom': 50}">
+                    <h2 class="title title-simple text-left">New user?</h2>
+                    <a href="~/Account/Register" class="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4">Register <i class="d-icon-arrow-right ml-2"></i></a>
+
+                </div>
+            </aside>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+    <script>
+
+    </script>
+
+}

@@ -1,0 +1,43 @@
+﻿@inject DropDown.IPageMetaTag TagManager
+@{
+
+    var URL = TagManager.GetURL();
+}
+
+@section MetaContent{
+
+    <title>Message - nutriplanner.softwareengineer.lk</title>
+    <meta name="description" content="Message for nutriplanner.softwareengineer.lk Customer">
+    <meta name="keywords" content="">
+
+    <meta name="og:url" content="@URL">
+    <meta name="og:type" content="website">
+    <meta name="og:title" content="Message for nutriplanner.softwareengineer.lk Customer">
+    <meta name="og:description" content="Message">
+    <meta name="og:image" content="">
+}
+
+
+<div class="page-content pt-2 pb-4">
+    <div class="container mt-1">
+
+        <div class="login-popup">
+            <div class="col-lg-12 mb-6 ">
+                <h4 class="title-simple text-center">@ViewBag.MsgTitle</h4>
+                <p class="title-simple text-center">@ViewBag.MsgBody</p>
+                <p class="title-simple text-center text-warning">@ViewBag.MsgBodySpam</p>
+            </div>
+            <a href="@ViewBag.Link" class="btn btn-dark btn-block btn-rounded mt-2 msgbtn">OK</a>
+
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+    <script>
+
+    </script>
+}

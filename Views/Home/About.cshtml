@@ -1,0 +1,73 @@
+﻿@{
+
+    ViewData["AboutActive"] = "active";
+}
+
+
+@inject DropDown.IPageMetaTag TagManager
+@inject DropDown.IPageSectionText TextManager
+@{
+    var tag = await TagManager.Get("MTG002");
+    var URL = TagManager.GetURL();
+
+    var text = await TextManager.Get("STX001");
+
+}
+
+
+@section MetaContent{
+
+    <title>@tag.TitleTag</title>
+    <meta name="description" content="@tag.DescriptionTag">
+    <meta name="keywords" content="@tag.KeywordsTag">
+
+    <meta name="og:url" content="@URL">
+    <meta name="og:type" content="website">
+    <meta name="og:title" content="@tag.OGTitleTag">
+    <meta name="og:description" content="@tag.OGDescriptionTag">
+    <meta name="og:image" content="@tag.OGImageTag">
+}
+
+
+<div class="container">
+
+    <div class="page-header pl-4 pr-4" style="background-image: url(../images/page-header/about-us.jpg)">
+
+        <h1 class="page-title font-weight-bold lh-1 text-white text-capitalize">@text.SectionName</h1>
+
+    </div>
+
+</div>
+
+
+<div class="page-content">
+    <div class="container">
+        <section class="mt-7">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <p>
+                        @Html.Raw(@text.SectionBodyText.ToMultiline())
+
+
+                    </p>
+
+
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <div class="container">
+        <section class="mt-7">
+            <div class="row">
+
+
+            </div>
+        </section>
+
+    </div>
+
+</div>

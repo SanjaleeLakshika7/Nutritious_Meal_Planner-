@@ -1,0 +1,114 @@
+﻿@model Content.Models.ContactForm
+@{
+
+    ViewData["ContactActive"] = "active";
+}
+
+@inject DropDown.IPageMetaTag TagManager
+
+@{
+    var tag = await TagManager.Get("MTG003");
+    var URL = TagManager.GetURL();
+
+}
+
+
+@section MetaContent{
+
+    <title>Contact Us</title>
+    
+}
+
+<div class="container">
+
+    <div class="page-header " style="background-image: url(../images/page-header/contact-us.jpg)">
+        <h1 class="page-title font-weight-bold text-capitalize ls-l">Contact Us</h1>
+    </div>
+</div>
+    
+
+
+
+<div class="page-content mt-10 pt-7">
+    <section class="contact-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 ls-m mb-4">
+                    <div class="grey-section d-flex align-items-center h-100">
+                        <div>
+                            <h4 class="mb-2 text-capitalize">Address</h4>
+                            <p>Kurunegala Town Kurunegala North Western Province<br /> Sri lanka </p>
+                           
+                            <h4 class="mb-2 text-capitalize">Phone Number</h4>
+                            <p>
+                                <label>HotLine:</label>
+                                <a href="tel:+94 71 602 3591">+94 71 602 3591</a><br />
+                              
+                               
+                            </p>
+
+                            <h4 class="mb-2 text-capitalize">Support</h4>
+                            <p class="mb-4">
+                                <a href="mailto:sanjaliee@gmail.com">sanjaliee@gmail.com</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-8 col-sm-6 d-flex align-items-center mb-4">
+                    <div class="w-100">
+                        @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { @class = "pl-lg-2" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <h4 class="ls-m font-weight-bold">Let’s Connect</h4>
+                            <p>
+                                Please get in touch and our expert support team will answer all your questions *
+                            </p>
+
+                            <div class="col-md-12 mb-4">
+                                @Html.EditorFor(model => model.SenderEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "Email Address *" } })
+                                @Html.ValidationMessageFor(model => model.SenderEmail, "", new { @class = "text-danger" })
+                            </div>
+
+
+                            <div class="row mb-2">
+                                <div class="col-md-12 mb-4">
+                                    @Html.EditorFor(model => model.SenderSubject, new { htmlAttributes = new { @class = "form-control", placeholder = "Subject *" } })
+                                    @Html.ValidationMessageFor(model => model.SenderSubject, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    @Html.EditorFor(model => model.SenderName, new { htmlAttributes = new { @class = "form-control", placeholder = "Full Name *" } })
+                                    @Html.ValidationMessageFor(model => model.SenderName, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    @Html.EditorFor(model => model.SenderPhoneNo, new { htmlAttributes = new { @class = "form-control", placeholder = "Contact Number *" } })
+                                    @Html.ValidationMessageFor(model => model.SenderPhoneNo, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-12 mb-4">
+                                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus", @rows = 5, placeholder = "Your Message *" } })
+                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <button class="btn btn-dark btn-rounded">
+                                Submit Message<i class="d-icon-arrow-right"></i>
+                            </button>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End About Section-->
+ 
+</div>
+    @section Scripts {
+        @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+        <script>
+
+        </script>
+
+    }

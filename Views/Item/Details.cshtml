@@ -1,0 +1,391 @@
+﻿@model ItemDetailsView
+@inject DropDown.IPageMetaTag TagManager
+@inject DropDown.ICommonDDL CommonDDL
+@inject DropDown.ICatelogDDL CatelogDDL
+@{
+
+    ViewData["ItemActive"] = "active";
+    var URL = TagManager.GetURL();
+    var imageId = "";
+    foreach (var img in Model.ImageList)
+    {
+        if (Model.ImageList.IndexOf(img) == 0)
+        {
+            imageId = img.ImageID;
+
+        }
+    }
+
+    var ItemSize = await CatelogDDL.ItemSizeList(Model.Item.ItemID);
+    int count = 0;
+
+    foreach (var ct in ItemSize)
+    {
+        if (ItemSize.Count() == 0)
+        {
+            count = 0;
+
+        }
+        else
+        {
+            count = 1;
+        }
+    }
+
+    var Specifiction = await CatelogDDL.IngredientsList(Model.Item.ItemID);
+    int IngredientsCount = await CatelogDDL.IngredientsCount(Model.Item.ItemID);
+    var DescriptionCount = Model.Item.itemDescription.ToMultiline().ToShortcount(400);
+
+    var activein = "";
+    var descriptionactive = "";
+    var Ingredientssactive = "";
+    if (!DescriptionCount)
+    {
+        activein = "active in";
+        Ingredientssactive = "active";
+    }
+    else
+    {
+        descriptionactive = "active";
+    }
+}
+
+ 
+
+@inject DropDown.ICommonDDL CommonDDL
+
+
+<div class="page-content mb-8 pb-6">
+    <div class="container">
+        <div class="product product-single row mb-8">
+            <div class="col-md-5">
+                <div class="product-gallery">
+                    <div class="product-single-carousel owl-carousel owl-theme owl-nav-inner row cols-1">
+                        @if ((Model.ImageList != null) && (!Model.ImageList.Any()))
+                        {
+                            <figure class="product-image">
+                                <img src="~/Uploads/defaultimage.jpg" alt="@Model.Item.ItemName" width="800" height="900">
+                            </figure>
+                        }
+                        else
+                        {
+                            @foreach (var img in Model.ImageList)
+                            {
+                                <figure class="product-image">
+                                    <img src="~/Uploads/@(img.ImageID).jpg" alt="@Model.Item.ItemName" width="800" height="900">
+                                </figure>
+                            }
+
+
+
+                        }
+                        @*CommonDDL.CheckFile(img.ImageID)*@
+                    </div>
+                    <div class="product-thumbs-wrap">
+                        <div class="product-thumbs">
+                            @foreach (var img in Model.ImageList)
+                            {
+                                <div class="product-thumb @(Model.ImageList.First()==img ? "active" : "")">
+                                    <img src="~/Uploads/@(img.ImageID).jpg" alt="product thumbnail"
+                                         width="109" height="122">
+                                </div>
+                            }
+
+                        </div>
+                        <button class="thumb-up disabled"><i class="fas fa-chevron-left"></i></button>
+                        <button class="thumb-down disabled"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 ">
+                <div class="product-details">
+                    <div class="product-navigation">
+                        <ul class="breadcrumb breadcrumb-lg">
+                            <li><a href="~/Item"><i class="d-icon-shoppingbag"></i></a></li>
+                            <li><a href="~/Item?CategoryMainID=@Model.Item.CategoryMainID" class="">@Model.Item.CategoryMainName</a></li>
+                            <li><a href="~/Item?CategorySubID=@Model.Item.CategorySubID" class="active">@Model.Item.CategorySubName</a></li>
+                        </ul>
+                    </div>
+
+                    <h1 class="product-name">@Model.Item.ItemName</h1>
+                    <div class="product-meta">
+                        <input value="@Model.Item.ItemID" class="d-none txtProductID">
+                        SKU: <span class="product-sku">@Model.Item.ItemCode</span>
+                        BRAND: <span class="product-brand">@Model.Item.BrandDisplay</span>
+                    </div>
+                    <div class="product-price product-variation-price" id="pricetxt">
+                        <input value="@Model.Item.SellingPrice" id="pricein" class="d-none txtPrice">
+                        <ins class="new-price ">@AppData.GetCurrency() @Model.Item.SellingPriceDisplay</ins>
+                    </div>
+
+                    <p class="product-short-desc">
+                        @Html.Raw(Model.Item.itemDescription.ToMultiline().ToShort(400))
+                    </p>
+
+                    @if (count != 0)
+                    {
+                        <div class="product-form product-size">
+                            <label>Size:</label>
+
+                            <div class="product-form-group">
+                                <div class="product-variations">
+                                    @foreach (var Size in ItemSize.GroupBy(x => x.ItemSizeID))
+                                    {
+
+                                        <a class="size" onclick="myFunction('@Size.First().ItemSizeID','@Size.First().SizeName')">@Size.First().SizeName</a>
+                                    }
+                                </div>
+                                <a href="#" class="product-variation-clean">Clean All</a>
+                            </div>
+
+
+                        </div>
+                        <div class="d-none">
+                            <span class="d-none" id="ItemSizeName"></span>
+                        </div>
+
+
+                    }
+                    <div class="product-variation-price ">
+                        <span id="price" class="d-none">@AppData.GetCurrency() @Model.Item.SellingPrice</span>
+                    </div>
+
+                    <hr class="product-divider">
+
+                    <div class="product-form product-qty">
+                        <div class="product-form-group">
+                            <div class="input-group mr-2">
+                                <button class="quantity-minus d-icon-minus"></button>
+                                <input class="quantity form-control quantity-details" type="number" value="1" min="1" max="1000000">
+                                <button class="quantity-plus d-icon-plus"></button>
+                            </div>
+                            <button class="btn-product btn-cart text-normal ls-normal font-weight-semi-bold" id="assign"
+                                    data-itemid="@Model.Item.ItemID"
+                                    data-price="@Model.Item.SellingPrice"
+                                    data-qty="1"
+                                    data-ItemSizeName="">
+                                <i class="d-icon-bag"></i>Add to
+                                Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <hr class="product-divider mb-3">
+
+                    <div class="product-footer">
+                        <div class="social-links mr-4">
+                            <span>Share on : </span>
+                            <a href="http://www.facebook.com/sharer.php?u=@URL" target="_blank" class="social-link social-facebook fab fa-facebook-f "></a>
+                            <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=@URL" target="_blank" class="social-link social-linkedin fab fa-linkedin"></a>
+                            <a href="https://api.whatsapp.com/send?text=@URL" target="_blank" class="social-link social-whatsapp fab fa-whatsapp"></a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        @if (DescriptionCount || IngredientsCount != 0)
+        {
+            <div class="tab tab-nav-simple product-tabs mb-4">
+                <ul class="nav nav-tabs justify-content-center" role="tablist">
+                    @if (DescriptionCount)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link @descriptionactive" href="#product-tab-description"> Description</a>
+                        </li>
+                    }
+                    @if (IngredientsCount != 0)
+                    {
+
+                        <li class="nav-item">
+                            <a class="nav-link @Ingredientssactive" href="#product-tab-Ingredientss"> Ingredients and Making</a>
+                        </li>
+                    }
+
+                </ul>
+                <div class="tab-content">
+                    @if (DescriptionCount)
+                    {
+
+                        <div class="tab-pane active in" id="product-tab-description">
+
+                            <div class="col-md-12">
+
+                                @Html.Raw(Model.Item.itemDescription.ToMultiline())
+
+                            </div>
+
+                        </div>
+                    }
+
+                    @if (IngredientsCount != 0)
+                    {
+
+                        <div class="tab-pane @activein" id="product-tab-Ingredientss">
+
+                            <div class="col-md-12">
+
+
+                                <table class="table">
+                                    <tbody>
+                                        @foreach (var Size in Specifiction )
+                                        {
+                                            <tr>
+
+                                                <th class="font-weight-semi-bold text-dark pl-0 tblbdy">@Size.Caption</th>
+                                                <td class="pl-4 tblbdy">@Size.Description</td>
+
+
+                                            </tr>
+
+                                        }
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+
+
+
+
+        <section>
+            <h2 class="title justify-content-center">Related Products</h2>
+
+            <div class="owl-carousel owl-theme owl-nav-full row cols-2 cols-md-3 cols-lg-4"
+                 data-owl-options="{
+							'items': 5,
+							'nav': false,
+							'loop': false,
+							'dots': true,
+                            'autoplay': true,
+							'margin': 20,
+							'responsive': {
+								'0': {
+									'items': 2
+								},
+								'768': {
+									'items': 4
+								},
+								'992': {
+									'items': 5,
+									'dots': false,
+									'nav': true
+								}
+							}
+						}">
+
+                @foreach (var itm in Model.RelatedList)
+                {
+                    <div class="product product-classic ">
+
+
+                        <figure class="product-media">
+                            <a href="~/Item/Details/@(itm.ItemID)">
+                                <img src="~/Uploads/@(CommonDDL.CheckFile(itm.ItemID))" alt="product" width="280"
+                                     height="315">
+
+                            </a>
+                            <div class="product-label-group">
+                                <label class="product-label label-new @itm.IsNewClass">New</label>
+                                <label class="product-label label-sale @itm.IsFeaturedClass">Featured</label>
+                            </div>
+                        </figure>
+                        <div class="product-meta d-none">
+                            <input value="@itm.ItemID" class=" txtProductID">
+                        </div>
+                        <div class="product-details">
+                            <div class="product-meta d-none">
+                                <input value="@itm.ItemID" class=" txtProductID">
+                            </div>
+                            <div class="product-cat product-color">
+                                <a href="~/Item?CategorySubID=@itm.CategorySubID">@itm.CategoryDisplay</a>
+                            </div>
+
+                            <div class="product-name product-color">
+                                <a href="~/Item/Details/@(itm.ItemID)">@itm.ItemName</a>
+                            </div>
+                            <div class="product-price">
+                                <input value="@itm.RetailPrice" class="d-none txtPrice">
+                                <ins class="new-price">@AppData.GetCurrency() @itm.SellingPriceDisplay</ins>
+                            </div>
+                            <div class="product-action">
+
+
+                                <a href="#" class="btn-product btn-cart d-none" data-toggle="modal"
+                                   data-target="#addCartModal" title="Add to cart"
+                                   data-itemid="@itm.ItemID"
+                                   data-price="@itm.SellingPrice"
+                                   data-qty="1"
+                                   data-ItemSizeName="">
+                                    <i class="d-icon-bag"></i><span>
+                                        add to
+                                        cart
+                                    </span>
+                                </a>
+
+
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </section>
+
+
+    </div>
+</div>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+
+
+
+@section Scripts {
+
+    <script>
+
+
+        function myFunction(ID,ItemSizeName) {
+            var url = '@Url.Action("Get", "Item")';
+
+            setTimeout(function () {
+                $.ajax({
+
+                    type: "POST",
+                    url: url,
+                    async: false,
+                    data: { ID: ID },
+                    success: function (result) {
+                        if (result != null && result.success) {
+
+                            $("#price").text("Rs." + result.responseText );
+                            $("#pricetxt").text("Rs." + result.responseText);
+                            $("#assign").attr("data-ItemSizeName",'(' + ItemSizeName + ')');
+                            $("#pricein").val(result.responseText);
+                            $('#assign').attr("data-price", result.responseText);
+
+                        } else {
+
+                            $("#price").text(result.responseText);
+                        }
+
+                    },
+                    error: function (result) {
+                        $("#price").text(result.responseText);
+
+                    }
+                })
+            }, 500);
+
+        }
+    </script>
+}

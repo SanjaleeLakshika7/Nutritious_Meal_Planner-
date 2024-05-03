@@ -1,0 +1,266 @@
+﻿@model ItemSearchView
+
+@{
+    ViewData["ItemActive"] = "active";
+    ViewData["ItemList"] = "d-none";
+}
+
+@inject DropDown.ICatelogDDL CatelogDDL
+@inject DropDown.ICommonDDL CommonDDL
+
+@inject DropDown.IPageMetaTag TagManager
+
+
+
+@{
+    var CatList = await CatelogDDL.CategoryMasterList();
+
+    var tag = await TagManager.Get("MTG004");
+    var URL = TagManager.GetURL();
+
+}
+
+
+ 
+
+<div class="d-none">
+    @Html.EditorFor(model => model.KeyW, new { htmlAttributes = new { @class = "form-control", id = "txtKeyW" } })
+    @Html.EditorFor(model => model.CategoryMainID, new { htmlAttributes = new { @class = "form-control", id = "txtCategoryMainID" } })
+    @Html.EditorFor(model => model.CategorySubID, new { htmlAttributes = new { @class = "form-control", id = "txtCategorySubID" } })
+    @Html.EditorFor(model => model.BrandID, new { htmlAttributes = new { @class = "form-control", id = "txtBrandID" } })
+    @Html.EditorFor(model => model.SortOrder, new { htmlAttributes = new { @class = "form-control", id = "txtSortOrder" } })
+    @Html.EditorFor(model => model.Page, new { htmlAttributes = new { @class = "form-control", id = "txtPage" } })
+</div>
+
+<div class="page-content">
+    <div class="container">
+       
+     
+        <div class="row gutter-lg">
+           
+
+            <aside class="col-lg-3 sidebar sidebar-fixed shop-sidebar sticky-sidebar-wrapper mt-lg-2">
+                <div class="sidebar-overlay">
+                    <a class="sidebar-close" href="#"><i class="d-icon-times"></i></a>
+                </div>
+                <div class="sidebar-content">
+                    <div class="sticky-sidebar">
+                        <div class="widget widget-collapsible border-no">
+                            <h3 class="widget-title">All Categories</h3>
+                            <ul class="widget-body filter-items search-ul">
+                                
+
+                                @foreach (var cat in CatList.GroupBy(x => x.CategoryMainID))
+                                {
+                                    <li >
+                                        <a href="~/Item?CategoryMainID=@cat.First().CategoryMainID">@cat.First().CategoryMainName</a>
+                                        <ul >
+                                            @foreach (var subCat in cat)
+                                            {
+                                                <li><a href="~/Item?CategorySubID=@subCat.CategorySubID">@subCat.CategorySubName</a></li>
+                                            }
+                                        </ul>
+                                    </li>
+                                }
+
+                            </ul>
+                        </div>
+                      
+                    </div>
+                </div>
+            </aside>
+            <div class="col-lg-9">
+                <nav class="toolbox sticky-toolbox sticky-content fix-top">
+                    <div class="toolbox-left">
+                        <a href="#"
+                           class="toolbox-item left-sidebar-toggle btn btn-sm btn-outline btn-primary  btn-rounded d-lg-none">
+                            Filters<i class="d-icon-arrow-right"></i>
+                        </a>
+                        <div class="toolbox-item text-dark">
+                            <h2 class="shop-page-header intxt d-lg-none">@ViewData["Title"]</h2>
+                        </div>
+                        <div class="toolbox-item text-dark">
+                            <h2 class="shop-page-header   d-lg-show">@ViewData["Title"]</h2>
+                        </div>
+
+                    </div>
+                    <div class="toolbox-item toolbox-sort select-box text-dark toolbox-right">
+
+                        <label>Brands:</label>
+                        @Html.DropDownList("BrandID", await CatelogDDL.BrandList(), "(Not selected)", htmlAttributes: new { @class = "form-control", id = "cmbBrand", data_toggle = "select2" })
+
+                        <label>Sort By:</label>
+                        @Html.DropDownList("SortOrder", CommonDDL.SortOrderList(), "(Default)", htmlAttributes: new { @class = "form-control", id = "cmbSortOrder", data_toggle = "select2" })
+
+
+                    </div>
+                </nav>
+
+                <div class="row cols-2 cols-sm-3 product-wrapper">
+                    
+
+                    @foreach (var itm in Model.DataList)
+                    {
+                        <div class="product-wrap">
+                            <div class="product product-classic mb-4">
+
+
+                                <figure class="product-media">
+                                    <a href="~/Item/Details/@(itm.ItemID)">
+                                        <img src="~/Uploads/@(itm.ItemID).jpg" alt="product" width="280"
+                                             height="315">
+
+                                    </a>
+                                    <div class="product-label-group">
+                                        <label class="product-label label-new @itm.IsNewClass">New</label>
+                                        <label class="product-label label-sale @itm.IsFeaturedClass">Featured</label>
+                                    </div>
+                                </figure>
+                                <div class="product-meta d-none">
+                                    <input value="@itm.ItemID" class=" txtProductID">
+                                </div>
+                                <div class="product-details">
+                                    <div class="product-meta d-none">
+                                        <input value="@itm.ItemID" class=" txtProductID">
+                                    </div>
+                                    <div class="product-cat product-color">
+                                        <a href="~/Item?CategorySubID=@itm.CategorySubID">@itm.CategoryDisplay</a>
+                                    </div>
+
+                                    <div class="product-name product-color">
+                                        <a href="~/Item/Details/@(itm.ItemID)">@itm.ItemName</a>
+                                    </div>
+                                    <div class="product-price">
+                                        <input value="@itm.RetailPrice" class="d-none txtPrice">
+                                        <ins class="new-price">@AppData.GetCurrency() @itm.SellingPriceDisplay</ins>
+                                    </div>
+                                    <div class="product-action">
+
+
+                                        <a href="#" class="btn-product btn-cart" data-toggle="modal"
+                                           data-target="#addCartModal" title="Add to cart"
+                                           data-itemid="@itm.ItemID"
+                                           data-price="@itm.SellingPrice"
+                                           data-qty="1"
+                                           data-ItemSizeName="">
+                                            <i class="d-icon-bag"></i><span>
+                                                add to
+                                                cart
+                                            </span>
+                                        </a>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                @if (Model.PaginationList.Count > 0)
+                {
+                    <nav class="toolbox toolbox-pagination mb-0 pb-3">
+                        <p class="show-info">Showing @Model.PageSize of @Model.RecordCount items</p>
+                        <ul class="pagination">
+                            @if (Model.Page > 1)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link page-link-prev" href="javascript:PageChange('N')" aria-label="Previous" tabindex="-1"
+                                       aria-disabled="true">
+                                        <i class="d-icon-arrow-left"></i>Prev
+                                    </a>
+                                </li>
+                            }
+                            @foreach (var pg in Model.PaginationList)
+                            {
+                                <li class="page-item @(pg==Model.Page ? " active" : "" )" aria-current="page">
+                                    <a class="page-link" href="javascript:PageChange(@pg.ToString())">@pg.ToString()</a>
+                                </li>
+                            }
+
+                            @if (Model.PaginationList.Max() > Model.Page)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link page-link-next" href="javascript:PageChange('N')" aria-label="Next">
+                                        Next<i class="d-icon-arrow-right"></i>
+                                    </a>
+                                </li>
+                            }
+
+
+                        </ul>
+                    </nav>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+
+    <script>
+
+        var SearchForm = function () {
+
+            var KeyW = $("#txtKeyW").val();
+            var CategoryMainID = $("#txtCategoryMainID").val();
+            var CategorySubID = $("#txtCategoryMainID").val();
+            var BrandID = $("#txtBrandID").val();
+            var SortOrder = $("#txtSortOrder").val();
+            var Page = $("#txtPage").val();
+            var url = '@Url.Action("Index", "Item")';
+
+            var ParamPart = "&";
+            ParamPart = ParamPart + ((KeyW != "") ? '&KeyW=' + KeyW : '');
+            ParamPart = ParamPart + ((CategoryMainID != "") ? '&CategoryMainID=' + CategoryMainID : '');
+            ParamPart = ParamPart + ((CategorySubID != "") ? '&CategorySubID' + SubCategoryID : '');
+            ParamPart = ParamPart + ((BrandID != "") ? '&BrandID=' + BrandID : '');
+            ParamPart = ParamPart + ((SortOrder != "") ? '&SortOrder=' + SortOrder : '');
+            ParamPart = ParamPart + ((Page > 1) ? '&Page=' + Page.toString() : '');
+
+            ParamPart = ParamPart.replace("&&", "");
+
+            window.location.href = url + '?' + ParamPart;
+            event.preventDefault();
+        }
+
+        var CategorySelected = function (CategoryMainID, CategorySubID) {
+            $("#txtCategoryMainID").val(CategoryMainID);
+            $("#txtCategoryMainID").val(CategorySubID);
+            SearchForm();
+        }
+
+        $("#cmbBrand").change(function (event) {
+
+            var val = $("#cmbBrand").val();
+            $('#txtBrandID').val(val);
+            SearchForm();
+
+        });
+
+        $("#cmbSortOrder").change(function (event) {
+
+            var val = $("#cmbSortOrder").val();
+            $('#txtSortOrder').val(val);
+            SearchForm();
+
+        });
+
+        var PageChange = function (value) {
+            if (value == "N") {
+                var CurVal = parseInt($("#txtPage").val());
+                value = CurVal + 1;
+            }
+            if (value == "P") {
+                var CurVal = parseInt($("#txtPage").val());
+                value = CurVal - 1;
+            }
+            $("#txtPage").val(value);
+            SearchForm(1);
+        }
+
+    </script>
+}

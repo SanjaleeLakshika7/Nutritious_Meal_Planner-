@@ -1,0 +1,167 @@
+﻿@model CheckoutView
+@{
+    ViewData["Title"] = "Place Order";
+}
+@inject DropDown.IPageMetaTag TagManager
+@{
+
+    var URL = TagManager.GetURL();
+}
+
+@section MetaContent{
+
+    <title>Place Order - nutriplanner.softwareengineer.lk</title>
+    <meta name="description" content="Place Order for nutriplanner.softwareengineer.lk Site">
+    <meta name="keywords" content="">
+
+    <meta name="og:url" content="@URL">
+    <meta name="og:type" content="website">
+    <meta name="og:title" content="Place Order - nutriplanner.softwareengineer.lk">
+    <meta name="og:description" content="Place Order for nutriplanner.softwareengineer.lk Site">
+    <meta name="og:image" content="">
+
+}
+@{
+    var HiddenClass = "";
+    if (Model.CartList.Count == 0)
+    {
+        HiddenClass = "d-none";
+    }
+
+    var CountString = Model.CartList.Count.ToString() + " items, " + Model.CartList.Sum(x => x.ItemQty).ToString() + " peices";
+    var TotalString = Model.CartList.Sum(x => x.LineTotal).ToString("N");
+}
+
+@inject DropDown.ICommonDDL CommonDDL
+@inject DropDown.ISalesDDL SalesDDL
+
+<div class="page-content pt-4 pb-4">
+    <div class="container mt-4">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="row gutter-lg">
+                <div class="col-lg-8 mb-6">
+                    <h3 class="title title-simple text-left">Place Order</h3>
+                    <div class="alert alert-danger alert-dark alert-round alert-inline @(ViewData["ErrorMessage"] == null ? "d-none" : "")">
+                        @(ViewData["ErrorMessage"])
+                    </div>
+
+                    <div class="d-none">
+                        @Html.EditorFor(model => model.Order.CustomerID, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            @Html.LabelFor(model => model.Order.PeriodIndex, htmlAttributes: new { @class = "" })
+                            @Html.ValidationMessageFor(model => model.Order.PeriodIndex, "", new { @class = "text-danger" })
+                            @Html.DropDownListFor(model => model.Order.PeriodIndex, CommonDDL.ScheduleTypeList(), htmlAttributes: new { @class = "form-control" })
+                        </div>
+                        <div class="col-xs-6">
+                          @Html.LabelFor(model => model.Order.SheduledTime, htmlAttributes: new { @class = "" })
+                            <input type="time" id="ScheduledTime" class="form-control" />
+                            @Html.EditorFor(model => model.Order.SheduledTime, new { htmlAttributes = new { @class = "form-control ", @style="display:none;" ,autofocus = "autofocus" } })
+
+                        
+                        </div>
+                    </div>
+                    <label>Att (To)</label>
+                    @Html.ValidationMessageFor(model => model.Order.ShipAttTo, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Order.ShipAttTo, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            @Html.LabelFor(model => model.Order.ShipAddressLine1, htmlAttributes: new { @class = "" })
+                            @Html.ValidationMessageFor(model => model.Order.ShipAddressLine1, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.Order.ShipAddressLine1, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                        </div>
+                        <div class="col-xs-6">
+                            @Html.LabelFor(model => model.Order.ShipAddressLine2, htmlAttributes: new { @class = "" })
+                            @Html.ValidationMessageFor(model => model.Order.ShipAddressLine2, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.Order.ShipAddressLine2, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            @Html.LabelFor(model => model.Order.ShipCity, htmlAttributes: new { @class = "" })
+                            @Html.ValidationMessageFor(model => model.Order.ShipCity, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.Order.ShipCity, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                        </div>
+                        <div class="col-xs-6">
+                            @Html.LabelFor(model => model.Order.ShipState, htmlAttributes: new { @class = "" })
+                            @Html.ValidationMessageFor(model => model.Order.ShipState, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.Order.ShipState, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            @Html.LabelFor(model => model.Order.ShipPostalCode, htmlAttributes: new { @class = "" })
+                            @Html.ValidationMessageFor(model => model.Order.ShipPostalCode, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.Order.ShipPostalCode, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                        </div>
+                        <div class="col-xs-6">
+                            @Html.LabelFor(model => model.Order.ShipCountry, htmlAttributes: new { @class = "" })
+                            @Html.ValidationMessageFor(model => model.Order.ShipCountry, "", new { @class = "text-danger" })
+                            @Html.DropDownListFor(model => model.Order.ShipCountry, await SalesDDL.CountryList(), "(Please select)", htmlAttributes: new { @class = "form-control" })
+                        </div>
+
+                    </div>
+
+                </div>
+                <aside class="col-lg-4 sticky-sidebar-wrapper">
+                    <div class="sticky-sidebar" data-sticky-options="{'bottom': 20}">
+                        <div class="summary mb-4">
+                            <table class="total">
+                                <tr class="">
+                                    <td>
+                                        <p class="">Items</p>
+                                    </td>
+                                    <td>
+                                        <p class="">@CountString</p>
+                                    </td>
+                                </tr>
+                                <tr class="summary-subtotal">
+                                    <td>
+                                        <h4 class="summary-subtitle">Total</h4>
+                                    </td>
+                                    <td>
+                                        <p class="summary-total-price ls-s">@AppData.GetCurrency() @TotalString</p>
+                                    </td>
+                                </tr>
+                            </table>
+                            <button class="btn btn-dark btn-rounded btn-order" type="submit">Place Order</button>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        }
+
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+     
+        <script>
+            $(document).ready(function () {
+            $('#ScheduledTime').change(function () {
+                    var selectedTime = $(this).val();
+                    var timeParts = selectedTime.split(":");
+                    var hours = parseInt(timeParts[0]);
+                    var minutes = timeParts[1];
+                    var suffix = (hours >= 12) ? "PM" : "AM";
+                    hours = (hours > 12) ? hours - 12 : hours;
+                    hours = (hours < 10) ? "0" + hours : hours;
+                    var formattedTime = hours + ":" + minutes + " " + suffix;
+                $('#Order_SheduledTime').val(formattedTime);
+                });
+            });
+ 
+    </script>
+
+}

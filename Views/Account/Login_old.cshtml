@@ -1,0 +1,73 @@
+﻿@model LoginView
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="page-content mt-6 pb-2 mb-10">
+    <div class="container">
+        <div class="login-popup">
+            <div class="form-box">
+                <div class="tab tab-nav-simple tab-nav-boxed form-tab">
+                    <ul class="nav nav-tabs nav-fill align-items-center border-no justify-content-center mb-5" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active border-no lh-1 ls-normal" href="#signin">Login</a>
+                        </li>
+                    </ul>
+                    <div class="alert alert-danger alert-dark alert-round alert-inline @(ViewData["ErrorMessage"] == null ? "d-none" : "")">
+                        @(ViewData["ErrorMessage"])
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="signin">
+                            @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="form-group mb-3">
+                                    @Html.CheckBoxFor(model => model.RememberMe, new { htmlAttributes = new { @class = "form-control", placeholder = "Login Email" } })
+                                    @Html.EditorFor(model => model.LoginEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "Login Email" } })
+                                    @Html.ValidationMessageFor(model => model.LoginEmail, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" } })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group d-none">
+                                    @Html.LabelFor(model => model.ReturnURL)
+                                    @Html.EditorFor(model => model.ReturnURL, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ReturnURL, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-footer">
+                                    <a href="#" class="lost-link">Lost your password?</a>
+                                </div>
+                                <button class="btn btn-dark btn-block btn-rounded" type="submit">Login</button>
+                            }
+                            <div class="form-choice text-center d-none">
+                                <label class="ls-m">or Login With</label>
+                                <div class="social-links">
+                                    <a href="#" class="social-link social-google fab fa-google border-no"></a>
+                                    <a href="#" class="social-link social-facebook fab fa-facebook-f border-no"></a>
+                                    <a href="#" class="social-link social-twitter fab fa-twitter border-no"></a>
+                                </div>
+                            </div>
+                            <div class="form-choice text-center">
+                                <label class="ls-m">Not registered yet?</label>
+                                <div class="">
+                                    <a href="~/Account/Register" class="lh-1 ls-normal">Register</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+    <script>
+
+    </script>
+
+}

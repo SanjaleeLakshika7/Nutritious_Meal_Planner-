@@ -1,0 +1,196 @@
+﻿@model Customer
+
+@inject DropDown.IPageMetaTag TagManager
+@{
+
+    var URL = TagManager.GetURL();
+}
+@section MetaContent{
+
+    <title>Manage My Account - nutriplanner.softwareengineer.lk</title>
+    <meta name="description" content="Manage Account for nutriplanner.softwareengineer.lk Customer">
+    <meta name="keywords" content="">
+
+    <meta name="og:url" content="@URL">
+    <meta name="og:type" content="website">
+    <meta name="og:title" content="Manage My Account - nutriplanner.softwareengineer.lk">
+    <meta name="og:description" content="Manage Account for nutriplanner.softwareengineer.lk Customer">
+    <meta name="og:image" content="">
+}
+
+<div class=" pl-4 pr-4">
+
+    <h1 class="page-title font-weight-bold lh-1 text-center text-capitalize ">Manage My Account</h1>
+
+
+</div>
+
+
+@if (Model.checkLoginData == 1)
+{
+    <div class="page-content mt-5 pt-5">
+
+        <section class="about-section ">
+            <div class="container">
+
+                <div class="row align-items-center">
+
+                    <div class="col-lg-12 ">
+                        <div class="row">
+                            <div class="col-md-5 mb-5">
+                                <div class="counter  text-dark">
+                                    <h3 class="count-title font-weight-bold text-body ls-md text-center">Personal Profile</h3>
+                                    <h5 class="count-title font-weight-bold text-body ls-md">@Model.Salutation @Model.FirstName @Model.MiddleName @Model.LastName</h5>
+                                    <h5 class="count-title font-weight-bold text-body ls-md" id="lblCompany">Company : <span id="txtCompany">@Model.CompanyName</span></h5>
+                                    <h5 class="count-title font-weight-bold text-body ls-md">Contact </h5>
+                                    <p class="text-grey mb-0">
+
+                                        Email : @Model.LoginEmail<br />
+                                        Personal : @Model.TelephoneMobile<br>
+                                        <span id="lblOtherNumber">Other : </span> <span id="txtOtherNumber">@Model.TelephoneOther</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-7 mb-7">
+
+                                <h3 class="count-title font-weight-bold text-body ls-md text-center">Address Book</h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+
+                                        <div class="counter  text-dark">
+
+                                            <h5 class="count-title font-weight-bold text-body ls-md">Default Billing Address</h5>
+                                            <p class="text-grey mb-0">
+                                                @Model.FirstName<br />
+                                                @Model.AddressLine1<br />
+                                                @Model.State @Model.City @Model.PostalCode <br />
+                                                @Model.Country
+                                            </p>
+
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div class="counter  text-dark">
+
+                                            <h5 class="count-title font-weight-bold text-body ls-md">Shipping Address</h5>
+                                            <p class="text-grey mb-0" id="pshipaddress">
+                                                @Model.FirstName<br />
+                                                <span id="txtShipAddressLine1">@Model.ShipAddressLine1</span><br />
+                                                @Model.ShipState @Model.ShipCity @Model.ShipPostalCode <br />
+                                                @Model.Country
+                                            </p>
+
+                                            <p class="text-grey mb-0" id="pdefaultaddress">
+                                                @Model.FirstName<br />
+                                                @Model.AddressLine1<br />
+                                                @Model.State @Model.City @Model.PostalCode <br />
+                                                @Model.Country
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+
+        <section class="section-buttons">
+            <div class="container">
+                <div class="mb-10 pb-2">
+                    <div class="row">
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-3">
+                            <a href="~/Shop/Orders" class="btn btn-outline btn-block btnroundlook">Orders</a>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-3">
+                            <a href="~/Account/EditProfile" class="btn btn-outline btn-block btnroundlook">Edit Profile</a>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-3">
+                            <a href="~/Account/EditPassword" class="btn btn-outline btn-block btnroundlook">Edit Password</a>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-3">
+                            <a href="~/Account/Logout" class="btn btn-outline btn-block btnroundlook">Log Out</a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+
+
+
+    </div>
+
+}
+
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+    <script>
+        $(document).ready(function () {
+
+            Checktext();
+
+        });
+
+        function Checktext() {
+            var OtherNumber = $('#txtOtherNumber').html();
+            var CompanyName = $('#txtCompany').html();
+            var shipAdresss = $('#txtShipAddressLine1').html();
+            if (!OtherNumber) {
+                $('#txtOtherNumber').hide();
+                $('#lblOtherNumber').hide();
+            }
+            else {
+                $('#txtOtherNumber').show();
+                $('#lblOtherNumber').show();
+            }
+            if (!CompanyName) {
+                $('#lblCompany').hide();
+                $('#txtCompany').hide();
+            }
+            else {
+                $('#lblCompany').show();
+                $('#txtCompany').show();
+            }
+
+            if (!shipAdresss) {
+                $('#pshipaddress').hide();
+                $('#pdefaultaddress').show();
+            }
+            else {
+                $('#pshipaddress').show();
+                $('#pdefaultaddress').hide();
+            }
+        }
+
+    </script>
+
+}
+
+
+
+
+
+
+
+
+
+

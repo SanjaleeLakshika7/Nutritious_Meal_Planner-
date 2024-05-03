@@ -1,0 +1,553 @@
+﻿@inject ISessionData Session
+@inject DropDown.ICatelogDDL CatelogDDL
+@{
+    await Session.CheckToken();
+
+    var User = Session.GetUser();
+    var UserDisplay = "(Guest)";
+    var HasLogged = false;
+    if (User != null)
+    {
+        HasLogged = true;
+        UserDisplay = User.FirstName + " " + User.LastName;
+    }
+    var CatList = await CatelogDDL.CategoryMasterList();
+   
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    @RenderSection("MetaContent", false)
+
+
+
+    <script>
+        WebFontConfig = {
+            google: { families: ['Poppins:400,500,600,700,800'] }
+        };
+        (function (d) {
+            var wf = d.createElement('script'), s = d.scripts[0];
+            wf.src = '/js/webfont.js';
+            wf.async = true;
+            s.parentNode.insertBefore(wf, s);
+        })(document);
+    </script>
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="~/lib/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/animate/animate.min.css">
+
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" type="text/css" href="~/lib/magnific-popup/magnific-popup.min.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/photoswipe/photoswipe.min.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/photoswipe/default-skin/default-skin.min.css">
+
+    <!-- Main CSS File -->
+    <link rel="stylesheet" type="text/css" href="~/css/style.css">
+
+    <link rel="stylesheet" type="text/css" href="~/css/custom.css">
+</head>
+
+<body class="home">
+    <div class="page-wrapper">
+         <header class="header">
+
+            <div class="mobile-View-Banner">
+                <div class="header-top">
+                    <div class="container">
+                        @if (HasLogged)
+                        {
+                            <div class="header-left">
+                                <p class="welcome-msg pb-2">Welcome  @UserDisplay to  nutriplanner.softwareengineer.lk</p>
+                            </div>
+
+                            <div class="header-right">
+                                <!-- End DropDown Menu -->
+                                <div class="dropdown dropdown-expanded">
+                                    <a href="#dropdown" data-toggle="login-modal">
+                                        <i class="d-icon-user"></i>
+                                    </a>
+                                    <ul class="dropdown-box">
+                                        <li>
+                                            <a href="~/Account">
+                                                My Account
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Account/EditProfile">
+                                                Edit Profile
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Account/EditPassword">
+                                                Change Password
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Shop/Orders">
+                                                My Orders
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Account/Logout">
+                                                Logout
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                        }
+                        else
+                        {
+                            <div class="header-left">
+                                <p class="welcome-msg pb-2">Welcome to nutriplanner.softwareengineer.lk</p>
+                            </div>
+
+                            <div class="header-right">
+                                <!-- End DropDown Menu -->
+                                <div class="dropdown dropdown-expanded">
+                                    <a href="#dropdown" data-toggle="login-modal">
+                                        <i class="d-icon-user"></i>
+                                    </a>
+                                    <ul class="dropdown-box">
+                                        <li>
+                                            <a href="~/Account/Login">Login</a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Account/Register">Register</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+                <!-- End HeaderTop -->
+
+            </div>
+
+            <div class="header-middle">
+                <div class="container">
+                    <div class="header-left">
+                        <a href="#" class="mobile-menu-toggle">
+                            <i class="d-icon-bars"></i>
+                        </a>
+                        <a href="http://nutriplanner.softwareengineer.lk/" class="logo">
+                            <img src="~/images/logo.png" alt="logo" width="190" height="55" />
+                        </a>
+                        <!-- End Logo -->
+
+                        <div class="header-search hs-simple">
+                            <form action="#" id="frmTopSearch" class="input-wrapper">
+                                <input type="text" id="txtKeyW" class="form-control" name="search" autocomplete="off"
+                                       placeholder="Search..." required />
+                                <button class="btn btn-search" type="submit">
+                                    <i class="d-icon-search"></i>
+                                </button>
+                            </form>
+                        </div>
+                        <!-- End Header Search -->
+                    </div>
+                    <div class="header-right">
+                        <a href="tel:+94 71 602 3591" class="icon-box icon-box-side">
+                            <div class="icon-box-icon mr-0 mr-lg-2">
+                                <i class="d-icon-phone"></i>
+                            </div>
+                            <div class="icon-box-content d-lg-show">
+                                <h4 class="icon-box-title">Call Us Now:</h4>
+                                <p>+94 71 602 3591</p>
+                            </div>
+                        </a>
+                        <span class="divider"></span>
+                        <div id="divTopCart" class="dropdown cart-dropdown type2 mr-0 mr-lg-2">
+
+                        </div>
+                        <div class="header-search hs-toggle mobile-search">
+                            <a href="#" class="search-toggle">
+                                <i class="d-icon-search"></i>
+                            </a>
+                            <form action="#" class="input-wrapper">
+                                <input type="text" class="form-control" name="search" autocomplete="off"
+                                       placeholder="Search your keyword..." required />
+                                <button class="btn btn-search" type="submit">
+                                    <i class="d-icon-search"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- End HeaderTop -->
+
+            <div class="header-bottom sticky-header fix-top sticky-content has-dropdown">
+                <div class="container">
+                    <div class="inner-wrap">
+                        <div class="header-left">
+                            <div class="dropdown category-dropdown has-border @ViewData["menufixed"]">
+                                <a href="#" class="text-white category-toggle"><i class="d-icon-bars2"></i></a>
+                                <!-- <div class="dropdown-overlay"></div> -->
+                                <div class="dropdown-box  @ViewData["ItemList"] border-no">
+                                    <ul class="menu vertical-menu category-menu">
+                                        
+                                        @foreach (var cat in CatList.GroupBy(x => x.CategoryMainID))
+                                        {
+                                            <li >
+                                                <a href="~/Item?CategoryMainID=@cat.First().CategoryMainID"><i class="d-icon-student"></i>@cat.First().CategoryMainName</a>
+                                                
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                            <nav class="main-nav">
+                                <ul class="menu ">
+                                    <li class="@ViewData["HomeActive"] ">
+                                        <a href="~/">HOME</a>
+                                    </li>
+                                    <li class="@ViewData["ItemActive"] ">
+                                        <a href="~/Item">ALL ITEMS</a>
+                                    </li>
+                                    <li class="@ViewData["ShopActive"] ">
+                                        <a href="~/Shop">SHOPPING CART</a>
+                                    </li>
+                                    <li class="@ViewData["AboutActive"]">
+                                        <a href="~/Home/About">ABOUT US </a>
+                                    </li>
+                                    <li class="@ViewData["ContactActive"]">
+                                        <a href="~/Home/Contact">CONTACT US</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="header-right">
+                           
+
+
+                            <ul class="menu">
+                                @if (HasLogged)
+                                {
+
+
+                                    <li>
+                                        <a href="#">Hi @UserDisplay</a>
+                                        <ul>
+                                            <li>
+                                                <a href="~/Account">
+                                                    MY ACCOUNT
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="~/Account/EditProfile">
+                                                    EDIT PROFILE
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="~/Account/EditPassword">
+                                                    CHANGE PASSWORD
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="~/Shop/Orders">
+                                                    MY ORDERS
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="~/Account/Logout">
+                                                    LOGOUT
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                }
+                                else
+                                {
+
+
+                                    <li>
+                                        <a  href="~/Account/Login">LOGIN</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/Account/Register">REGISTER</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- End HeaderBottom -->
+        </header>
+
+
+
+        <main class="main @ViewData["MainClass"]">
+
+            @RenderBody()
+        </main>
+
+
+        <!-- End of Main -->
+        <footer class="footer appear-animate">
+            <div class="container">
+                <div class="footer-middle">
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="widget widget-about">
+                                <a href="~/Home/Index" class="logo-footer">
+                                    <img src="~/images/logo-footer.png" alt="logo-footer" width="150"
+                                         height="43" />
+                                </a>
+                                <div class="widget-body">
+                                    <p class="ls-s">
+                                        Fringilla urna porttitor rhoncus dolor purus
+                                        luctus venenatis lectus magna fringilla diam
+                                        maecenas ultricies mi eget mauris.
+                                    </p>
+
+                                </div>
+
+                            </div>
+                            <!-- End of Widget -->
+                        </div>
+                        <div class="col-lg-2 col-sm-6">
+                            <div class="widget">
+                                <h4 class="widget-title">INFORMATION</h4>
+                                <ul class="widget-body">
+
+
+                                    @if (HasLogged)
+                                    {
+                                        <li class="d-lg-none"><a href="~/Account">My Account</a></li>
+                                        <li class="d-lg-none"><a href="~/Shop/Orders">My Orders</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li class="d-lg-none"><a href="~/Account/Login">Login</a></li>
+                                        <li class="d-lg-none"><a href="~/Account/Register">Register</a></li>
+                                    }
+                                    <li><a href="~/Home/About">About us</a></li>
+                                    <li><a href="~/Home/Contact">Contact us</a></li>
+ 
+                                    @*<li><a href="#">Terms &amp; Condition</a></li>*@
+                                </ul>
+                            </div>
+                            <!-- End of Widget -->
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="widget">
+                                <h4 class="widget-title">Contact Info</h4>
+                                <ul class="widget-body">
+                                    <li>
+                                        <label>HotLine:</label>
+                                        <a href="tel:+94 71 602 3591">+94 71 602 3591</a>
+                                    </li>
+                                  
+                                   
+                                    <li>
+                                        <label>Email:</label>
+                                        <a href="mailto:#"> nutrigo@gmail.com</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <!-- End of Widget -->
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <h4 class="widget-title">Address</h4>
+                            <ul class="widget-body">
+
+                                <li>
+                                    <label>NutriGo</label>
+
+                                    <a href="#"><br />Kurunegala Town <br />Kurunegala North Western Province<br /> Sri lanka</a>
+                                </li>
+ 
+                            </ul>
+
+                            <!-- End of Widget -->
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End of FooterMiddle -->
+                <div class="footer-bottom">
+                    <div class="footer-left">
+                        <figure class="payment">
+                            <img src="~/images/payment.png" alt="payment" width="159" height="29" />
+                        </figure>
+                    </div>
+                    <div class="footer-center">
+                        <p class="copyright">Design by <a href="#" target="_blank">Sanjalie</a> &copy; 2021. All Rights Reserved</p>
+                    </div>
+                    <div class="footer-right">
+                        <div class="social-links">
+                            <a href="#" target="_blank" class="social-link social-facebook fab fa-facebook-f"></a>
+                            <a href="#" class="social-link social-twitter fab fa-twitter"></a>
+                            <a href="#" class="social-link social-linkedin fab fa-linkedin-in"></a>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- End of FooterBottom -->
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+
+
+    </div>
+
+
+    <div class="mobile-menu-wrapper">
+        <div class="mobile-menu-overlay">
+        </div>
+        <!-- End Overlay -->
+        <a class="mobile-menu-close" href="#"><i class="d-icon-times"></i></a>
+        <!-- End CloseButton -->
+        <div class="mobile-menu-container scrollable">
+            <form action="#" id="frmMobileSearch" class="input-wrapper">
+                <input type="text" id="txtMobieKeyW" class="form-control" name="search" autocomplete="off"
+                       placeholder="Search your keyword..." required />
+                <button class="btn btn-search" type="submit">
+                    <i class="d-icon-search"></i>
+                </button>
+            </form>
+
+
+            <!-- End Search Form -->
+            <div class="tab tab-nav-simple tab-nav-boxed form-tab mt-5">
+                <ul class="nav nav-tabs nav-fill" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#menu">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#categories">Categories</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="menu">
+                        <ul class="mobile-menu mmenu-anim">
+
+
+                            <li class="@ViewData["HomeActive"]">
+                                <a href="~/">Home</a>
+                            </li>
+                            <li class="@ViewData["ItemActive"]">
+                                <a href="~/Item">All Items</a>
+                            </li>
+                            <li class="@ViewData["ShopActive"]">
+                                <a href="~/Shop">Shopping Cart</a>
+                            </li>
+                            <li class="@ViewData["AboutActive"]">
+                                <a href="~/Home/About">About Us</a>
+                            </li>
+                            <li class="@ViewData["ContactActive"]">
+                                <a href="~/Home/Contact">Contact Us</a>
+                            </li>
+
+
+
+
+
+                        </ul>
+                    </div>
+                    <div class="tab-pane" id="categories">
+                        <ul class="mobile-menu">
+
+                            @foreach (var cat in CatList.GroupBy(x => x.CategoryMainID))
+                            {
+                                <li>
+                                    <a href="~/Item?CategoryMainID=@cat.First().CategoryMainID">@cat.First().CategoryMainName</a>
+                                    <ul>
+                                        @foreach (var subCat in cat)
+                                        {
+                                            <li><a href="~/Item?CategorySubID=@subCat.CategorySubID">@subCat.CategorySubName</a></li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+
+
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Top -->
+    <a id="scroll-top" href="#top" title="Top" role="button" class="scroll-top"><i class="d-icon-arrow-up"></i></a>
+
+
+    <!-- Plugins JS File -->
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/lib/elevatezoom/jquery.elevatezoom.min.js"></script>
+    <script src="~/lib/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="~/lib/photoswipe/photoswipe.min.js"></script>
+    <script src="~/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+    <script src="~/lib/sticky/sticky.min.js"></script>
+    <script src="~/lib/owl-carousel/owl.carousel.min.js"></script>
+    <script src="~/lib/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="~/lib/isotope/isotope.pkgd.min.js"></script>
+    <!-- Main JS File -->
+    <script src="~/js/main.js"></script>
+    <script src="~/js/moment.js"></script>
+    <script src="~/js/custom.js" asp-append-version="true"></script>
+
+    <script>
+        $(document).ready(function () {
+            LoadTopCart();
+        });
+
+        $("#frmTopSearch").submit(function () {
+            var KeyW = $("#txtKeyW").val();
+            var url = "@Url.Action("Index", "Item")";
+
+            var ParamPart = "&";
+            ParamPart = ParamPart + ((KeyW != "") ? '&KeyW=' + KeyW : '');
+            ParamPart = ParamPart.replace("&&", "");
+            window.location.href = url + '?' + ParamPart;
+            event.preventDefault();
+        });
+
+        $("#frmMobileSearch").submit(function () {
+            var KeyW = $("#txtMobieKeyW").val();
+            var url = "@Url.Action("Index", "Item")";
+
+            var ParamPart = "&";
+            ParamPart = ParamPart + ((KeyW != "") ? '&KeyW=' + KeyW : '');
+            ParamPart = ParamPart.replace("&&", "");
+            window.location.href = url + '?' + ParamPart;
+            event.preventDefault();
+        });
+    </script>
+
+    <script>
+        var CartURL = "@Url.Action("Index", "Shop")";
+        var CartAddURL = "@Url.Action("CartAdd", "Shop")";
+        var CartUpdateURL = "@Url.Action("CartUpdate", "Shop")";
+        var CartRemoveURL = "@Url.Action("CartRemove", "Shop")";
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

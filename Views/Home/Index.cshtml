@@ -1,0 +1,263 @@
+﻿@model HomeView
+
+@{
+
+    ViewData["menufixed"] = "menu-fixed";
+    ViewData["HomeActive"] = "active";
+    ViewData["MainClass"] = "home mt-lg-1 mb-10 pb-6";
+}
+
+@inject DropDown.ICatelogDDL CatelogDDL
+@inject DropDown.IPageMetaTag TagManager
+@inject DropDown.ICommonDDL CommonDDL
+
+@{
+    var CatList = await CatelogDDL.CategoryMasterList();
+    var tag = await TagManager.Get("MTG001");
+    var URL = TagManager.GetURL();
+
+}
+
+
+ 
+
+<div class="page-content">
+    <div class="container">
+        <section class="intro-section">
+            <div class="row">
+            
+
+                <div class="col-md-12">
+                    <div class="owl-carousel owl-theme row owl-dot-inner intro-slider animation-slider cols-1 mb-4"
+                         data-owl-options="{
+                                    'items': 1,
+                                    'dots': true,
+                                    'nav': false,
+                                    'loop': true,
+                                    'autoplay': true,
+                                    'animateOut': 'flipOutY'
+                                }">
+                        @foreach (var itm in Model.BannerList)
+                        {
+                            <div class="banner banner-fixed intro-slide2">
+                                <figure>
+                                    <img src="/Uploads/@(itm.SlideBannerID).jpg" width="580" height="460"
+                                         alt="banner" />
+                                </figure>
+                                <div class="banner-content x-50 y-50 text-center d-flex flex-column align-items-center">
+                                   
+                                    <h1 class="banner-title slide-animate font-weight-bold text-white slide-animate text-white"
+                                        data-animation-options="{'name': 'fadeIn', 'duration': '1.2s'}">
+                                        @itm.Title
+                                    </h1>
+                                    <h5 class="banner-subtitle slide-animate font-weight-bold text-white d-lg-show"
+                                        data-animation-options="{'name': 'blurIn', 'duration': '1.2s', 'delay': '.8s'}">
+                                        @itm.Description.ToShort(400)
+                                    </h5>
+                                    <h5 class="banner-subtitle slide-animate font-weight-bold text-white mobile-View-Banner"
+                                        data-animation-options="{'name': 'blurIn', 'duration': '1.2s', 'delay': '.8s'}">
+                                        @itm.Description.ToShort(200)
+                                    </h5>
+
+                                    
+                                    @if (itm.ButtonName != "")
+                                    {
+                                        <a href="@itm.ButtonLink"
+                                           class="btn btn-outline btn-white btn-sm slide-animate btnroundlook"
+                                            data-animation-options="{'name': 'fadeIn', 'duration': '1.4s', 'delay': '2s'}">
+                                            @itm.ButtonName
+                                        </a>
+                                    }
+
+
+
+
+
+                                </div>
+                            </div>
+                        }
+                        </div>
+                </div>
+
+              
+
+            </div>
+
+        </section>
+
+
+
+        <section class="product-wrapper mt-10 pt-1 appear-animate">
+            <h2 class="title title-underline with-link">
+                <span>LATEST PRODUCTS</span><a href="~/Item"
+                                         class="font-weight-bold">View All Items<i class="d-icon-arrow-right"></i></a>
+            </h2>
+            <div class="row">
+     
+                <div class="col-lg-12 col-md-12  col-sm-12 mb-4">
+                    <div class="owl-carousel owl-theme row owl-nav-full cols-xl-4 cols-md-3 cols-2"
+                         data-owl-options="{
+                                    'items': 5,
+                                    'nav': false,
+                                    'dots': false,
+                                    'margin': 20,
+                                    'loop': false,
+                                    'autoplay': false,
+                                    'responsive': {
+                                        '0': {
+                                            'items': 2
+                                        },
+                                        '576': {
+                                            'items': 1
+                                        },
+                                        '768': {
+                                            'items': 2
+                                        },
+                                        '1200': {
+                                            'items': 4,
+                                            'nav': true
+                                        }
+                                    }
+                                }">
+                        @foreach (var itm in Model.NewList)
+                        {
+                            <div class="product product-classic">
+                                <figure class="product-media">
+                                    <a href="~/Item/Details/@(itm.ItemID)">
+                                        <img src="~/Uploads/@(itm.ItemID).jpg" alt="Product" width="300"
+                                             height="338">
+
+                                    </a>
+
+                                </figure>
+                                <div class="product-details">
+                                    <div class="product-meta d-none">
+                                        <input value="@itm.ItemID" class=" txtProductID">
+                                    </div>
+                                    <div class="product-cat product-color">
+                                        <a href="~/Item?CategorySubID=@itm.CategorySubID">@itm.CategoryDisplay</a>
+                                    </div>
+
+                                    <div class="product-name product-color">
+                                        <a href="~/Item/Details/@(itm.ItemID)">@itm.ItemName</a>
+                                    </div>
+                                    <div class="product-price">
+                                        <input value="@itm.RetailPrice" class="d-none txtPrice">
+                                        <ins class="new-price">@AppData.GetCurrency() @itm.SellingPriceDisplay</ins>
+                                    </div>
+                                    <div class="product-action">
+
+
+                                        <a href="#" class="btn-product btn-cart" data-toggle="modal"
+                                           data-target="#addCartModal" title="Add to cart"
+                                           data-itemid="@itm.ItemID"
+                                           data-price="@itm.SellingPrice"
+                                           data-qty="1"
+                                           data-ItemSizeName="">
+                                            <i class="d-icon-bag"></i><span>
+                                                add to
+                                                cart
+                                            </span>
+                                        </a>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="product-wrapper mt-10 pt-1 appear-animate">
+            <h2 class="title title-underline with-link">
+                <span>FEATURED PRODUCTS</span><a href="~/Item"
+                                              class="font-weight-bold">View All Items<i class="d-icon-arrow-right"></i></a>
+            </h2>
+            <div class="row">
+                
+                <div class="col-lg-12 col-md-12  col-sm-12 mb-4">
+                    <div class="owl-carousel owl-theme row owl-nav-full cols-xl-4 cols-md-3 cols-2"
+                         data-owl-options="{
+                                    'items': 5,
+                                    'nav': false,
+                                    'dots': false,
+                                    'margin': 20,
+                                    'loop': false,
+                                    'autoplay': false,
+                                    'responsive': {
+                                        '0': {
+                                            'items': 2
+                                        },
+                                        '576': {
+                                            'items': 1
+                                        },
+                                        '768': {
+                                            'items': 2
+                                        },
+                                        '1200': {
+                                            'items': 4,
+                                            'nav': true
+                                        }
+                                    }
+                                }">
+                        @foreach (var itm in Model.FeaturedList)
+                        {
+                        <div class="product product-classic">
+                            <figure class="product-media">
+                                <a href="~/Item/Details/@(itm.ItemID)">
+                                        <img src="~/Uploads/@(itm.ItemID).jpg" alt="Product" width="300"
+                                         height="338">
+
+                                </a>
+
+                            </figure>
+                            <div class="product-details">
+                                <div class="product-meta d-none">
+                                    <input value="@itm.ItemID" class=" txtProductID">
+                                </div>
+                                <div class="product-cat product-color">
+                                    <a href="~/Item?CategorySubID=@itm.CategorySubID">@itm.CategoryDisplay</a>
+                                </div>
+
+                                <div class="product-name product-color">
+                                    <a href="~/Item/Details/@(itm.ItemID)">@itm.ItemName</a>
+                                </div>
+                                <div class="product-price">
+                                    <input value="@itm.RetailPrice" class="d-none txtPrice">
+                                    <ins class="new-price">@AppData.GetCurrency() @itm.SellingPriceDisplay</ins>
+                                </div>
+                                <div class="product-action">
+
+
+                                    <a href="#" class="btn-product btn-cart" data-toggle="modal"
+                                       data-target="#addCartModal" title="Add to cart"
+                                       data-itemid="@itm.ItemID"
+                                       data-price="@itm.SellingPrice"
+                                       data-qty="1"
+                                       data-ItemSizeName="">
+                                        <i class="d-icon-bag"></i><span>
+                                            add to
+                                            cart
+                                        </span>
+                                    </a>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+      
+
+
+    </div>
+  
+</div>
