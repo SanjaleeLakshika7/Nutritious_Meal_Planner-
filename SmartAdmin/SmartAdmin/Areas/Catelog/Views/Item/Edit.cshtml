@@ -1,0 +1,306 @@
+﻿@model ItemEditView
+@{
+    ViewData["Title"] = "Edit Item";
+
+    ViewData["ItemActive"] = "active";
+}
+
+@inject DropDown.ICommonDDL CommonDDL
+@inject DropDown.ICatelogDDL CatelogDDL
+
+
+<partial name="_SelectData" />
+<partial name="_ImageCrop" />
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 class="page-title">@ViewData["Title"]</h4>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+@using (Html.BeginForm("Edit", "Item", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="row">
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+
+                    <p class="text-primary mb-1">Basic Details</p>
+
+                    <div id="divBasic">
+                        <div class="form-group row d-none">
+                            @Html.LabelFor(model => model.ReturnURL, htmlAttributes: new { @class = "col-4 col-form-label" })
+                            <div class="col-8">
+                                @Html.EditorFor(model => model.ReturnURL, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ReturnURL, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row d-none">
+                            @Html.LabelFor(model => model.Basic.ItemID, htmlAttributes: new { @class = "col-4 col-form-label" })
+                            <div class="col-8">
+                                @Html.EditorFor(model => model.Basic.ItemID, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Basic.ItemID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Basic.ItemTypeID, htmlAttributes: new { @class = "col-4 col-form-label" })
+                            <div class="col-8">
+                                @Html.DropDownListFor(model => model.Basic.ItemTypeID, await CatelogDDL.ItemTypeList(), "(Please select)", htmlAttributes: new { @class = "form-control", data_toggle = "select2" })
+                                @Html.ValidationMessageFor(model => model.Basic.ItemTypeID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-4 col-form-label">
+                                @Html.DisplayNameFor(model => model.Basic.CategoryDisplay)
+                                @Html.EditorFor(model => model.Basic.CategorySubName, new { htmlAttributes = new { id = "txtCategorySubName", style = "visibility:hidden; width:0px; height:0px" } })
+                                @Html.EditorFor(model => model.Basic.CategoryMainID, new { htmlAttributes = new { id = "txtCategoryMainID", style = "visibility:hidden; width:0px; height:0px" } })
+                                @Html.EditorFor(model => model.Basic.CategorySubID, new { htmlAttributes = new { id = "txtCategorySubID", style = "visibility:hidden; width:0px; height:0px" } })
+                            </label>
+
+                            <div class="col-8">
+
+                                <button class="btn btn-block btn-primary SearchButton" onclick="CategorySelectClick();" title="Click here to select" type="button">
+                                    <i class="fe-user"></i> <span id="txtCategoryName">@Model.Basic.CategorySubName</span>
+                                </button>
+
+                                @Html.ValidationMessageFor(model => model.Basic.CategorySubID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Basic.ItemCode, htmlAttributes: new { @class = "col-4 col-form-label" })
+                            <div class="col-8">
+                                @Html.EditorFor(model => model.Basic.ItemCode, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Basic.ItemCode, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Basic.ItemName, htmlAttributes: new { @class = "col-4 col-form-label" })
+                            <div class="col-8">
+                                @Html.EditorFor(model => model.Basic.ItemName, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                                @Html.ValidationMessageFor(model => model.Basic.ItemName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Basic.RetailPrice, htmlAttributes: new { @class = "col-4 col-form-label" })
+                            <div class="col-8">
+                                @Html.EditorFor(model => model.Basic.RetailPrice, new { htmlAttributes = new { @class = "form-control", style = "width:100px" } })
+                                @Html.ValidationMessageFor(model => model.Basic.RetailPrice, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Basic.WholesalePrice, htmlAttributes: new { @class = "col-4 col-form-label" })
+                            <div class="col-8">
+                                @Html.EditorFor(model => model.Basic.WholesalePrice, new { htmlAttributes = new { @class = "form-control", style = "width:100px" } })
+                                @Html.ValidationMessageFor(model => model.Basic.WholesalePrice, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Basic.ItemCost, htmlAttributes: new { @class = "col-4 col-form-label" })
+                            <div class="col-8">
+                                @Html.EditorFor(model => model.Basic.ItemCost, new { htmlAttributes = new { @class = "form-control", style = "width:100px" } })
+                                @Html.ValidationMessageFor(model => model.Basic.ItemCost, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label">
+                            @Html.DisplayNameFor(model => model.Basic.BrandName)
+                            @Html.EditorFor(model => model.Basic.BrandName, new { htmlAttributes = new { id = "txtBrandName", style = "visibility:hidden; width:0px; height:0px" } })
+                            @Html.EditorFor(model => model.Basic.BrandID, new { htmlAttributes = new { id = "txtBrandID", style = "visibility:hidden; width:0px; height:0px" } })
+                        </label>
+
+                        <div class="col-8">
+                            <button class="btn btn-icon float-right" onclick="BrandClear();" title="Clear selection" type="button">
+                                <i data-feather="x-circle"></i>
+                            </button>
+                            <button class="btn btn-block-left btn-primary SearchButton" onclick="BrandSelectClick();" title="Click here to select" type="button">
+                                <span id="btnBrandName">@Model.Basic.BrandDisplay</span>
+                            </button>
+                            @Html.ValidationMessageFor(model => model.Basic.BrandID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Basic.itemDescription, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.TextAreaFor(model => model.Basic.itemDescription, 3, 120, htmlAttributes: new { @class = "form-control", style = "width: 100%; max-width: 100%;" })
+                            @Html.ValidationMessageFor(model => model.Basic.itemDescription, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Basic.FileUpload, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.Basic.FileUpload, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Basic.StockAvailableBool, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8 pt-2">
+                            <div class="custom-control custom-switch">
+                                @Html.CheckBoxFor(model => model.Basic.StockAvailableBool, new { @class = "custom-control-input checkbox-success", id = "customSwitch2" })
+                                <label class="custom-control-label" for="customSwitch2">Available</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Basic.IsNewBool, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8 pt-2">
+                            <div class="custom-control custom-switch">
+                                @Html.CheckBoxFor(model => model.Basic.IsNewBool, new { @class = "custom-control-input checkbox-success", id = "customSwitch3" })
+                                <label class="custom-control-label" for="customSwitch3">New Item</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Basic.IsFeaturedBool, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8 pt-2">
+                            <div class="custom-control custom-switch">
+                                @Html.CheckBoxFor(model => model.Basic.IsFeaturedBool, new { @class = "custom-control-input checkbox-success", id = "customSwitch4" })
+                                <label class="custom-control-label" for="customSwitch4">Featured Item</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Basic.IsSpecialBool, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8 pt-2">
+                            <div class="custom-control custom-switch">
+                                @Html.CheckBoxFor(model => model.Basic.IsSpecialBool, new { @class = "custom-control-input checkbox-success", id = "customSwitch5" })
+                                <label class="custom-control-label" for="customSwitch5">Special Item</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Basic.ActiveStatusBool, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8 pt-2">
+                            <div class="custom-control custom-switch">
+                                @Html.CheckBoxFor(model => model.Basic.ActiveStatusBool, new { @class = "custom-control-input checkbox-success", id = "customSwitch1" })
+                                <label class="custom-control-label" for="customSwitch1">Active</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 grid-margin">
+            <div class="card">
+                <div class="card-body">
+
+                    <p class="text-primary mb-1">Images</p>
+
+                    <div id="divImageList" class="row">
+                        @foreach (var img in Model.Basic.ImageList)
+                        {
+                            <div id="img@(img.ImageID)" data-id="@(img.ImageID)" class="col-md-6 no-padding pb-3 pr-2">
+                                <img class="w-100" id="src_@(img.ImageID)" src="~/Uploads/@(img.ImageID).jpg" alt="img" />
+                                <button type="button" class="btn btn-danger btn-sm Delete-Button" onclick="DeleteImage('@img.ImageID');"><i class="fa fa-trash"></i> Remove</button>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="" style="visibility:hidden;">
+                        <input type="file" id="upload" class="FileUploadCentre">
+                    </div>
+                    <div class="" style="visibility:hidden;">
+                        <input type="file" id="uploadThumbnail" class="FileUploadCentre">
+                    </div>
+                    <div class="row justify-content-md-start ">
+
+                        <div class="p-1 pl-0">
+                            <div id="divUpload" class="">
+                                <button class="btn btn-primary" style="width:150px;" onclick="ImageSelectClick();" type="button">
+                                    Add a new image
+                                </button>
+
+                            </div>
+                        </div>
+
+                        @*<div class="p-1 pl-0">
+                            <div class="">
+                                <button class="btn btn-primary" style="width:150px;" onclick="ThumbnailImageSelectClick();" type="button">
+                                    Add Thumbnail
+                                </button>
+
+                            </div>
+                        </div>*@
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-2 ">
+
+        <div class="col-md-12 justify-content-center">
+
+            <button type="submit" class="btn btn-primary mr-2">Update</button>
+
+            <a class="mt-2" href="@Model.ReturnURL">Cancel</a>
+
+        </div>
+    </div>
+
+}
+
+<div id="CopyHTML" class="d-none">
+    <div id="img_imageId" data-id="_ImageId" class="col-md-6 no-padding pb-3 pr-2">
+        <img class="w-100" id="src_ImageId" src="_imgUrl" alt="img" />
+
+        <button type="button" class="btn btn-danger btn-sm Delete-Button" onclick="DeleteImage('_ImageId');"><i class="fa fa-trash"></i> Remove</button>
+        @*<button type="button" id="img_thumb_imageIdbtn" class="btn btn-primary btn-sm " ><i class="fa fa-trash"></i> Thumbnail</button>*@
+
+    </div>
+</div>
+
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+    <script src="~/js/_CategorySelect.js" asp-append-version="true"></script>
+    <script src="~/js/_BrandSelect.js" asp-append-version="true"></script>
+
+    <script src="~/lib/Croppie/croppie.js"></script>
+    <script src="~/lib/Croppie/exif.js"></script>
+    <script src="~/js/ImageCrop.js"></script>
+
+    <script>
+
+
+    </script>
+
+    <script>
+
+
+    </script>
+
+}
+
+
+

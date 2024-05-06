@@ -1,0 +1,106 @@
+﻿@inject ISessionData Session
+@{
+    var User = Session.GetUser();
+    var UserDisplay = "(Guest)";
+    var HasLogged = false;
+    if (User != null)
+    {
+        HasLogged = true;
+        UserDisplay = User.DisplayName;
+    }
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@ViewData["Title"] - SmartAdmin</title>
+
+    <link rel="stylesheet" href="~/lib/core/core.css">
+    <link rel="stylesheet" href="~/lib/select2/select2.min.css">
+    
+    <link rel="stylesheet" href="~/lib/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/fonts/feather-font/css/iconfont.css">
+
+    <link rel="stylesheet" href="~/css/style.css">
+
+    <link rel="stylesheet" href="~/custom-css/form.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/custom-css/header.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/custom-css/html.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/custom-css/sidebar.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/custom-css/table.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/custom-css/wrapper.css" asp-append-version="true">
+
+    <link rel="shortcut icon" href="~/favicon.ico" />
+</head>
+<body class="sidebar-dark">
+    <div class="main-wrapper">
+
+  
+            <partial name="_APISideMenu" />
+       
+
+            <div class="page-wrapper">
+                <!-- partial:partials/_navbar.html -->
+                <nav class="navbar">
+                    <a href="#" class="sidebar-toggler">
+                        <i data-feather="menu"></i>
+                    </a>
+                    <div class="navbar-content">
+                        <form class="search-form">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text ">
+                                        <h4 class="text-wrap">@ViewData["TitleNavbar"]</h4>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </form>
+           
+                    </div>
+                </nav>
+                <!-- partial -->
+                <!-- partial -->
+                <div class="page-content">
+                    <main role="main" class="">
+                        <div class="row">
+                            <div class="col-12 mb-2">
+                                <div class="page-title-box">
+
+                                    <p class="page-title mb-2"></p>
+                                </div>
+                            </div>
+                        </div>
+                        @RenderBody()
+                    </main>
+
+                </div>
+
+                <!-- partial:partials/_footer.html -->
+                <footer class="footer d-flex flex-column flex-md-row align-items-center justify-content-between">
+                    <p class="text-muted text-center text-md-left small">Copyright © <a href="https://www.exesmart.com" target="_blank">Exesmart Dynamics (Pvt) Ltd.</a> 2021-2022. All rights reserved</p>
+                </footer>
+                <!-- partial -->
+
+            </div>
+    </div>
+
+    <script src="~/lib/core/core.js"></script>
+    <script src="~/js/template.js"></script>
+    
+    <script src="~/lib/select2/select2.min.js"></script>
+    <script src="~/lib/feather-icons/feather.min.js"></script>
+   
+    <script src="~/js/select2.js"></script>
+
+    <script src="~/js/custom.js" asp-append-version="true"></script>
+
+ 
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

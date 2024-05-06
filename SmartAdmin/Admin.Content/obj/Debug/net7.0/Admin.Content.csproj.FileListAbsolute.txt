@@ -1,0 +1,75 @@
+D:\Assignment Work\Admin.Content\bin\Debug\net7.0\Admin.Content.deps.json
+D:\Assignment Work\Admin.Content\bin\Debug\net7.0\Admin.Content.dll
+D:\Assignment Work\Admin.Content\bin\Debug\net7.0\Admin.Content.pdb
+D:\Assignment Work\Admin.Content\bin\Debug\net7.0\DBAccess.dll
+D:\Assignment Work\Admin.Content\bin\Debug\net7.0\DBAccess.pdb
+D:\Assignment Work\Admin.Content\obj\Debug\net7.0\Admin.Content.csproj.AssemblyReference.cache
+D:\Assignment Work\Admin.Content\obj\Debug\net7.0\Admin.Content.GeneratedMSBuildEditorConfig.editorconfig
+D:\Assignment Work\Admin.Content\obj\Debug\net7.0\Admin.Content.AssemblyInfoInputs.cache
+D:\Assignment Work\Admin.Content\obj\Debug\net7.0\Admin.Content.AssemblyInfo.cs
+D:\Assignment Work\Admin.Content\obj\Debug\net7.0\Admin.Content.csproj.CoreCompileInputs.cache
+D:\Assignment Work\Admin.Content\obj\Debug\net7.0\Admin.Content.csproj.CopyComplete
+D:\Assignment Work\Admin.Content\obj\Debug\net7.0\Admin.Content.dll
+D:\Assignment Work\Admin.Content\obj\Debug\net7.0\refint\Admin.Content.dll
+D:\Assignment Work\Admin.Content\obj\Debug\net7.0\Admin.Content.pdb
+D:\Assignment Work\Admin.Content\obj\Debug\net7.0\ref\Admin.Content.dll
+D:\Sanjalie Final\SmartAdmin\Admin.Content\bin\Debug\net7.0\Admin.Content.deps.json
+D:\Sanjalie Final\SmartAdmin\Admin.Content\bin\Debug\net7.0\Admin.Content.dll
+D:\Sanjalie Final\SmartAdmin\Admin.Content\bin\Debug\net7.0\Admin.Content.pdb
+D:\Sanjalie Final\SmartAdmin\Admin.Content\bin\Debug\net7.0\DBAccess.dll
+D:\Sanjalie Final\SmartAdmin\Admin.Content\bin\Debug\net7.0\DBAccess.pdb
+D:\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.csproj.AssemblyReference.cache
+D:\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.GeneratedMSBuildEditorConfig.editorconfig
+D:\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.AssemblyInfoInputs.cache
+D:\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.AssemblyInfo.cs
+D:\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.csproj.CoreCompileInputs.cache
+D:\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.csproj.CopyComplete
+D:\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.dll
+D:\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\refint\Admin.Content.dll
+D:\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.pdb
+D:\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\ref\Admin.Content.dll
+E:\Sanjalie Final\SmartAdmin\Admin.Content\bin\Debug\net7.0\Admin.Content.deps.json
+E:\Sanjalie Final\SmartAdmin\Admin.Content\bin\Debug\net7.0\Admin.Content.dll
+E:\Sanjalie Final\SmartAdmin\Admin.Content\bin\Debug\net7.0\Admin.Content.pdb
+E:\Sanjalie Final\SmartAdmin\Admin.Content\bin\Debug\net7.0\DBAccess.dll
+E:\Sanjalie Final\SmartAdmin\Admin.Content\bin\Debug\net7.0\DBAccess.pdb
+E:\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.csproj.AssemblyReference.cache
+E:\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.GeneratedMSBuildEditorConfig.editorconfig
+E:\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.AssemblyInfoInputs.cache
+E:\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.AssemblyInfo.cs
+E:\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.csproj.CoreCompileInputs.cache
+E:\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.csproj.CopyComplete
+E:\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.dll
+E:\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\refint\Admin.Content.dll
+E:\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.pdb
+E:\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\ref\Admin.Content.dll
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\bin\Debug\net7.0\Admin.Content.deps.json
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\bin\Debug\net7.0\Admin.Content.dll
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\bin\Debug\net7.0\Admin.Content.pdb
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\bin\Debug\net7.0\DBAccess.dll
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\bin\Debug\net7.0\DBAccess.pdb
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.csproj.AssemblyReference.cache
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.GeneratedMSBuildEditorConfig.editorconfig
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.AssemblyInfoInputs.cache
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.AssemblyInfo.cs
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.csproj.CoreCompileInputs.cache
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.csproj.CopyComplete
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.dll
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\refint\Admin.Content.dll
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.pdb
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\ref\Admin.Content.dll
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\bin\Debug\net7.0\Admin.Content.deps.json
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\bin\Debug\net7.0\Admin.Content.dll
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\bin\Debug\net7.0\Admin.Content.pdb
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\bin\Debug\net7.0\DBAccess.dll
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\bin\Debug\net7.0\DBAccess.pdb
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.csproj.AssemblyReference.cache
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.GeneratedMSBuildEditorConfig.editorconfig
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.AssemblyInfoInputs.cache
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.AssemblyInfo.cs
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.csproj.CoreCompileInputs.cache
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.csproj.CopyComplete
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.dll
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\refint\Admin.Content.dll
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\Admin.Content.pdb
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Content\obj\Debug\net7.0\ref\Admin.Content.dll

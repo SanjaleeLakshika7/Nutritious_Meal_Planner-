@@ -1,0 +1,34 @@
+﻿<div class="modal fade" id="modal_Select" tabindex="-1" role="dialog"
+     aria-labelledby="scrollableModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="scrollableModalTitle">Search and Select</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body modal-min-height">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <label for="inputPassword2" class="sr-only">Search</label>
+                                <input id="txtSearchSelect" type="search" class="form-control" placeholder="Search..." onkeyup="SearchDatatStart()">
+                            </div>
+                        </form>
+                    </div>
+
+                </div> <!-- end row -->
+
+                <div id="divLoadSelect" class="d-flex justify-content-center mt-2 position-absolute w-100">
+                    <div id="spnLoadSelect" class="spinner-border " role="status"></div>
+                </div>
+
+                <div id="divSelectRecord" class="m-0 p-0"></div>
+
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

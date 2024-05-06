@@ -1,0 +1,66 @@
+﻿@model LoginView
+@{
+    ViewData["Title"] = "SmartAdmin";
+
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="~/lib/core/core.css">
+    <link rel="stylesheet" href="~/fonts/feather-font/css/iconfont.css">
+    <link rel="stylesheet" href="~/css/style.css">
+
+    <link rel="stylesheet" href="~/custom-css/header.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/custom-css/html.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/custom-css/sidebar.css" asp-append-version="true">
+
+    <link rel="shortcut icon" href="~/favicon.ico" />
+</head>
+<body class="sidebar-dark">
+    <div class="main-wrapper">
+        <div class="page-wrapper full-page">
+            <div class="page-content d-flex align-items-center justify-content-center">
+
+                <div class="row w-100 mx-0 auth-page">
+                    <div class="col-md-8 col-xl-6 mx-auto">
+                        <div class="card">
+                            <div class="row">
+                                
+                                <div class="col-md-12 pl-md-0">
+                                    <div class="auth-form-wrapper px-4 py-5">
+                                        <h4 class="text-muted font-weight-normal mb-4 text-center">@ViewBag.MsgTitle</h4>
+                                        <p class=" text-center">@ViewBag.MsgBody</p>
+                                        <p class="text-warning text-center" >@ViewBag.MsgBodySpam</p>
+                                        <br />
+                                        <div class="text-center"><a href="@Url.Action("Login")" style="width:100px;" class="btn btn-dark mr-2 mb-2 mb-md-0 float justify-content-center btn-text-white">OK</a></div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/core/core.js"></script>
+    <script src="~/lib/feather-icons/feather.min.js"></script>
+    <script src="~/js/template.js"></script>
+
+    <script src="~/js/custom.js" asp-append-version="true"></script>
+
+</body>
+</html>
+
+<script>
+
+</script>

@@ -1,0 +1,60 @@
+D:\Sanjalie Final\SmartAdmin\Admin.Catelog\bin\Release\net7.0\Admin.Catelog.deps.json
+D:\Sanjalie Final\SmartAdmin\Admin.Catelog\bin\Release\net7.0\Admin.Catelog.dll
+D:\Sanjalie Final\SmartAdmin\Admin.Catelog\bin\Release\net7.0\Admin.Catelog.pdb
+D:\Sanjalie Final\SmartAdmin\Admin.Catelog\bin\Release\net7.0\DBAccess.dll
+D:\Sanjalie Final\SmartAdmin\Admin.Catelog\bin\Release\net7.0\DBAccess.pdb
+D:\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.csproj.AssemblyReference.cache
+D:\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.GeneratedMSBuildEditorConfig.editorconfig
+D:\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.AssemblyInfoInputs.cache
+D:\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.AssemblyInfo.cs
+D:\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.csproj.CoreCompileInputs.cache
+D:\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.csproj.CopyComplete
+D:\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.dll
+D:\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\refint\Admin.Catelog.dll
+D:\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.pdb
+D:\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\ref\Admin.Catelog.dll
+E:\Sanjalie Final\SmartAdmin\Admin.Catelog\bin\Release\net7.0\Admin.Catelog.deps.json
+E:\Sanjalie Final\SmartAdmin\Admin.Catelog\bin\Release\net7.0\Admin.Catelog.dll
+E:\Sanjalie Final\SmartAdmin\Admin.Catelog\bin\Release\net7.0\Admin.Catelog.pdb
+E:\Sanjalie Final\SmartAdmin\Admin.Catelog\bin\Release\net7.0\DBAccess.dll
+E:\Sanjalie Final\SmartAdmin\Admin.Catelog\bin\Release\net7.0\DBAccess.pdb
+E:\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.csproj.AssemblyReference.cache
+E:\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.GeneratedMSBuildEditorConfig.editorconfig
+E:\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.AssemblyInfoInputs.cache
+E:\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.AssemblyInfo.cs
+E:\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.csproj.CoreCompileInputs.cache
+E:\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.csproj.CopyComplete
+E:\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.dll
+E:\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\refint\Admin.Catelog.dll
+E:\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.pdb
+E:\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\ref\Admin.Catelog.dll
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\bin\Release\net7.0\Admin.Catelog.deps.json
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\bin\Release\net7.0\Admin.Catelog.dll
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\bin\Release\net7.0\Admin.Catelog.pdb
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\bin\Release\net7.0\DBAccess.dll
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\bin\Release\net7.0\DBAccess.pdb
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.csproj.AssemblyReference.cache
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.GeneratedMSBuildEditorConfig.editorconfig
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.AssemblyInfoInputs.cache
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.AssemblyInfo.cs
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.csproj.CoreCompileInputs.cache
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.csproj.CopyComplete
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.dll
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\refint\Admin.Catelog.dll
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.pdb
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\ref\Admin.Catelog.dll
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\bin\Release\net7.0\Admin.Catelog.deps.json
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\bin\Release\net7.0\Admin.Catelog.dll
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\bin\Release\net7.0\Admin.Catelog.pdb
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\bin\Release\net7.0\DBAccess.dll
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\bin\Release\net7.0\DBAccess.pdb
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.csproj.AssemblyReference.cache
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.GeneratedMSBuildEditorConfig.editorconfig
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.AssemblyInfoInputs.cache
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.AssemblyInfo.cs
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.csproj.CoreCompileInputs.cache
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.csproj.CopyComplete
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.dll
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\refint\Admin.Catelog.dll
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\Admin.Catelog.pdb
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Catelog\obj\Release\net7.0\ref\Admin.Catelog.dll

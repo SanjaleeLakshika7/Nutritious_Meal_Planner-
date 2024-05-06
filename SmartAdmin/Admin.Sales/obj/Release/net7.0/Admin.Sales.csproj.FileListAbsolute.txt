@@ -1,0 +1,60 @@
+D:\Sanjalie Final\SmartAdmin\Admin.Sales\bin\Release\net7.0\Admin.Sales.deps.json
+D:\Sanjalie Final\SmartAdmin\Admin.Sales\bin\Release\net7.0\Admin.Sales.dll
+D:\Sanjalie Final\SmartAdmin\Admin.Sales\bin\Release\net7.0\Admin.Sales.pdb
+D:\Sanjalie Final\SmartAdmin\Admin.Sales\bin\Release\net7.0\DBAccess.dll
+D:\Sanjalie Final\SmartAdmin\Admin.Sales\bin\Release\net7.0\DBAccess.pdb
+D:\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.csproj.AssemblyReference.cache
+D:\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.GeneratedMSBuildEditorConfig.editorconfig
+D:\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.AssemblyInfoInputs.cache
+D:\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.AssemblyInfo.cs
+D:\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.csproj.CoreCompileInputs.cache
+D:\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.csproj.CopyComplete
+D:\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.dll
+D:\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\refint\Admin.Sales.dll
+D:\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.pdb
+D:\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\ref\Admin.Sales.dll
+E:\Sanjalie Final\SmartAdmin\Admin.Sales\bin\Release\net7.0\Admin.Sales.deps.json
+E:\Sanjalie Final\SmartAdmin\Admin.Sales\bin\Release\net7.0\Admin.Sales.dll
+E:\Sanjalie Final\SmartAdmin\Admin.Sales\bin\Release\net7.0\Admin.Sales.pdb
+E:\Sanjalie Final\SmartAdmin\Admin.Sales\bin\Release\net7.0\DBAccess.dll
+E:\Sanjalie Final\SmartAdmin\Admin.Sales\bin\Release\net7.0\DBAccess.pdb
+E:\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.csproj.AssemblyReference.cache
+E:\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.GeneratedMSBuildEditorConfig.editorconfig
+E:\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.AssemblyInfoInputs.cache
+E:\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.AssemblyInfo.cs
+E:\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.csproj.CoreCompileInputs.cache
+E:\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.csproj.CopyComplete
+E:\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.dll
+E:\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\refint\Admin.Sales.dll
+E:\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.pdb
+E:\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\ref\Admin.Sales.dll
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\bin\Release\net7.0\Admin.Sales.deps.json
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\bin\Release\net7.0\Admin.Sales.dll
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\bin\Release\net7.0\Admin.Sales.pdb
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\bin\Release\net7.0\DBAccess.dll
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\bin\Release\net7.0\DBAccess.pdb
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.csproj.AssemblyReference.cache
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.GeneratedMSBuildEditorConfig.editorconfig
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.AssemblyInfoInputs.cache
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.AssemblyInfo.cs
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.csproj.CoreCompileInputs.cache
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.csproj.CopyComplete
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.dll
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\refint\Admin.Sales.dll
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.pdb
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\ref\Admin.Sales.dll
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\bin\Release\net7.0\Admin.Sales.deps.json
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\bin\Release\net7.0\Admin.Sales.dll
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\bin\Release\net7.0\Admin.Sales.pdb
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\bin\Release\net7.0\DBAccess.dll
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\bin\Release\net7.0\DBAccess.pdb
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.csproj.AssemblyReference.cache
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.GeneratedMSBuildEditorConfig.editorconfig
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.AssemblyInfoInputs.cache
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.AssemblyInfo.cs
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.csproj.CoreCompileInputs.cache
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.csproj.CopyComplete
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.dll
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\refint\Admin.Sales.dll
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\Admin.Sales.pdb
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Sales\obj\Release\net7.0\ref\Admin.Sales.dll

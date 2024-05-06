@@ -1,0 +1,32 @@
+﻿.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f7f7f7;
+}
+
+.table thead th {
+    text-transform: none;
+    color: #727cf5;
+}
+
+.table td, .table th {
+    padding: .70rem;
+}
+
+.table-icon {
+    font-size: 0.975rem;
+    display: inline-block;
+    padding: 0 2px;
+}
+
+
+<!-- css -->
+.perfect-scrollbar-example {
+    position: relative;
+    max-height: 250px;
+}
+
+.dropdown .dropdown-menu .dropdown-item, .btn-group .dropdown-menu .dropdown-item, .fc .fc-toolbar.fc-header-toolbar .fc-toolbar-chunk .fc-button-group .dropdown-menu .dropdown-item {
+    font-size: .812rem;
+    padding: .45rem .875rem;
+    transition: all .2s ease-in-out;
+    border-radius: 2px;
+}

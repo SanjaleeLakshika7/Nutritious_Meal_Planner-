@@ -1,0 +1,14 @@
+﻿.sidebar-brand  {
+    text-align:center;
+}
+.sidebar-brand img {
+    max-width:140px;
+}
+
+.navbar .search-form {
+    display: flex !important;
+}
+
+.nav-notifications{
+    margin-top:2px;
+}

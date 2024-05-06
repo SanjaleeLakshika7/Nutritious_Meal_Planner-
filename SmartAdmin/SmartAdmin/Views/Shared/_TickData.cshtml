@@ -1,0 +1,155 @@
+﻿<div class="modal fade" id="modal_Tick" tabindex="-1" role="dialog"
+     aria-labelledby="scrollableModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="scrollableModalTitle">Search and Tick</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body modal-min-height">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <label for="inputPassword2" class="sr-only">Search</label>
+                                <input id="txtSearchTick" type="search" class="form-control" placeholder="Search..." onkeyup="SearchTickStart()">
+                            </div>
+                        </form>
+                    </div>
+
+                </div> <!-- end row -->
+
+                <div id="divLoadTick" class="d-flex justify-content-center mt-2 position-absolute w-100">
+                    <div id="spnLoadTick" class="spinner-border " role="status"></div>
+                </div>
+
+                <div id="divTickRecord" class="m-0 p-0"></div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" disabled="disabled" id="bTick" onclick="TickRecord()">Choose</button>
+                <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<input type="hidden" id="valueId" />
+<input type="hidden" id="nameId" />
+<input type="hidden" id="buttonId" />
+<input type="hidden" id="jsonURL" />
+
+<script>
+
+    var OpenTickData = function (valueId, nameId, buttonId, jsonURL) {
+
+        $("#valueId").val(valueId);
+        $("#nameId").val(nameId);
+        $("#buttonId").val(buttonId);
+        $("#jsonURL").val(jsonURL);
+
+        $("#modal_Tick").modal('show');
+        $('#spnLoadTick').hide();
+        $("#txtSearchTick").val('');
+        LoadTickData(jsonURL);
+    }
+
+    var LoadTickData = function (jsonURL) {
+        $('#spnLoad').hide();
+
+        var AppendDIV = "divTickRecord";
+        $('#' + AppendDIV).css('visibility', 'hidden');
+        $('#divLoadTick').show();
+        $('#spnLoadTick').show();
+
+        setTimeout(function () {
+            $.ajax({
+
+                type: "GET",
+                url: jsonURL,
+                data: { SystemItem: "N" },
+                success: function (result) {
+                    $('#' + AppendDIV).html(result);
+                    $('#divLoadTick').hide();
+                    $('#spnLoadTick').hide();
+                    $('#' + AppendDIV).css('visibility', 'visible');
+                    $("#bTick").removeAttr("disabled");
+
+                    ApplyTicked();
+                },
+                error: function (result) {
+                    alert(result.responseText);
+                }
+            })
+        }, 500);
+    }
+
+    var ApplyTicked = function () {
+        var valueId = $("#valueId").val();
+        var SelectedIDList = $("#" + valueId).val();
+
+        $('.chkTick:checkbox').each(function () {
+            var SelectedID = $(this).data('id');
+            if (SelectedIDList.includes(SelectedID)) {
+                $(this).prop('checked', true)
+            }
+        });
+    }
+
+    var TickRecord = function () {
+        var SelectedIDList = "";
+        var SelectedNameList = "";
+
+        $('.chkTick:checkbox:checked').each(function () {
+            var SelectedID = $(this).data('id');
+            var SelectedName = $(this).data('name');
+
+            if (SelectedIDList == "") {
+                SelectedIDList = SelectedID;
+                SelectedNameList = SelectedName;
+            } else {
+                SelectedIDList = SelectedIDList + "," + SelectedID;
+                SelectedNameList = SelectedNameList + ", " + SelectedName;
+            }
+        });
+
+        var valueId = $("#valueId").val();
+        var nameId = $("#nameId").val();
+        var buttonId = $("#buttonId").val();
+
+        $("#" + valueId).val(SelectedIDList);
+        $("#" + nameId).val(SelectedNameList);
+        $("#" + buttonId).html(SelectedNameList);
+
+        $("#modal_Tick").modal("hide");
+    }
+
+
+    function SearchTickStart() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("txtSearchTick");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("tblTickBody");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            td1 = tr[i].getElementsByTagName("td")[2];
+
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                txtValue = txtValue + ' ' + td1.textContent || td1.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+</script>

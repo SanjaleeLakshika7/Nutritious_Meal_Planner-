@@ -1,0 +1,59 @@
+﻿@model IEnumerable<SaleOrder>
+
+@{
+    Layout = null;
+}
+
+<div class="table-responsive">
+    <table class="table table-centered table-nowrap table-striped">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.First().OrderID)</th>
+                <th>@Html.DisplayNameFor(model => model.First().OrderDateDisplay)</th>
+                <th>@Html.DisplayNameFor(model => model.First().CustomerName)</th>
+                <th>@Html.DisplayNameFor(model => model.First().AddressShortDisplay)</th>
+                <th>@Html.DisplayNameFor(model => model.First().TelephoneMobile)</th>
+                <th>@Html.DisplayNameFor(model => model.First().ItemTotalDisplay)</th>
+                <th>@Html.DisplayNameFor(model => model.First().OrderStatusText)</th>
+                <th>@Html.DisplayNameFor(model => model.First().PaidStatusText)</th>
+                <th>@Html.DisplayNameFor(model => model.First().SheduledTime)</th>
+                <th>@Html.DisplayNameFor(model => model.First().NextRecurringDate)</th>
+                <th>@Html.DisplayNameFor(model => model.First().RecurringSheduledStatus)</th>
+                <th>@Html.DisplayNameFor(model => model.First().StopRecurringStatus)</th>
+            </tr>
+        </thead>
+        <tbody id="tblBody">
+            @foreach (var item in Model)
+            {
+            <tr id="row_@item.OrderID">
+                <td><a href="@Url.Action("Details", new { id = item.OrderID })">@Html.DisplayFor(modelItem => item.OrderID)</a></td>
+                <td>@Html.DisplayFor(modelItem => item.OrderDateDisplay)</td>
+                <td>@Html.DisplayFor(modelItem => item.CustomerName)</td>
+                <td>@Html.DisplayFor(modelItem => item.AddressShortDisplay)</td>
+                <td>@Html.DisplayFor(modelItem => item.TelephoneMobile)</td>
+                <td>@Html.DisplayFor(modelItem => item.ItemTotalDisplay)</td>
+                <td><span class="badge badge-@item.OrderStatusClass">@item.OrderStatusText</span></td>
+                <td><span class="badge badge-@item.PaidStatusClass">@item.PaidStatusText</span></td>
+                    <td>@item.SheduledTime</td>
+                    <td>
+
+                        @if (item.PeriodIndex == "O")
+                        {
+                            @item.PeriodIndexText
+                        }
+                        else{
+                            @item.NextRecurringDate.ToString("dd MMM yyyy") <br /> @item.PeriodIndexText
+
+                        }
+                        
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.RecurringSheduledStatus)</td>
+                    <td>@Html.DisplayFor(modelItem => item.StopRecurringStatus)</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+

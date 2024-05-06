@@ -1,0 +1,563 @@
+﻿@model SaleOrderDetailsView
+@{
+    ViewData["Title"] = "Sales Order Details";
+
+    ViewData["SalesOrderActive"] = "active";
+}
+
+@inject DropDown.ICommonDDL CommonDDL
+@inject DropDown.ISalesDDL SalesDDL
+
+<partial name="_ConfirmDelete" />
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="row justify-content-start float-right mr-0 mt-2 d-none">
+
+                <a href="@Url.Action("Index","SampleCategory")" class="ml-1">
+                    <div class="card-box  bg-white p-1 pr-2 m-0">
+                        <p class="text- small mb-0">Figure 1</p>
+                        <p class="text-dark m-0 mb-0">0.00</p>
+                    </div>
+                </a>
+
+                <a href="@Url.Action("Index","SaleOrder")" class="ml-1">
+                    <div class="card-box  bg-white p-1 pr-2 m-0">
+                        <p class="text- small mb-0">Figure 2 </p>
+                        <p class="text-dark m-0 mb-0">0.0</p>
+                    </div>
+                </a>
+
+            </div>
+            <h4 class="page-title">@ViewData["Title"] (@Model.Order.OrderID)</h4>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row">
+    <div class="col-md-6 grid-margin">
+        <div class="card">
+            <div class="card-body">
+
+                <h6 class="text-primary mb-3">Order Details</h6>
+
+                <div class="row">
+                    @Html.LabelFor(model => model.Order.OrderID, htmlAttributes: new { @class = "col-4" })
+                    <label class="col-8">
+                        @Html.DisplayFor(model => model.Order.OrderID, new { htmlAttributes = new { @class = "" } })
+                    </label>
+                </div>
+
+                <div class="row">
+                    @Html.LabelFor(model => model.Order.OrderDateTimeDisplay, htmlAttributes: new { @class = "col-4" })
+                    <label class="col-8">
+                        @Html.DisplayFor(model => model.Order.OrderDateTimeDisplay, new { htmlAttributes = new { @class = "" } })
+                    </label>
+                </div>
+
+                <div class="row">
+                    @Html.LabelFor(model => model.Order.ItemCount, htmlAttributes: new { @class = "col-4" })
+                    <label class="col-8">
+                        @Html.DisplayFor(model => model.Order.ItemCount, new { htmlAttributes = new { @class = "" } })
+                    </label>
+                </div>
+
+                <div class="row">
+                    @Html.LabelFor(model => model.Order.ItemTotalDisplay, htmlAttributes: new { @class = "col-4" })
+                    <label class="col-8">
+                        @Html.DisplayFor(model => model.Order.ItemTotalDisplay, new { htmlAttributes = new { @class = "" } })
+                    </label>
+                </div>
+
+                <div class="row">
+                    @Html.LabelFor(model => model.Order.ShipAttTo, htmlAttributes: new { @class = "col-4" })
+                    <label class="col-8">
+                        @Html.DisplayFor(model => model.Order.ShipAttTo, new { htmlAttributes = new { @class = "" } })
+                    </label>
+                </div>
+
+                <div class="row">
+                    @Html.LabelFor(model => model.Order.AddressDisplay, htmlAttributes: new { @class = "col-4" })
+                    <label class="col-8">
+                        @Html.DisplayFor(model => model.Order.AddressDisplay, new { htmlAttributes = new { @class = "" } })
+                    </label>
+                </div>
+                 <div class="row">
+                    @Html.LabelFor(model => model.Order.NextRecurringDate, htmlAttributes: new { @class = "col-4" })
+                    <label class="col-8">
+                        @Model.Order.NextRecurringDate.ToString("dd MMM yyyy") - @Model.Order.PeriodIndexText
+                    </label>
+                </div>
+                <div class="row">
+                    @Html.LabelFor(model => model.Order.SheduledTime, htmlAttributes: new { @class = "col-4" })
+                    <label class="col-8">
+                        @Html.DisplayFor(model => model.Order.SheduledTime, new { htmlAttributes = new { @class = "" } })
+                    </label>
+                </div>
+                 <div class="row">
+                    @Html.LabelFor(model => model.Order.RecurringSheduledStatus, htmlAttributes: new { @class = "col-4" })
+                    <label class="col-8">
+                        @Html.DisplayFor(model => model.Order.RecurringSheduledStatus, new { htmlAttributes = new { @class = "" } })
+                    </label>
+                </div>
+                <div class="row">
+                    @Html.LabelFor(model => model.Order.StopRecurringStatus, htmlAttributes: new { @class = "col-4" })
+                    <label class="col-8">
+                        @Html.DisplayFor(model => model.Order.StopRecurringStatus, new { htmlAttributes = new { @class = "" } })
+                    </label>
+                </div>
+
+                <div class="row">
+                    @Html.LabelFor(model => model.Order.OrderStatusText, htmlAttributes: new { @class = "col-4" })
+                    <label class="col-8">
+                        <span class="badge badge-@Model.Order.OrderStatusClass">@Model.Order.OrderStatusText</span>
+                    </label>
+                </div>
+
+                <div class="row">
+                    @Html.LabelFor(model => model.Order.PaidStatusText, htmlAttributes: new { @class = "col-4" })
+                    <label class="col-8">
+                        @Html.CheckBoxFor(model => model.Order.PaidStatusBool, new { htmlAttributes = new { @class = "form-check-input", id="chkPaidStatus" } })
+                        <span class="badge badge-@Model.Order.PaidStatusClass">@Model.Order.PaidStatusText</span>
+                       
+                    </label>
+                </div>
+
+
+                <h6 class="text-primary mb-3 mt-3">New Action Here</h6>
+
+                <div class="row justify-content-center mb-4">
+                    @if (Model.Order.OrderStatus == "P")
+                    {
+                        <button type="button" onclick="ShowOrderForm('A');" class="btn btn-primary mr-2">Accept</button>
+                        <button type="button" onclick="ShowOrderForm('R');" class="btn btn-danger mr-2">Reject</button>
+                    }
+                    else @if (Model.Order.OrderStatus == "A")
+               {
+                <button type="button" onclick="ShowOrderForm('C');" class="btn btn-success mr-2">Complete</button>
+                <button type="button" onclick="ShowOrderForm('D');" class="btn btn-warning mr-2">Deliver</button>
+                <button type="button" onclick="ShowOrderForm('N');" class="btn btn-dark mr-2">Cancel</button>
+            }
+            else @if (Model.Order.OrderStatus == "D")
+               {
+                <button type="button" onclick="ShowOrderForm('C');" class="btn btn-success mr-2">Complete</button>
+                <button type="button" onclick="ShowOrderForm('N');" class="btn btn-dark mr-2">Cancel</button>
+            }
+
+
+            </div>
+
+
+
+            </div>
+</div>
+
+</div>
+
+<div class="col-md-6 grid-margin">
+    <div class="card">
+        <div class="card-body">
+
+            <h6 class="text-primary mb-3">Customer Details</h6>
+
+            <div class="row">
+                @Html.LabelFor(model => model.Customer.CustomerID, htmlAttributes: new { @class = "col-4" })
+                <label class="col-8">
+                    @Html.DisplayFor(model => model.Customer.CustomerID, new { htmlAttributes = new { @class = "" } })
+                </label>
+            </div>
+
+            <div class="row">
+                @Html.LabelFor(model => model.Customer.CustomerDisplay, htmlAttributes: new { @class = "col-4" })
+                <label class="col-8">
+                    @Html.DisplayFor(model => model.Customer.CustomerDisplay, new { htmlAttributes = new { @class = "" } })
+                </label>
+            </div>
+
+            <div class="row">
+                @Html.LabelFor(model => model.Customer.PriceTypeText, htmlAttributes: new { @class = "col-4" })
+                <label class="col-8">
+                    @Html.DisplayFor(model => model.Customer.PriceTypeText, new { htmlAttributes = new { @class = "" } })
+                </label>
+            </div>
+
+            <div class="row">
+                @Html.LabelFor(model => model.Customer.LoginEmail, htmlAttributes: new { @class = "col-4" })
+                <label class="col-8">
+                    @Html.DisplayFor(model => model.Customer.LoginEmail, new { htmlAttributes = new { @class = "" } })
+                </label>
+            </div>
+
+            <div class="row">
+                @Html.LabelFor(model => model.Customer.AddressShortDisplay, htmlAttributes: new { @class = "col-4" })
+                <label class="col-8">
+                    @Html.DisplayFor(model => model.Customer.AddressShortDisplay, new { htmlAttributes = new { @class = "" } })
+                </label>
+            </div>
+
+            <div class="row">
+                @Html.LabelFor(model => model.Customer.TelephoneMobile, htmlAttributes: new { @class = "col-4" })
+                <label class="col-8">
+                    @Html.DisplayFor(model => model.Customer.TelephoneMobile, new { htmlAttributes = new { @class = "" } })
+                </label>
+            </div>
+
+            <div class="row">
+                @Html.LabelFor(model => model.Customer.TelephoneOther, htmlAttributes: new { @class = "col-4" })
+                <label class="col-8">
+                    @Html.DisplayFor(model => model.Customer.TelephoneOther, new { htmlAttributes = new { @class = "" } })
+                </label>
+            </div>
+
+            <div class="row">
+                @Html.LabelFor(model => model.Customer.CustomerCategoryName, htmlAttributes: new { @class = "col-4" })
+                <label class="col-8">
+                    @Html.DisplayFor(model => model.Customer.CustomerCategoryName, new { htmlAttributes = new { @class = "" } })
+                </label>
+            </div>
+
+            <div class="row">
+                @Html.LabelFor(model => model.Customer.Remarks, htmlAttributes: new { @class = "col-4" })
+                <label class="col-8">
+                    @Html.DisplayFor(model => model.Customer.Remarks, new { htmlAttributes = new { @class = "" } })
+                </label>
+            </div>
+
+            <div class="row">
+                @Html.LabelFor(model => model.Customer.CreatedDateDisplay, htmlAttributes: new { @class = "col-4" })
+                <label class="col-8">
+                    @Html.DisplayFor(model => model.Customer.CreatedDateDisplay, new { htmlAttributes = new { @class = "" } })
+                </label>
+            </div>
+
+            <div class="row">
+                @Html.LabelFor(model => model.Customer.ActiveStatusText, htmlAttributes: new { @class = "col-4" })
+                <label class="col-8">
+                    <span class="badge badge-@Model.Customer.ActiveStatusClass">@Html.DisplayFor(model => model.Customer.ActiveStatusText, new { htmlAttributes = new { @class = "" } })</span>
+                    
+                </label>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+</div>
+</div>
+
+<div class="row">
+
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body p-2 p-md-3">
+                <div class="table-responsive">
+                    <h6 class="text-primary mb-3">Order Items</h6>
+
+                    <table class="table table-centered table-nowrap table-striped">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(model => model.ItemList.First().ItemCode)</th>
+                                <th>@Html.DisplayNameFor(model => model.ItemList.First().ItemName)</th>
+                                <th>@Html.DisplayNameFor(model => model.ItemList.First().RemarksDisplay)</th>
+
+                                <th>@Html.DisplayNameFor(model => model.ItemList.First().ItemPriceDisplay)</th>
+                                <th>@Html.DisplayNameFor(model => model.ItemList.First().ItemDiscountDisplay)</th>
+                                <th>@Html.DisplayNameFor(model => model.ItemList.First().ItemQty)</th>
+                                <th>@Html.DisplayNameFor(model => model.ItemList.First().LineTotalDisplay)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblBody">
+                            @foreach (var item in Model.ItemList)
+                            {
+                                <tr id="row_@item.OrderItemID">
+                                    <td>@Html.DisplayFor(modelItem => item.ItemCode)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.ItemName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.RemarksDisplay)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.ItemPriceDisplay)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.ItemDiscountDisplay)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.ItemQty)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.LineTotalDisplay)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body p-2 p-md-3">
+                <h6 class="text-primary mb-3">Order Action History</h6>
+                <div class="table-responsive">
+                    <table class="table table-centered table-nowrap table-striped">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(model => model.ActionList.First().ActionDateDisplay)</th>
+                                <th>@Html.DisplayNameFor(model => model.ActionList.First().ActionTypeText)</th>
+                                <th>@Html.DisplayNameFor(model => model.ActionList.First().Remarks)</th>
+                                <th>@Html.DisplayNameFor(model => model.ActionList.First().Username)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblBody">
+                            @foreach (var item in Model.ActionList)
+                            {
+                                <tr id="row_@item.OrderActionID">
+                                    <td>@Html.DisplayFor(modelItem => item.ActionDateDisplay)</td>
+                                    <td>
+                                        <span class="badge badge-@item.ActionTypeClass">
+                                            @item.ActionTypeText
+                                        </span>
+                                    </td>
+                                    <td>@Html.DisplayFor(modelItem => item.Remarks)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Username)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-center">
+    <a class="mt-2" href="@Model.ReturnURL">Go back</a>
+</div>
+
+
+<div class="modal fade" id="OrderRemark" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="bottomModalLabel">Order Remark</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="modal-body">
+                    <div>
+                        <div class="row">
+                            @Html.LabelFor(model => model.ActionType, htmlAttributes: new { @class = "col-4" })
+                            <label class="col-8">
+                                <span id="lblActionType">Action Type Text</span>
+                            </label>
+                        </div>
+
+                        <div class="row d-none">
+                            @Html.LabelFor(model => model.ReturnURL, htmlAttributes: new { @class = "col-4" })
+                            <label class="col-8">
+                                @Html.EditorFor(model => model.ReturnURL, new { htmlAttributes = new { @class = "" } })
+                            </label>
+                        </div>
+
+                        <div class="row d-none">
+                            @Html.LabelFor(model => model.OrderID, htmlAttributes: new { @class = "col-4" })
+                            <label class="col-8">
+                                @Html.EditorFor(model => model.OrderID, new { htmlAttributes = new { @class = "" } })
+                            </label>
+                        </div>
+
+                        <div class="form-group row d-none">
+                            @Html.LabelFor(model => model.ActionType, htmlAttributes: new { @class = "col-4 col-form-label" })
+                            <div class="col-8">
+                                @Html.EditorFor(model => model.ActionType, new { htmlAttributes = new { id = "txtActionType", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ActionType, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Remarks, htmlAttributes: new { @class = "col-4 col-form-label" })
+                            <div class="col-8">
+                                @Html.TextAreaFor(model => model.Remarks, 3, 120, htmlAttributes: new { id = "txtRemarks", @class = "form-control", style = "width: 100%; max-width: 100%;" })
+                                @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4"></div>
+                            <label class="col-8">
+                               
+                            </label>
+                        </div>
+                    </div>
+
+                  
+                </div>
+                <div class="modal-footer">
+
+                    <button type="submit" class="btn btn-primary mr-2">Update Order</button>
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                </div>  
+                }
+            </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+
+
+</div>
+
+
+<div class="modal fade" id="ConfirmPaid" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="bottomModalLabel">Confirm Paid status</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to mark this record as <span id="PaidText"></span>?</p>
+               
+                @Html.EditorFor(model => model.Order.OrderID, new { htmlAttributes = new { @class = "form-control", type = "hidden", id = "hiddenOrderId" } })
+                <span id="PaidValue" class="d-none"></span>
+                
+
+                <div id="loaderDivPaid" class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+
+                    </div>
+                </div>
+
+                <div style="text-align:center;display:none" id="successDivPaid" class="alert alert-success">
+                    <p id="message" name="message">Completed successfully</p>
+                </div>
+
+                <div style="text-align:left;display:none" id="errorDivPaid" class="alert alert-danger">
+                    <p id="errMessagePaid" name="errMessagePaid">Error</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary" disabled="disabled" id="bPaid" onclick="PaidRecord()">Proceed</button>
+                <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+
+
+</div>
+
+
+
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+<script>
+
+        function ShowOrderForm(status) {
+            $("#OrderRemark").modal('show');
+            var OrderStatusText = "";
+            if (status == "A") {
+                OrderStatusText = "Accept Order";
+            }
+            if (status == "R") {
+                OrderStatusText = "Reject Order";
+            }
+            if (status == "C") {
+                OrderStatusText = "Complete Order";
+            }
+            if (status == "D") {
+                OrderStatusText = "Deliver Order";
+            }
+            if (status == "N") {
+                OrderStatusText = "Cancel Order";
+            }
+
+            $("#grpSubmit").removeClass("d-none");
+
+
+            $("#lblActionType").html(OrderStatusText);
+            $("#txtActionType").val(status);
+            $("#txtRemarks").val("");
+            $("#txtRemarks").focus();
+
+        }
+
+        $('#Order_PaidStatusBool').click(function () {
+
+            if ($(this).is(':checked')) {
+
+                $("#PaidText").html("Paid");
+                $("#PaidValue").html("PD");
+                $("#loaderDivPaid").hide();
+                $("#errorDivPaid").hide();
+                $("#successDivPaid").hide();
+                $("#bPaid").removeAttr("disabled");
+                $("#ConfirmPaid").modal('show');
+
+            } else {
+
+                $("#PaidText").html(" Not Paid");
+                $("#PaidValue").html("NP");
+                $("#loaderDivPaid").hide();
+                $("#errorDivPaid").hide();
+                $("#successDivPaid").hide();
+                $("#bPaid").removeAttr("disabled");
+                $("#ConfirmPaid").modal('show');
+            }
+        });
+
+        var PaidRecord = function () {
+            $("#bPaid").attr("disabled", true);
+            $("#loaderDivPaid").show();
+            var jsonURL ="/Sales/SaleOrder/EditPaidStatus";
+            var Id = $("#hiddenOrderId").val();
+            var OrderPaidStatus = $("#PaidValue").text();
+
+            setTimeout(function () {
+                $.ajax({
+
+                    type: "POST",
+                    url: jsonURL,
+                    data: { id: Id, OrderPaidStatus: OrderPaidStatus },
+                    success: function (result) {
+                        if (result != null && result.success) {
+
+                            $("#loaderDivPaid").hide();
+                            $("#successDivPaid").show();
+
+                            setTimeout(function () {
+
+                                $("#ConfirmPaid").modal("hide");
+                            }, 1000);
+                            setInterval('location.reload()', 1001);  
+                            
+
+                        } else {
+                            ReportPaidError(result.responseText);
+                        }
+
+                    },
+                    error: function (result) {
+                        ReportPaidError(result.responseText);
+                    }
+                })
+            }, 500);
+
+
+        }
+
+        var ReportPaidError = function (errMessage) {
+            $("#loaderDivPaid").hide();
+            $("#successDivPaid").hide();
+            $("#bPaid").attr("disabled", true);
+            $("#errMessagePaid").html(errMessage);
+            $("#errorDivPaid").show();
+        }
+
+</script>
+
+}
+
+
+

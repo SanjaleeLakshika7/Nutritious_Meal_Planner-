@@ -1,0 +1,282 @@
+﻿@model DiscountSchemaEditView
+@{
+    ViewData["Title"] = "Discount Schema (" + Model.ItemName + ")";
+
+    ViewData["ItemActive"] = "active";
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 class="page-title">@ViewData["Title"]</h4>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<partial name="_ConfirmDelete" />
+<partial name="_TickData" />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="row">
+        <div class="col-md-6 grid-margin">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="form-group row d-none">
+                        @Html.LabelFor(model => model.ReturnURL, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.ReturnURL, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ReturnURL, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row d-none">
+                        @Html.LabelFor(model => model.ItemID, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.ItemID, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ItemID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row d-none">
+                        @Html.LabelFor(model => model.DiscountSchema.DiscountSchemaID, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.DiscountSchema.DiscountSchemaID, new { htmlAttributes = new { @class = "form-control", id = "txtDiscountSchemaID" } })
+                            @Html.ValidationMessageFor(model => model.DiscountSchema.DiscountSchemaID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.DiscountSchema.MinimumQty, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.DiscountSchema.MinimumQty, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus", id = "txtMinimumQty", style = "width:100px" } })
+                            @Html.ValidationMessageFor(model => model.DiscountSchema.MinimumQty, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.DiscountSchema.DiscountAmount, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.DiscountSchema.DiscountAmount, new { htmlAttributes = new { @class = "form-control", id = "txtDiscountAmount", style = "width:100px" } })
+                            @Html.ValidationMessageFor(model => model.DiscountSchema.DiscountAmount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.DiscountSchema.DiscountRate, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.DiscountSchema.DiscountRate, new { htmlAttributes = new { @class = "form-control", id = "txtDiscountRate", style = "width:100px" } })
+                            @Html.ValidationMessageFor(model => model.DiscountSchema.DiscountRate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.DiscountSchema.FreeQty, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.DiscountSchema.FreeQty, new { htmlAttributes = new { @class = "form-control", id = "txtFreeQty", style = "width:100px" } })
+                            @Html.ValidationMessageFor(model => model.DiscountSchema.FreeQty, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.DiscountSchema.PriceTypeList, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label">
+                                    @Html.RadioButtonFor(m => m.DiscountSchema.PriceTypeList, "RT", new { @class = "form-check-input", id = "rdoRT" })
+                                    Retail
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label">
+                                    @Html.RadioButtonFor(m => m.DiscountSchema.PriceTypeList, "WH", new { @class = "form-check-input", id = "rdoWH" })
+                                    Wholesale
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label">
+                                    @Html.RadioButtonFor(m => m.DiscountSchema.PriceTypeList, "RT,WH", new { @class = "form-check-input", id = "rdoRTWH" })
+                                    (Both)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.DiscountSchema.GradeList, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.DiscountSchema.GradeList, new { htmlAttributes = new { @class = "form-control", id = "txtGradeList", placeholder = "Sperate by comma" } })
+                            @Html.ValidationMessageFor(model => model.DiscountSchema.GradeList, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label">
+                            @Html.DisplayNameFor(model => model.DiscountSchema.BranchIDList)
+
+                            @Html.EditorFor(model => model.DiscountSchema.BranchNameList, new { htmlAttributes = new { id = "txtBranchNameList", style = "visibility:hidden; width:0px; height:0px" } })
+                            @Html.EditorFor(model => model.DiscountSchema.BranchIDList, new { htmlAttributes = new { id = "txtBranchIDList", style = "visibility:hidden; width:0px; height:0px" } })
+
+                        </label>
+                        <div class="col-8">
+                            <button class="btn btn-icon float-right" onclick="BranchClear();" title="Clear selection" type="button">
+                                <i data-feather="x-circle"></i>
+                            </button>
+                            <button class="btn btn-block-left btn-primary SearchButton" onclick="BranchTickClick();" title="Click here to select" type="button">
+                                <span id="btnBranchNameList">@Model.DiscountSchema.BranchDisplay</span>
+                            </button>
+                            @Html.ValidationMessageFor(model => model.DiscountSchema.BranchIDList, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.DiscountSchema.ActiveStatusBool, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8 pt-2">
+                            <div class="custom-control custom-switch">
+                                @Html.CheckBoxFor(m => m.DiscountSchema.ActiveStatusBool, new { @class = "custom-control-input checkbox-success", id = "customSwitch1" })
+                                <label class="custom-control-label" for="customSwitch1">Active</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                        </div>
+                        <div class="col-8">
+                            <button type="submit" id="btnSave" class="btn btn-primary mr-2">Add</button>
+                            &nbsp;
+                            <a href="@Model.ReturnURL">Go Back</a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-centered table-nowrap table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="d-none">@Html.DisplayNameFor(model => model.DiscountSchemaList.First().DiscountSchemaID)</th>
+                                    <th>@Html.DisplayNameFor(model => model.DiscountSchemaList.First().MinimumQty)</th>
+                                    <th>@Html.DisplayNameFor(model => model.DiscountSchemaList.First().DiscountDisplay)</th>
+                                    <th>@Html.DisplayNameFor(model => model.DiscountSchemaList.First().GradeList)</th>
+                                    <th>@Html.DisplayNameFor(model => model.DiscountSchemaList.First().PriceTypeDisplay)</th>
+                                    <th>@Html.DisplayNameFor(model => model.DiscountSchemaList.First().BranchDisplay)</th>
+                                    <th>@Html.DisplayNameFor(model => model.DiscountSchemaList.First().ActiveStatus)</th>
+                                    <th style="width:70px;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tblBody">
+                                @foreach (var item in Model.DiscountSchemaList)
+                                {
+                                    <tr id="row_@item.DiscountSchemaID">
+                                        <td class="d-none">@Html.DisplayFor(modelItem => item.DiscountSchemaID)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.MinimumQty)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.DiscountDisplay)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.GradeList)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.PriceTypeDisplay)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.BranchDisplay)</td>
+                                        <td><span class="badge badge-@item.ActiveStatusClass">@item.ActiveStatusText</span></td>
+                                        <td>
+                                            <a href="javascript:void(0);" onclick="EditRecord
+                                            (
+                                                '@item.DiscountSchemaID',
+                                                '@item.MinimumQty',
+                                                '@item.DiscountAmount',
+                                                '@item.DiscountRate',
+                                                '@item.FreeQty',
+                                                '@item.PriceTypeList',
+                                                '@item.GradeList',
+                                                '@item.BranchIDList',
+                                                '@item.BranchDisplay'
+                                            )" class="table-icon text-primary"><i class="mdi mdi-square-edit-outline"></i></a>
+                                            <a href="javascript:void(0);" onclick="ConfirmDelete('@item.DiscountSchemaID','@Url.Action("Delete")')" class="table-icon text-danger"> <i class="mdi mdi-delete"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+}
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+    <script>
+
+    function EditRecord
+        (
+            DiscountSchemaID,
+            MinimumQty,
+            DiscountAmount,
+            DiscountRate,
+            FreeQty,
+            PriceTypeList,
+            GradeList,
+            BranchIDList,
+            BranchNameList
+        ) {
+
+        $("#txtDiscountSchemaID").val(DiscountSchemaID);
+        $("#txtMinimumQty").val(MinimumQty);
+        $("#txtDiscountAmount").val(DiscountAmount);
+        $("#txtDiscountRate").val(DiscountRate);
+        $("#txtFreeQty").val(FreeQty);
+
+        if (PriceTypeList == "RT") {
+            $("#rdoRT").prop('checked', true);
+        }
+        else if (PriceTypeList == "WH") {
+            $("#rdoWH").prop('checked', true);
+        } else {
+            $("#rdoRTWH").prop('checked', true);
+        }
+
+        $("#txtGradeList").val(GradeList);
+
+        $("#txtBranchIDList").val(BranchIDList);
+        $("#txtBranchNameList").val(BranchNameList);
+        $("#btnBranchNameList").html(BranchNameList);
+
+        $("#btnSave").html("Update");
+
+        $("#txtPrice").focus();
+
+    }
+
+    function BranchTickClick() {
+        var BranchTickURL = '@Url.Action("_BranchTick", "Branch", new { area = "Company" })';
+        OpenTickData("txtBranchIDList", "txtBranchNameList", "btnBranchNameList", BranchTickURL);
+    }
+
+    function BranchClear() {
+        $("#txtBranchIDList").val("");
+        $("#txtBranchNameList").val("(All branches)");
+        $("#btnBranchNameList").html("(All branches)");
+    }
+
+    </script>
+
+}
+
+
+

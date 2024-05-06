@@ -1,0 +1,32 @@
+﻿@model IEnumerable<CategorySub>
+
+@{
+    Layout = null;
+}
+
+<div class="table-responsive">
+    <table class="table table-centered table-nowrap table-striped">
+        <thead>
+            <tr>
+                <th class="d-none">@Html.DisplayNameFor(model => model.First().CategorySubID)</th>
+                <th>@Html.DisplayNameFor(model => model.First().CategoryDisplay)</th>
+            </tr>
+        </thead>
+        <tbody id="tblSelectBody">
+            @foreach (var item in Model)
+            {
+            <tr id="row_@item.CategorySubID">
+                <td class="d-none">@Html.DisplayFor(modelItem => item.CategorySubID)</td>
+                <td>
+                    <a href="javascript:void(0);" onclick="CategorySelected('@item.CategorySubID','@item.CategoryMainID','@(item.CategoryDisplay)')" class="text-dark font-weight-semibold">
+                        @Html.DisplayFor(modelItem => item.CategoryDisplay)
+                    </a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+

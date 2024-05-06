@@ -1,0 +1,125 @@
+﻿@model SlideBannerEditView
+@{
+    ViewData["Title"] = "AddS Slide Banner";
+
+    ViewData["ContentParameterActive"] = "active";
+    ViewData["ContentParameterShow"] = "show";
+    ViewData["SlideBannerActive"] = "active";
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 class="page-title">@ViewData["Title"]</h4>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+@using (Html.BeginForm("Add", "SlideBanner", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="row">
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="form-group row d-none">
+                        @Html.LabelFor(model => model.Data.ReturnURL, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.Data.ReturnURL, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Data.ReturnURL, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row d-none">
+                        @Html.LabelFor(model => model.Data.SlideBannerID, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.Data.SlideBannerID, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Data.SlideBannerID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Data.Title, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.Data.Title, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                            @Html.ValidationMessageFor(model => model.Data.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Data.Description, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.Data.Description, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus", @rows = 10 } })
+                            @Html.ValidationMessageFor(model => model.Data.Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Data.ButtonName, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.Data.ButtonName, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                            @Html.ValidationMessageFor(model => model.Data.ButtonName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Data.ButtonLink, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.Data.ButtonLink, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                            @Html.ValidationMessageFor(model => model.Data.ButtonLink, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.FileUpload, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.FileUpload, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                            @Html.ValidationMessageFor(model => model.FileUpload, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Data.ActiveStatusBool, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8 pt-2">
+                            <div class="custom-control custom-switch">
+                                @Html.CheckBoxFor(model => model.Data.ActiveStatusBool, new { @class = "custom-control-input checkbox-success", id = "customSwitch1" })
+                                <label class="custom-control-label" for="customSwitch1">Active</label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                        </div>
+                        <div class="col-8">
+                            <button type="submit" class="btn btn-primary mr-2">Add</button>
+                            &nbsp;
+                            <a href="@Model.Data.ReturnURL">Cancel</a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+    <script>
+
+    </script>
+
+}
+
+
+

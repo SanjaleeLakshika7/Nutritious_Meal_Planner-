@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SlideBanner>
+
+@{
+    Layout = null;
+}
+
+<div class="table-responsive">
+    <table class="table table-centered table-nowrap table-striped">
+        <thead>
+            <tr>
+                <th class="d-none">@Html.DisplayNameFor(model => model.First().SlideBannerID)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Title)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Description)</th>
+                <th>@Html.DisplayNameFor(model => model.First().ButtonName)</th>
+                <th>@Html.DisplayNameFor(model => model.First().ButtonLink)</th>
+                <th>@Html.DisplayNameFor(model => model.First().ActiveStatusText)</th>
+                <th style="width:70px;">Action</th>
+            </tr>
+        </thead>
+        <tbody id="tblBody">
+            @foreach (var item in Model)
+            {
+            <tr id="row_@item.SlideBannerID">
+                <td class="d-none">@Html.DisplayFor(modelItem => item.SlideBannerID)</td>
+                <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                <td  title="@item.Description">@item.Description.ToShort(36)</td>
+                <td>@Html.DisplayFor(modelItem => item.ButtonName)</td>
+                <td>@Html.DisplayFor(modelItem => item.ButtonLink)</td>
+                <td><span class="badge badge-@item.ActiveStatusClass">@item.ActiveStatusText</span></td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = item.SlideBannerID })" class="table-icon text-primary"><i class="mdi mdi-square-edit-outline"></i></a>
+                    <a href="javascript:void(0);" onclick="ConfirmDelete('@item.SlideBannerID','@Url.Action("Delete")')" class="table-icon text-danger"> <i class="mdi mdi-delete"></i></a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+

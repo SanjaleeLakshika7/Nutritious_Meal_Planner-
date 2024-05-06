@@ -1,0 +1,284 @@
+﻿@{
+    ViewData["Title"] = "Items";
+    ViewData["TitleNavbar"] = "Items";
+    ViewData["APICatalogDocumentationActive"] = "active";
+    ViewData["APICatalogDocumentationShow"] = "show";
+    ViewData["APIItemActive"] = "active";
+}
+@inject DropDown.ICommonDDL CommonDDL
+@{
+
+    var WebUrl = CommonDDL.GetWebURL();
+}
+
+
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">This section shows you all API endpoints to manage Items related data</h6>
+                <div id="accordion" class="accordion" role="tablist">
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingOne">
+                            <h6 class="mb-0">
+                                <a data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                    <span class="text-black ">API/Item/GetList</span> <span class="m-1 text-small text-left  text-small">(Get a list of Items records)</span>
+                                </a>
+                            </h6>
+                        </div>
+                        <div id="collapseOne" class="collapse " role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+                                <p class="card-text text-gray mb-2 ">This endpoint is used to list down the Items with filtering options and pagination.</p>
+                                <p class="card-text text-gray">
+                                    <ul class="card-text  text-gray mb-2">
+                                        <li class="mb-2">Request structure: <b class="text-success">
+                                            {MainURL}/API/Item/GetList?APIKey={Your_API_Key}&KeyW={Search_Keyword}&CategoryMainID={CategoryMain_ID}&CategorySubID={CategorySub_ID}&
+                                            BrandID={Brand_ID}&StockAvailable={Stock_Available}&IsNew={IsNew}&IsFeatured={IsFeatured}&ActiveStatus={ActiveStatus}&
+                                            Page={Page_Number}&PageSize={Records_Per_Page}</b>  
+                                        </li>
+                                        <li class="mb-2">Example request URL: <b class="text-primary">
+                                            @WebUrl/API/Item/GetList?APIKey=0000&KeyW=New&CategoryMainID=CTM_0000&
+                                            CategorySubID=CTS_0000&
+                                            BrandID=BRD_000&StockAvailable=1&IsNew=0&IsFeatured=0&ActiveStatus=A&
+                                            Page=0&PageSize=99999</b>
+                                        </li>
+
+                                        <li class="mb-2">
+                                            Parameters
+                                            <ul class="">
+
+                                                <li class=""><b class="text-primary">APIKey </b><span class="text-danger">[Required]</span> - Your API Key</li>
+                                                <li class=""><b class="text-primary">KeyW  </b><span class="text-info">[Optional - Default as '']</span> - Filter the list based on search keyword</li>
+                                                <li class=""><b class="text-primary">CategoryMainID  </b><span class="text-info">[Optional - Default as '']</span> - Filter the list based on CategoryMain ID</li>
+                                                <li class=""><b class="text-primary">CategorySubID  </b><span class="text-info">[Optional - Default as '']</span> - Filter the list based on CategorySub ID</li>
+                                                <li class=""><b class="text-primary">BrandID  </b><span class="text-info">[Optional - Default as '']</span> - Filter the list based on Brand ID</li>
+
+                                                <li class=""><b class="text-primary">StockAvailable  </b><span class="text-info">[Optional - Default as '']</span> - Filter the list based on Stock Availablity [1 = Stock Available / 0 = Stock Not Available]</li>
+                                                <li class=""><b class="text-primary">IsNew </b><span class="text-info">[Optional - Default as '']</span> - Filter the list if Item is New [1 = Item is New / 0 = Item is not New]</li>
+                                                <li class=""><b class="text-primary">IsFeatured </b><span class="text-info">[Optional - Default as '']</span> - Filter the list if Item is Featured [1 = Item is Featured / 0 = Item is not Featured]</li>
+                                                <li class=""><b class="text-primary">ActiveStatus </b><span class="text-info">[Optional - Default as '']</span> - Filter the list based on active status [A = Active records only / I = Inactive records only]</li>
+
+                                                <li class=""><b class="text-primary">Page  </b><span class="text-info">[Optional - Default as 0] </span> - Get records for specific page number with the help of PageSize parameter</li>
+                                                <li class=""><b class="text-primary">PageSize   </b><span class="text-info">[Optional - Default as 99999]</span> - Set the number of records per page for this list</li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="mb-2">
+                                            Results (JSon)
+                                            <ul class="">
+
+                                                <li class=""><b class="text-primary">Success </b>- True of false to indicate the success status of the request</li>
+                                                <li class=""><b class="text-primary">ErrorMessage </b> - Displays any error message related to the request or parameters (If there is any error message, then success status will always show as false and Data eliment will not show) </li>
+                                                <li class=""><b class="text-primary">Data </b> - Displays the list of records as JSon array if the request status is success. (This section will not show if the Success status is False)</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingTwo">
+                            <h6 class="mb-0">
+                                <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <span class="text-black ">API/Item/GetCount </span> <span class="m-1 text-small text-left  text-small">(Get the number of Items records)</span>
+                                </a>
+                            </h6>
+                        </div>
+                        <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+                            <div class="card-body">
+                                <p class="card-text text-gray mb-2 ">This endpoint is used to get the number of Items  with filtering options </p>
+                                <p class="card-text text-gray">
+                                    <ul class="card-text  text-gray mb-2">
+                                        <li class="mb-2">Request structure: <b class="text-success">{MainURL}/API/Item/GetCount?APIKey={Your_API_Key}&KeyW={Search_Keyword}&CategoryMainID={CategoryMain_ID}&CategorySubID={CategorySub_ID}&BrandID={Brand_ID}&StockAvailable={Stock_Available}&IsNew={IsNew}&IsFeatured={IsFeatured}&ActiveStatus={ActiveStatus}</b>  </li>
+                                        <li class="mb-2">Example request URL: <b class="text-primary">@WebUrl/API/Item/GetCount?APIKey=0000&KeyW=New&CategoryMainID=CTM_0000&CategorySubID=CTS_0000&BrandID=BRD_000&StockAvailable=1&IsNew=0&IsFeatured=0&ActiveStatus=A</b></li>
+
+                                        <li class="mb-2">
+                                            Parameters
+                                            <ul class="">
+
+                                                <li class=""><b class="text-primary">APIKey </b><span class="text-danger">[Required]</span> - Your API Key</li>
+                                                <li class=""><b class="text-primary">KeyW  </b><span class="text-info">[Optional - Default as '']</span> - Filter the list based on search keyword</li>
+                                                <li class=""><b class="text-primary">CategoryMainID  </b><span class="text-info">[Optional - Default as '']</span> - Filter the list based on CategoryMain ID</li>
+                                                <li class=""><b class="text-primary">CategorySubID  </b><span class="text-info">[Optional - Default as '']</span> - Filter the list based on CategorySub ID</li>
+                                                <li class=""><b class="text-primary">BrandID  </b><span class="text-info">[Optional - Default as '']</span> - Filter the list based on Brand ID</li>
+
+                                                <li class=""><b class="text-primary">StockAvailable  </b><span class="text-info">[Optional - Default as '']</span> - Filter the list based on Stock Availablity [1 = Stock Available / 0 = Stock Not Available]</li>
+                                                <li class=""><b class="text-primary">IsNew </b><span class="text-info">[Optional - Default as '']</span> - Filter the list if Item is New [1 = Item is New / 0 = Item is not New]</li>
+                                                <li class=""><b class="text-primary">IsFeatured </b><span class="text-info">[Optional - Default as '']</span> - Filter the list if Item is Featured [1 = Item is Featured / 0 = Item is not Featured]</li>
+                                                <li class=""><b class="text-primary">ActiveStatus </b><span class="text-info">[Optional - Default as '']</span> - Filter the list based on active status [A = Active records only / I = Inactive records only]</li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="mb-2">
+                                            Results (JSon)
+                                            <ul class="">
+
+                                                <li class=""><b class="text-primary">Success </b>- True of false to indicate the success status of the request</li>
+                                                <li class=""><b class="text-primary">ErrorMessage </b> - Displays any error message related to the request or parameters (If there is any error message, then success status will always show as false and Data eliment will not show) </li>
+                                                <li class=""><b class="text-primary">Data </b> -  Displays the numberic value as a result if the request status is success. (This section will not show if the Success status is False)</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingThree">
+                            <h6 class="mb-0">
+                                <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <span class="text-black ">API/Item/Get</span> <span class="m-1 text-small text-left  text-small">(Get details of a single Items record)</span>
+                                </a>
+                            </h6>
+                        </div>
+                        <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
+                            <div class="card-body">
+                                <p class="card-text text-gray mb-2 ">This endpoint is used to get details of a single Items records for any given Item ID.</p>
+                                <p class="card-text text-gray">
+                                    <ul class="card-text  text-gray mb-2">
+                                        <li class="mb-2">Request structure: <b class="text-success">{MainURL}/Item/Get?APIKey={Your_API_Key}&ID={Item_ID}</b>  </li>
+                                        <li class="mb-2">Example request URL: <b class="text-primary">@WebUrl/API/Item/Get?APIKey=0000&ID=BRD_000 </b></li>
+
+                                        <li class="mb-2">
+                                            Parameters
+                                            <ul class="">
+
+                                                <li class=""><b class="text-primary">APIKey </b><span class="text-danger">[Required]</span> - Your API Key</li>
+                                                <li class=""><b class="text-primary">ID  </b><span class="text-danger">[Required]</span> - Used to find the specific Items using ItemID field</li>
+
+                                            </ul>
+                                        </li>
+
+                                        <li class="mb-2">
+                                            Results (JSon)
+                                            <ul class="">
+
+                                                <li class=""><b class="text-primary">Success </b>- True of false to indicate the success status of the request</li>
+                                                <li class=""><b class="text-primary">ErrorMessage </b> - Displays any error message related to the request or parameters (If there is any error message, then success status will always show as false and Data eliment will not show) </li>
+                                                <li class=""><b class="text-primary">Data </b> - Displays the details of the records as JSon array if the request status is success. (This section will not show if the Success status is False)</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingfour">
+                            <h6 class="mb-0">
+                                <a class="collapsed" data-toggle="collapse" href="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
+                                    <span class="text-black ">API/Item/AddEdit </span> <span class="m-1 text-small text-left  text-small">(Add or Edit a Items record)</span>
+                                </a>
+                            </h6>
+                        </div>
+                        <div id="collapsefour" class="collapse" role="tabpanel" aria-labelledby="headingfour" data-parent="#accordion">
+                            <div class="card-body">
+                                <p class="card-text text-gray mb-2 ">This endpoint is used add a new Items or update any Items record. If the ItemID parameter is null or empty, it adds the record, otherwise it will update the Items record.</p>
+                                <p class="card-text text-gray">
+                                    <ul class="card-text  text-gray mb-2">
+                                        <li class="mb-2">Request structure: <b class="text-success">{MainURL}/Item/AddEdit?APIKey={Your_API_Key}&ItemID={Item_ID}&
+                                            ItemTypeID = {ItemTypeID}&CategoryMainID = {CategoryMainID}&CategorySubID = {CategorySubID}&ItemCode = {ItemCode}&ItemName = {ItemName}&RetailPrice = {RetailPrice}&WholesalePrice = {WholesalePrice}&
+                                            ItemCost = {ItemCost}&BrandID = {BrandID}&itemDescription = {itemDescription}&StockAvailable = {StockAvailable}&IsNew = {IsNew}&IsFeatured= {IsFeatured}&ActiveStatus = {ActiveStatus}</b>  
+                                        </li>
+                                        <li class="mb-2">Example request URL: <b class="text-primary">@WebUrl/API/Item/AddEdit?APIKey=0000&ItemID={Item_ID}&
+                                            ItemTypeID = {ItemTypeID}&CategoryMainID = CTM_0000&CategorySubID = CTS_0000&ItemCode = {ItemCode}&ItemName = {ItemName}&RetailPrice = {RetailPrice}&WholesalePrice = {WholesalePrice}&
+                                            ItemCost = {ItemCost}&BrandID = BRD_000&itemDescription = {itemDescription}&StockAvailable = 1&IsNew = 0&IsFeatured= 0&ActiveStatus = A</b>
+                                        </li>
+
+                                        <li class="mb-2">
+                                            Parameters
+                                            <ul class="">
+
+                                                <li class=""><b class="text-primary">APIKey </b><span class="text-danger">[Required]</span> - Your API Key</li>
+                                                <li class=""><b class="text-primary">ItemID  </b><span class="text-danger">[Required]</span> - Item ID (Set this as blank to add a new Item)</li>
+                                                <li class=""><b class="text-primary">ItemTypeID </b><span class="text-danger">[Required]</span> - ItemTypeID which Item should create under</li>
+                                                <li class=""><b class="text-primary">CategoryMainID </b><span class="text-danger">[Required]</span> - CategoryMainID which Item should create under </li>
+                                                <li class=""><b class="text-primary">CategorySubID </b><span class="text-danger">[Required]</span> - CategorySubID which Item should create under </li>
+
+                                                <li class=""><b class="text-primary">ItemCode </b><span class="text-danger">[Required]</span> - Code for Item (same ItemCode cannot be repeated) </li>
+                                                <li class=""><b class="text-primary">ItemName </b><span class="text-danger">[Required]</span> - Name of the Item  </li>
+
+                                                <li class=""><b class="text-primary">RetailPrice </b><span class="text-danger">[Required]</span> - Retail Price of the Item </li>
+                                                <li class=""><b class="text-primary">WholesalePrice </b><span class="text-danger">[Required]</span> - Wholesale Price of the Item  </li>
+                                                <li class=""><b class="text-primary">ItemCost </b><span class="text-danger">[Required]</span> - Cost of the Item  </li>
+
+                                                <li class=""><b class="text-primary">BrandID </b><span class="text-info">[Optional]</span> - BrandID which Item should create under  </li>
+                                                <li class=""><b class="text-primary">itemDescription </b><span class="text-info">[Optional]</span> - Description about the Item  </li>
+
+                                                <li class=""><b class="text-primary">StockAvailable  </b><span class="text-danger">[Required]</span> - To check based on Stock Availablity [1 = Stock Available / 0 = Stock Not Available]</li>
+                                                <li class=""><b class="text-primary">IsNew </b><span class="text-danger">[Required]</span> - To check Item is New [1 = Item is New / 0 = Item is not New]</li>
+                                                <li class=""><b class="text-primary">IsFeatured </b><span class="text-danger">[Required]</span> - To check Item is Featured [1 = Item is Featured / 0 = Item is not Featured]</li>
+                                                <li class=""><b class="text-primary">ActiveStatus </b><span class="text-danger">[Required]</span> - Active status of the Item [A - Active / I - Inactive]</li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="mb-2">
+                                            Results (JSon)
+                                            <ul class="">
+
+                                                <li class=""><b class="text-primary">Success </b>- True of false to indicate the success status of the request</li>
+                                                <li class=""><b class="text-primary">ErrorMessage </b> - Displays any error message related to the request or parameters (If there is any error message, then success status will always show as false and Data eliment will not show) </li>
+                                                <li class=""><b class="text-primary">Data </b> - Displays newly created Item ID or updated Item ID as a JSon result if the request status is success. (This section will not show if the Success status is False)</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingfive">
+                            <h6 class="mb-0">
+                                <a class="collapsed" data-toggle="collapse" href="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
+                                    <span class="text-black ">API/Item/Delete  </span> <span class="m-1 text-small text-left  text-small">(Delete Items record)</span>
+                                </a>
+                            </h6>
+                        </div>
+                        <div id="collapsefive" class="collapse" role="tabpanel" aria-labelledby="headingfive" data-parent="#accordion">
+                            <div class="card-body">
+                                <p class="card-text text-gray mb-2 ">This endpoint is used to delete a Items record. However if the Items is used for other records, it will display relevant message.</p>
+                                <p class="card-text text-gray">
+                                    <ul class="card-text  text-gray mb-2">
+                                        <li class="mb-2">Request structure: <b class="text-success">{MainURL}/Item/Delete?APIKey={Your_API_Key}&ID={Item_ID}</b>  </li>
+                                        <li class="mb-2">Example request URL: <b class="text-primary"> @WebUrl/API/Item/Delete?APIKey=0000&ID=BRD_000 </b></li>
+
+                                        <li class="mb-2">
+                                            Parameters
+                                            <ul class="">
+
+                                                <li class=""><b class="text-primary">APIKey </b><span class="text-danger">[Required]</span> - Your API Key</li>
+                                                <li class=""><b class="text-primary">ID  </b><span class="text-danger">[Required]</span> - Items ID of the Items to be deleted</li>
+
+                                            </ul>
+                                        </li>
+
+                                        <li class="mb-2">
+                                            Results (JSon)
+                                            <ul class="">
+
+                                                <li class=""><b class="text-primary">Success </b>- True of false to indicate the success status of the request</li>
+                                                <li class=""><b class="text-primary">ErrorMessage </b> - Displays any error message related to the request or parameters (If there is any error message, then success status will always show as false and Data eliment will not show) </li>
+                                                <li class=""><b class="text-primary">Data </b> - Displays deleted Item ID as a JSon result if the request status is success. (This section will not show if the Success status is False)</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+

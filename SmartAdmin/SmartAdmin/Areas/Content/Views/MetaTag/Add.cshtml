@@ -1,0 +1,130 @@
+﻿@model MetaTag
+@{
+    ViewData["Title"] = "Add Page";
+
+    ViewData["PageContentActive"] = "active";
+    ViewData["PageContentShow"] = "show";
+    ViewData["MetaTagActive"] = "active";
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 class="page-title">@ViewData["Title"]</h4>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="row">
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="form-group row d-none">
+                        @Html.LabelFor(model => model.ReturnURL, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.ReturnURL, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ReturnURL, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row d-none">
+                        @Html.LabelFor(model => model.PageID, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.PageID, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PageID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.PageName, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.PageName, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                            @Html.ValidationMessageFor(model => model.PageName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.TitleTag, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.TitleTag, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                            @Html.ValidationMessageFor(model => model.TitleTag, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.DescriptionTag, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.DescriptionTag, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus", @rows = 10 } })
+                            @Html.ValidationMessageFor(model => model.DescriptionTag, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.KeywordsTag, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.KeywordsTag, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                            @Html.ValidationMessageFor(model => model.KeywordsTag, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.OGTitleTag, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.OGTitleTag, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                            @Html.ValidationMessageFor(model => model.OGTitleTag, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.OGDescriptionTag, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.OGDescriptionTag, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus", @rows = 10 } })
+                            @Html.ValidationMessageFor(model => model.OGDescriptionTag, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.OGImageTag, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.OGImageTag, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus" } })
+                            @Html.ValidationMessageFor(model => model.OGImageTag, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                        </div>
+                        <div class="col-8">
+                            <button type="submit" class="btn btn-primary mr-2">Add</button>
+                            &nbsp;
+                            <a href="@Model.ReturnURL">Cancel</a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+    <script>
+
+    </script>
+
+}
+
+
+
