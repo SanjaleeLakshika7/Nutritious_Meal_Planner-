@@ -1,0 +1,60 @@
+D:\Sanjalie Final\SmartAdmin\Admin.Account\bin\Release\net7.0\Admin.Account.deps.json
+D:\Sanjalie Final\SmartAdmin\Admin.Account\bin\Release\net7.0\Admin.Account.dll
+D:\Sanjalie Final\SmartAdmin\Admin.Account\bin\Release\net7.0\Admin.Account.pdb
+D:\Sanjalie Final\SmartAdmin\Admin.Account\bin\Release\net7.0\DBAccess.dll
+D:\Sanjalie Final\SmartAdmin\Admin.Account\bin\Release\net7.0\DBAccess.pdb
+D:\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.csproj.AssemblyReference.cache
+D:\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.GeneratedMSBuildEditorConfig.editorconfig
+D:\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.AssemblyInfoInputs.cache
+D:\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.AssemblyInfo.cs
+D:\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.csproj.CoreCompileInputs.cache
+D:\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.csproj.CopyComplete
+D:\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.dll
+D:\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\refint\Admin.Account.dll
+D:\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.pdb
+D:\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\ref\Admin.Account.dll
+E:\Sanjalie Final\SmartAdmin\Admin.Account\bin\Release\net7.0\Admin.Account.deps.json
+E:\Sanjalie Final\SmartAdmin\Admin.Account\bin\Release\net7.0\Admin.Account.dll
+E:\Sanjalie Final\SmartAdmin\Admin.Account\bin\Release\net7.0\Admin.Account.pdb
+E:\Sanjalie Final\SmartAdmin\Admin.Account\bin\Release\net7.0\DBAccess.dll
+E:\Sanjalie Final\SmartAdmin\Admin.Account\bin\Release\net7.0\DBAccess.pdb
+E:\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.csproj.AssemblyReference.cache
+E:\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.GeneratedMSBuildEditorConfig.editorconfig
+E:\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.AssemblyInfoInputs.cache
+E:\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.AssemblyInfo.cs
+E:\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.csproj.CoreCompileInputs.cache
+E:\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.csproj.CopyComplete
+E:\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.dll
+E:\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\refint\Admin.Account.dll
+E:\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.pdb
+E:\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\ref\Admin.Account.dll
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\bin\Release\net7.0\Admin.Account.deps.json
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\bin\Release\net7.0\Admin.Account.dll
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\bin\Release\net7.0\Admin.Account.pdb
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\bin\Release\net7.0\DBAccess.dll
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\bin\Release\net7.0\DBAccess.pdb
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.csproj.AssemblyReference.cache
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.GeneratedMSBuildEditorConfig.editorconfig
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.AssemblyInfoInputs.cache
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.AssemblyInfo.cs
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.csproj.CoreCompileInputs.cache
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.csproj.CopyComplete
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.dll
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\refint\Admin.Account.dll
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.pdb
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\ref\Admin.Account.dll
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\bin\Release\net7.0\Admin.Account.deps.json
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\bin\Release\net7.0\Admin.Account.dll
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\bin\Release\net7.0\Admin.Account.pdb
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\bin\Release\net7.0\DBAccess.dll
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\bin\Release\net7.0\DBAccess.pdb
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.csproj.AssemblyReference.cache
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.GeneratedMSBuildEditorConfig.editorconfig
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.AssemblyInfoInputs.cache
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.AssemblyInfo.cs
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.csproj.CoreCompileInputs.cache
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.csproj.CopyComplete
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.dll
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\refint\Admin.Account.dll
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\Admin.Account.pdb
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\Admin.Account\obj\Release\net7.0\ref\Admin.Account.dll

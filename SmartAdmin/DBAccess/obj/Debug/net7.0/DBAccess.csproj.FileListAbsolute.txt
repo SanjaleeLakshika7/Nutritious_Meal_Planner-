@@ -1,0 +1,60 @@
+D:\Assignment Work\DBAccess\bin\Debug\net7.0\DBAccess.deps.json
+D:\Assignment Work\DBAccess\bin\Debug\net7.0\DBAccess.dll
+D:\Assignment Work\DBAccess\bin\Debug\net7.0\DBAccess.pdb
+D:\Assignment Work\DBAccess\obj\Debug\net7.0\DBAccess.csproj.AssemblyReference.cache
+D:\Assignment Work\DBAccess\obj\Debug\net7.0\DBAccess.GeneratedMSBuildEditorConfig.editorconfig
+D:\Assignment Work\DBAccess\obj\Debug\net7.0\DBAccess.AssemblyInfoInputs.cache
+D:\Assignment Work\DBAccess\obj\Debug\net7.0\DBAccess.AssemblyInfo.cs
+D:\Assignment Work\DBAccess\obj\Debug\net7.0\DBAccess.csproj.CoreCompileInputs.cache
+D:\Assignment Work\DBAccess\obj\Debug\net7.0\DBAccess.dll
+D:\Assignment Work\DBAccess\obj\Debug\net7.0\refint\DBAccess.dll
+D:\Assignment Work\DBAccess\obj\Debug\net7.0\DBAccess.pdb
+D:\Assignment Work\DBAccess\obj\Debug\net7.0\ref\DBAccess.dll
+D:\Sanjalie Final\SmartAdmin\DBAccess\bin\Debug\net7.0\DBAccess.deps.json
+D:\Sanjalie Final\SmartAdmin\DBAccess\bin\Debug\net7.0\DBAccess.dll
+D:\Sanjalie Final\SmartAdmin\DBAccess\bin\Debug\net7.0\DBAccess.pdb
+D:\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.csproj.AssemblyReference.cache
+D:\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.GeneratedMSBuildEditorConfig.editorconfig
+D:\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.AssemblyInfoInputs.cache
+D:\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.AssemblyInfo.cs
+D:\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.csproj.CoreCompileInputs.cache
+D:\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.dll
+D:\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\refint\DBAccess.dll
+D:\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.pdb
+D:\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\ref\DBAccess.dll
+E:\Sanjalie Final\SmartAdmin\DBAccess\bin\Debug\net7.0\DBAccess.deps.json
+E:\Sanjalie Final\SmartAdmin\DBAccess\bin\Debug\net7.0\DBAccess.dll
+E:\Sanjalie Final\SmartAdmin\DBAccess\bin\Debug\net7.0\DBAccess.pdb
+E:\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.csproj.AssemblyReference.cache
+E:\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.GeneratedMSBuildEditorConfig.editorconfig
+E:\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.AssemblyInfoInputs.cache
+E:\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.AssemblyInfo.cs
+E:\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.csproj.CoreCompileInputs.cache
+E:\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.dll
+E:\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\refint\DBAccess.dll
+E:\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.pdb
+E:\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\ref\DBAccess.dll
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\DBAccess\bin\Debug\net7.0\DBAccess.deps.json
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\DBAccess\bin\Debug\net7.0\DBAccess.dll
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\DBAccess\bin\Debug\net7.0\DBAccess.pdb
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.csproj.AssemblyReference.cache
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.GeneratedMSBuildEditorConfig.editorconfig
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.AssemblyInfoInputs.cache
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.AssemblyInfo.cs
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.csproj.CoreCompileInputs.cache
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.dll
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\refint\DBAccess.dll
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.pdb
+D:\Sanjalie Final\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\ref\DBAccess.dll
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\DBAccess\bin\Debug\net7.0\DBAccess.deps.json
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\DBAccess\bin\Debug\net7.0\DBAccess.dll
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\DBAccess\bin\Debug\net7.0\DBAccess.pdb
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.csproj.AssemblyReference.cache
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.GeneratedMSBuildEditorConfig.editorconfig
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.AssemblyInfoInputs.cache
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.AssemblyInfo.cs
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.csproj.CoreCompileInputs.cache
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.dll
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\refint\DBAccess.dll
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\DBAccess.pdb
+E:\Sanjalie Final\Sanjalie Final\SmartAdmin\DBAccess\obj\Debug\net7.0\ref\DBAccess.dll

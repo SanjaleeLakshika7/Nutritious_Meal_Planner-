@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Introduction";
+    ViewData["TitleNavbar"] = "API Documentation";
+
+    ViewData["IntroductionActive"] = "active";
+}
+@inject DropDown.ICommonDDL CommonDDL
+@{ 
+
+    var WebUrl = CommonDDL.GetWebURL();
+}
+
+
+
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <h5 class="card-header ">General Instructions</h5>
+            <div class="card-body ">
+
+                <p class="card-text text-gray mb-2 ">This API is protected with API Keys. Every request should include the API Key as the first parameter.</p>
+                <p class="card-text text-gray">
+                    <ul class="card-text  text-gray mb-2">
+                        <li class="">Main URL is most of the time <b class="text-primary">@WebUrl/API</b> </b> </li>
+                        <li class="">Structure for any API Request URL - <b class="text-primary"> {MainURL} / {EndPointName} ? {Parameters}</b></li>
+                        <li class="mb-2">You need to use your API keys as a parameter for all requests. E.g.:<b class="text-primary">APIKey={Your_API_Key}</b> </li>
+                        <li class="mb-2">
+                            There are 3 parts in JSon results for any API request
+                            <ul class="">
+
+                                <li class=""><b class="text-primary">"success":true </b>- true or false - If there is any error, it shows as false</li>
+                                <li class=""><b class="text-primary">"ErrorMessage":"Invalid API Key"</b> - Shows any error messages for the api request. if there is any error messages success status always goes to <b class="text-primary">false</b> </li>
+                                <li class=""><b class="text-primary">"Data":"{JSon formatted data}"</b> - If the request need to return data, this section will show you the data in JSon format as an array or single result</li>
+                            </ul>
+                        </li>
+
+                        <li class=" mb-2 ">Data section will not show if success status is false. First you need to check the success status whether it is true and then read data.</li>
+                        <li class=" mb-2 ">We will provide you specific main API URL if you have any custom requirements.</li>
+                    </ul>
+                </p>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+

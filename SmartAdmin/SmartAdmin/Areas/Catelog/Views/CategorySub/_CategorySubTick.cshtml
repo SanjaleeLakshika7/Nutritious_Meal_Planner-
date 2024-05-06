@@ -1,0 +1,30 @@
+﻿@model IEnumerable<CategorySub>
+
+@{
+    Layout = null;
+}
+
+<div class="table-responsive">
+    <table class="table table-centered table-nowrap table-striped">
+        <thead>
+            <tr>
+                <th width="20"></th>
+                <th class="d-none">@Html.DisplayNameFor(model => model.First().CategorySubID)</th>
+                <th>@Html.DisplayNameFor(model => model.First().CategoryDisplay)</th>
+            </tr>
+        </thead>
+        <tbody id="tblSelectBody">
+            @foreach (var item in Model)
+            {
+            <tr id="row_@item.CategorySubID">
+                <td><input class="chkTick" type="checkbox" data-id="@item.CategorySubID" data-name="@item.CategorySubName" /></td>
+                <td class="d-none">@Html.DisplayFor(modelItem => item.CategorySubID)</td>
+                <td>@Html.DisplayFor(modelItem => item.CategoryDisplay)</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+

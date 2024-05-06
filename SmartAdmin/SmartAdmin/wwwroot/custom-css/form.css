@@ -1,0 +1,21 @@
+﻿.form-group.row {
+    padding: 4px 0;
+}
+
+select.form-control, select {
+    color: inherit;
+}
+
+.form-group label {
+    line-height: 1.0rem;
+}
+
+.custom-control-label {
+    line-height: 1.4rem !important;
+}
+
+.Delete-Button {
+    position: absolute !important;
+    right: 20px;
+    top: 5px;
+}

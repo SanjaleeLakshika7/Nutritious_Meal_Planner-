@@ -1,0 +1,247 @@
+﻿
+@model ItemSearchView
+@{
+    ViewData["Title"] = "Items without Image";
+
+    ViewData["ItemActive"] = "active";
+}
+
+@inject DropDown.ICatelogDDL CatelogDDL
+@inject DropDown.ICommonDDL CommonDDL
+
+<partial name="_ConfirmDelete" />
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="row justify-content-start float-right mr-0 mt-2 d-none">
+
+                <a href="@Url.Action("Index","SampleCategory")" class="ml-1">
+                    <div class="card-box  bg-white p-1 pr-2 m-0">
+                        <p class="text- small mb-0">Figure 1</p>
+                        <p class="text-dark m-0 mb-0">0.00</p>
+                    </div>
+                </a>
+
+                <a href="@Url.Action("Index","Customer")" class="ml-1">
+                    <div class="card-box  bg-white p-1 pr-2 m-0">
+                        <p class="text- small mb-0">Figure 2 </p>
+                        <p class="text-dark m-0 mb-0">0.0</p>
+                    </div>
+                </a>
+
+            </div>
+            <h4 class="page-title">@ViewData["Title"] (@Model.RecordCount)</h4>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body p-2 p-md-3">
+
+                <div class="text-center float-md-right">
+                    <a href="@Url.Action("Index")" class="btn btn-outline-secondary btn-icon-text">
+                        <i class="mdi mdi-arrow-left-thin-circle-outline"></i>
+                        Return to Items
+                    </a>
+                </div>
+
+                <div class="row justify-content-md-start justify-content-center">
+
+                    <div class="p-1 pl-0">
+                        @Html.EditorFor(model => model.KeyW, new { htmlAttributes = new { @class = "form-control", placeholder = "Search", id = "txtKeyW", autofocus = "autofocus", onkeyup = "SearchStart()" } })
+                        @Html.ValidationMessageFor(model => model.KeyW, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="p-1 pl-0">
+                        @Html.DropDownList("CategoryMainID", await CatelogDDL.CategoryMainList(), "(All Categories)", htmlAttributes: new { @class = "", id = "cmbCategoryMainID" })
+                    </div>
+
+                    <div class="p-1 pl-0">
+                        @Html.DropDownList("CategorySubID", await CatelogDDL.CategorySubList(), "(Sub Categories)", htmlAttributes: new { @class = "", id = "cmbCategorySubID" })
+                    </div>
+
+                    <div class="p-1 pl-0">
+                        @Html.DropDownList("BrandID", await CatelogDDL.BrandList(), "(All Brands)", htmlAttributes: new { @class = "", id = "cmbBrandID" })
+                    </div>
+
+                    <div class="p-1 pl-0">
+                        @Html.DropDownList("StockAvailable", CommonDDL.StockAvailableList(), "(All Stocks)", htmlAttributes: new { @class = "", id = "cmbStockAvailable" })
+                    </div>
+
+                    <div class="p-1 pl-0">
+                        @Html.DropDownList("ActiveStatus", CommonDDL.ActiveStatusList(), "(All Statuses)", htmlAttributes: new { @class = "", id = "cmbActiveStatus" })
+                    </div>
+
+
+
+                </div>
+
+                
+
+                <div id="divRecords" class="m-0 p-0 mt-2">
+                    <div class="table-responsive">
+                        <table class="table table-centered table-nowrap table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="d-none">@Html.DisplayNameFor(model => model.DataList.First().ItemID)</th>
+                                    <th>@Html.DisplayNameFor(model => model.DataList.First().ItemDisplay)</th>
+                                    <th>@Html.DisplayNameFor(model => model.DataList.First().CategoryDisplay)</th>
+                                    <th>@Html.DisplayNameFor(model => model.DataList.First().RetailDisplay)</th>
+                                    <th>@Html.DisplayNameFor(model => model.DataList.First().WholesaleDisplay)</th>
+                                    <th>@Html.DisplayNameFor(model => model.DataList.First().CostDisplay)</th>
+                                    <th>@Html.DisplayNameFor(model => model.DataList.First().StockAvailableText)</th>
+                                    <th>@Html.DisplayNameFor(model => model.DataList.First().ActiveStatusText)</th>
+                                    <th style="width:70px;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tblBody">
+                                @foreach (var item in Model.DataList)
+                                {
+                                    <tr id="row_@item.ItemID">
+                                        <td class="d-none">@Html.DisplayFor(modelItem => item.ItemID)</td>
+                                        <td title="@item.ItemDisplay">@item.ItemDisplay.ToShort(36)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.CategoryDisplay)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.RetailDisplay)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.WholesaleDisplay)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.CostDisplay)</td>
+                                        <td><span class="badge badge-@item.StockAvailableClass">@item.StockAvailableText</span></td>
+                                        <td><span class="badge badge-@item.ActiveStatusClass">@item.ActiveStatusText</span></td>
+                                        <td class="row-btn d-none">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-xs btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item text-primary" href="@Url.Action("Edit", new { id = item.ItemID })">Edit</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="@Url.Action("Edit","Ingredients", new { id = item.ItemID })">Ingredients...</a>
+                                                    <a class="dropdown-item" href="@Url.Action("Edit","DiscountSchema", new { id = item.ItemID })">Discount Schemas...</a>
+                                                    <a class="dropdown-item" href="@Url.Action("Edit","ItemSize", new { id = item.ItemID })">Item Size...</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item text-danger" href="javascript:void(0);" onclick="ConfirmDelete('@item.ItemID','@Url.Action("Delete")')">Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <td >
+                                            <a href="@Url.Action("Edit", new { id = item.ItemID })" class="table-icon text-primary"><i class="mdi mdi-square-edit-outline"></i></a>
+       
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+   
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("_Pagination", Model.PaginationList)
+
+@section Scripts {
+    //@{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+
+    <script src="~/js/pagination.js" asp-append-version="true"></script>
+
+    <script title="Main">
+
+        var Page = 1;
+        var PageURL = '/Catelog/Item/NoImage';
+
+   
+
+
+    </script>
+
+
+    <script title="Search">
+
+        function SearchStart() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("txtKeyW");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("tblBody");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                td1 = tr[i].getElementsByTagName("td")[1];
+
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    txtValue = txtValue + ' ' + td1.textContent || td1.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        $("#txtKeyW").on("keydown",function search(e) {
+            if(e.keyCode == 13) {
+                Search();
+            }
+        });
+
+        $("#cmbCategoryMainID").change(function (event) {
+            Search();
+        });
+
+        $("#cmbCategorySubID").change(function (event) {
+            Search();
+        });
+
+        $("#cmbBrandID").change(function (event) {
+            Search();
+        });
+
+        $("#cmbStockAvailable").change(function (event) {
+            Search();
+        });
+
+        $("#cmbActiveStatus").change(function (event) {
+            Search();
+        });
+
+        function Search() {
+
+            var KeyW = $("#txtKeyW").val();
+            var CategoryMainID = $("#cmbCategoryMainID").val();
+            var CategorySubID = $("#cmbCategorySubID").val();
+            var BrandID = $("#cmbBrandID").val();
+            var StockAvailable = $("#cmbStockAvailable").val();
+            var ActiveStatus = $("#cmbActiveStatus").val();
+
+            var url = '@Url.Action("NoImage", "Item", new { area = "Catelog" })';
+
+            var ParamPart = "&";
+            ParamPart = ParamPart + ((KeyW != "") ? '&KeyW=' + KeyW : '');
+            ParamPart = ParamPart + ((CategoryMainID != "") ? '&CategoryMainID=' + CategoryMainID : '');
+            ParamPart = ParamPart + ((CategorySubID != "") ? '&CategorySubID=' + CategorySubID : '');
+            ParamPart = ParamPart + ((BrandID != "") ? '&BrandID=' + BrandID : '');
+            ParamPart = ParamPart + ((StockAvailable != "") ? '&StockAvailable=' + StockAvailable : '');
+            ParamPart = ParamPart + ((ActiveStatus != "") ? '&ActiveStatus=' + ActiveStatus : '');
+
+            ParamPart = ParamPart.replace("&&", "");
+
+            window.location.href = url + '?' + ParamPart;
+            event.preventDefault();
+        };
+
+    </script>
+
+}
+

@@ -1,0 +1,73 @@
+﻿@model IEnumerable<SettingsCategory>
+@{
+    ViewData["Title"] = "Settings Category";
+
+
+    ViewBag.SettingActive = "menuitem-active";
+    ViewBag.SettingShowActive = "show";
+    ViewBag.AppSettingsActive = "active";
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="row justify-content-start float-right mr-0 mt-2 d-none">
+
+                <a href="@Url.Action("Index","SampleCategory")" class="ml-1">
+                    <div class="card-box  bg-white p-1 pr-2 m-0">
+                        <p class="text- small mb-0">Figure 1</p>
+                        <p class="text-dark m-0 mb-0">0.00</p>
+                    </div>
+                </a>
+
+                <a href="@Url.Action("Index","Customer")" class="ml-1">
+                    <div class="card-box  bg-white p-1 pr-2 m-0">
+                        <p class="text- small mb-0">Figure 2 </p>
+                        <p class="text-dark m-0 mb-0">0.0</p>
+                    </div>
+                </a>
+
+            </div>
+            <h4 class="page-title">@ViewData["Title"]</h4>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+
+
+<div class="row">
+    <div class="col-12 col-xl-12 stretch-card">
+
+
+    </div>
+</div> <!-- row -->
+
+<div class="row">
+    <div class="col-12 col-xl-12 stretch-card">
+        <div class="row flex-grow">
+            @foreach (var item in Model)
+            {
+
+
+                <div class="col-md-4 grid-margin stretch-card">
+
+                    <div class="card text-white bg-light" href="#">
+                        <div class="card-header text-center text-black text-capitalize font-weight-bold" >@item.CategoryName</div>
+                        <div class="card-body">
+                            <p class="card-text text-black-50 text-center"> @item.Description</p>
+                            <div class="text-center mb-2">
+                                <a href="@Url.Action("Edit"+(item.CategoryName)+"Settings", new { CategoryCode = item.CategoryCode })" class="btn  btn-primary text-center">@item.CategoryName Settings</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+
+
+            }
+        </div>
+    </div>
+</div> <!-- row -->

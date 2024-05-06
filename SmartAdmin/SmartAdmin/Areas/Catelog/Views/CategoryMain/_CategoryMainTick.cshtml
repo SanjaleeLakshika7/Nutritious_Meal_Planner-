@@ -1,0 +1,30 @@
+﻿@model IEnumerable<CategoryMain>
+
+@{
+    Layout = null;
+}
+
+<div class="table-responsive">
+    <table class="table table-centered table-nowrap table-striped">
+        <thead>
+            <tr>
+                <th width="20"></th>
+                <th class="d-none">@Html.DisplayNameFor(model => model.First().CategoryMainID)</th>
+                <th>@Html.DisplayNameFor(model => model.First().CategoryMainName)</th>
+            </tr>
+        </thead>
+        <tbody id="tblSelectBody">
+            @foreach (var item in Model)
+            {
+            <tr id="row_@item.CategoryMainID">
+                <td><input class="chkTick" type="checkbox" data-id="@item.CategoryMainID" data-name="@item.CategoryMainName" /></td>
+                <td class="d-none">@Html.DisplayFor(modelItem => item.CategoryMainID)</td>
+                <td>@Html.DisplayFor(modelItem => item.CategoryMainName)</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+

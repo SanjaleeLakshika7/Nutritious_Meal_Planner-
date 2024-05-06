@@ -1,0 +1,173 @@
+﻿@model IngredientsEditView
+
+@{
+    ViewData["Title"] = "Ingredients and Making (" + Model.ItemName + ")";
+
+    ViewData["ItemActive"] = "active";
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 class="page-title">@ViewData["Title"]</h4>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<partial name="_ConfirmDelete" />
+<partial name="_TickData" />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="row">
+        <div class="col-md-6 grid-margin">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="form-group row d-none">
+                        @Html.LabelFor(model => model.ReturnURL, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.ReturnURL, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ReturnURL, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row d-none">
+                        @Html.LabelFor(model => model.ItemID, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.ItemID, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ItemID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row d-none">
+                        @Html.LabelFor(model => model.Ingredients.IngredientsID, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.Ingredients.IngredientsID, new { htmlAttributes = new { @class = "form-control", id = "txtIngredientsID" } })
+                            @Html.ValidationMessageFor(model => model.Ingredients.IngredientsID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Ingredients.Caption, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.Ingredients.Caption, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus", id = "txtCaption" } })
+                            @Html.ValidationMessageFor(model => model.Ingredients.Caption, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Ingredients.Description, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.TextAreaFor(model => model.Ingredients.Description, htmlAttributes: new { @class = "form-control", id = "txtDescription", style = "width: 100%; max-width: 100%;" })
+                            @Html.ValidationMessageFor(model => model.Ingredients.Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Ingredients.DisOrder, htmlAttributes: new { @class = "col-4 col-form-label" })
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.Ingredients.DisOrder, new { htmlAttributes = new { @class = "form-control", id = "txtDisOrder", style = "width:100px" } })
+                            @Html.ValidationMessageFor(model => model.Ingredients.DisOrder, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                        </div>
+                        <div class="col-8">
+                            <button type="submit" id="btnSave" class="btn btn-primary mr-2">Add</button>
+                            &nbsp;
+                            <a href="@Model.ReturnURL">Go Back</a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-centered table-nowrap table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="d-none">@Html.DisplayNameFor(model => model.IngredientsList.First().IngredientsID)</th>
+                                    <th class="d-none">@Html.DisplayNameFor(model => model.IngredientsList.First().ItemID)</th>
+                                    <th>@Html.DisplayNameFor(model => model.IngredientsList.First().Caption)</th>
+                                    <th>@Html.DisplayNameFor(model => model.IngredientsList.First().Description)</th>
+                                    <th>@Html.DisplayNameFor(model => model.IngredientsList.First().DisOrder)</th>
+                                    <th style="width:70px;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tblBody">
+                                @foreach (var item in Model.IngredientsList)
+                                {
+                                    <tr id="row_@item.IngredientsID">
+                                        <td class="d-none">@Html.DisplayFor(modelItem => item.IngredientsID)</td>
+                                        <td class="d-none">@Html.DisplayFor(modelItem => item.ItemID)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Caption)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.DisOrder)</td>
+                                        <td>
+                                            <a href="javascript:void(0);" onclick="EditRecord (
+                                                '@item.IngredientsID',
+                                                '@item.Caption',
+                                                '@item.Description',
+                                                '@item.DisOrder'
+
+                                            )" class="table-icon text-primary"><i class="mdi mdi-square-edit-outline"></i></a>
+                                            <a href="javascript:void(0);" onclick="ConfirmDelete('@item.IngredientsID','@Url.Action("Delete")')" class="table-icon text-danger"> <i class="mdi mdi-delete"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+}
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+    <script>
+        function EditRecord
+            (
+                IngredientsID,
+                Caption,
+                Description,
+                DisOrder
+
+
+            ) {
+
+            $("#txtIngredientsID").val(IngredientsID);
+            $("#txtCaption").val(Caption);
+            $("#txtDescription").val(Description);
+            $("#txtDisOrder").val(DisOrder);
+            $("#btnSave").html("Update");
+
+
+        }
+
+
+
+
+    </script>
+
+}

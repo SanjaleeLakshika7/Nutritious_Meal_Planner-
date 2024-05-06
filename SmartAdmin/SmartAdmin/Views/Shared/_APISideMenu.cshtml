@@ -1,0 +1,106 @@
+﻿      <!-- partial:partials/_sidebar.html -->
+<nav class="sidebar">
+    <div class="sidebar-header">
+        <a href="~/" class="sidebar-brand">
+            Smart<span>Admin</span>
+        </a>
+        <div class="sidebar-toggler not-active">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+
+    <div class="sidebar-body">
+        <ul class="nav">
+            @*API Documentation*@
+            <li class="nav-item nav-category">API Documentation</li>
+            <li class="nav-item @ViewData["IntroductionActive"]">
+                <a asp-area="API"
+                   asp-controller="Doc"
+                   asp-action="Index"
+                   class="nav-link">
+                    <i class="link-icon" data-feather="feather"></i>
+                    <span class="link-title">Introduction </span>
+                </a>
+            </li>
+            <li class="nav-item @ViewData["APICatalogDocumentationActive"]">
+                <a class="nav-link" data-toggle="collapse" href="#APIDocumentation" role="button" aria-expanded="false" aria-controls="APIDocumentation">
+                    <i class="link-icon" data-feather="book-open"></i>
+                    <span class="link-title">Catalog</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse @ViewData["APICatalogDocumentationShow"]" id="APIDocumentation">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                            <a asp-area="API"
+                               asp-controller="Doc"
+                               asp-action="Item" class="nav-link @ViewData["APIItemActive"]">Item</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="API"
+                               asp-controller="Doc"
+                               asp-action="MainCategories" class="nav-link @ViewData["APIMainCategoriesActive"]">Main Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="API"
+                               asp-controller="Doc"
+                               asp-action="SubCategories" class="nav-link @ViewData["APISubCategoriesActive"]">Sub Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="API"
+                               asp-controller="Doc"
+                               asp-action="Brands" class="nav-link @ViewData["APIBrandsActive"]">Brands</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item @ViewData["APISalesDocumentationActive"]">
+                <a class="nav-link" data-toggle="collapse" href="#SalesDocumentation" role="button" aria-expanded="false" aria-controls="SalesDocumentation">
+                    <i class="link-icon" data-feather="shopping-bag"></i>
+                    <span class="link-title">Sales</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse @ViewData["APISalesDocumentatioShow"]" id="SalesDocumentation">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                            <a asp-area="API"
+                               asp-controller="Doc"
+                               asp-action="Orders" class="nav-link @ViewData["APIOrdersActive"]"> Orders
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="API"
+                               asp-controller="Doc"
+                               asp-action="OrderItems" class="nav-link @ViewData["APIOrderItemsActive"]">Order Items
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="API"
+                               asp-controller="Doc"
+                               asp-action="OrderActions" class="nav-link @ViewData["APIOrderActionsActive"]">Order Actions</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </li>
+
+
+            <li class="nav-item @ViewData["APISettingsActive"]">
+                <a asp-area="API"
+                   asp-controller="Doc"
+                   asp-action="Settings"
+                   class="nav-link">
+                    <i class="link-icon" data-feather="tool"></i>
+                    <span class="link-title">Settings</span>
+                </a>
+            </li>
+
+
+
+
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,29 @@
+﻿body {
+    /*font-family: 'Segoe UI'*/
+}
+
+a {
+    color: #727cf5;
+}
+
+.btn-block-left {
+    display: block;
+    width: calc(100% - 38px);
+}
+
+.btn.btn-icon svg {
+    height: 35px;
+    color:#808080;
+}
+
+.dropdown .dropdown-menu .dropdown-item, .btn-group .dropdown-menu .dropdown-item, .fc .fc-toolbar.fc-header-toolbar .fc-toolbar-chunk .fc-button-group .dropdown-menu .dropdown-item {
+    padding: .50rem .875rem;
+}
+
+.dropdown-divider {
+    margin: 0.1rem 0;
+}
+
+.dropdown-menu.show{
+    z-index:12000!important;
+}

@@ -1,0 +1,163 @@
+﻿<div class="sidebar-body">
+    <ul class="nav">
+        <li class="nav-item nav-category">Main</li>
+        <li class="nav-item @ViewData["DashboardActive"]">
+            <a href="~/" class="nav-link">
+                <i class="link-icon" data-feather="box"></i>
+                <span class="link-title">Dashboard</span>
+            </a>
+        </li>
+
+        @*Catelog*@
+
+        <li class="nav-item nav-category">Catelogue</li>
+        <li class="nav-item @ViewData["ItemActive"]">
+            <a asp-area="Catelog"
+               asp-controller="Item"
+               asp-action="Index"
+               class="nav-link">
+                <i class="link-icon" data-feather="slack"></i>
+                <span class="link-title">Items</span>
+            </a>
+        </li>
+        <li class="nav-item @ViewData["CatelogParameterActive"]">
+            <a class="nav-link" data-toggle="collapse" href="#CatelogParameters" role="button" aria-expanded="false" aria-controls="CatelogParameters">
+                <i class="link-icon" data-feather="server"></i>
+                <span class="link-title">Parameters</span>
+                <i class="link-arrow" data-feather="chevron-down"></i>
+            </a>
+            <div class="collapse @ViewData["CatelogParameterShow"]" id="CatelogParameters">
+                <ul class="nav sub-menu">
+                    <li class="nav-item">
+                        <a asp-area="Catelog"
+                           asp-controller="CategoryMain"
+                           asp-action="Index"
+                           class="nav-link @ViewData["CategoryMainActive"]">Main Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-area="Catelog"
+                           asp-controller="CategorySub"
+                           asp-action="Index"
+                           class="nav-link @ViewData["CategorySubActive"]">Sub Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-area="Catelog"
+                           asp-controller="Brand"
+                           asp-action="Index"
+                           class="nav-link @ViewData["BrandActive"]">Brands</a>
+                    </li>
+
+                </ul>
+            </div>
+        </li>
+
+        @*Sales*@
+
+        <li class="nav-item nav-category">Sales</li>
+        <li class="nav-item @ViewData["SalesOrderActive"]">
+            <a asp-area="Sales"
+               asp-controller="SaleOrder"
+               asp-action="Index"
+               class="nav-link">
+                <i class="link-icon" data-feather="shopping-bag"></i>
+                <span class="link-title">Orders</span>
+            </a>
+        </li>
+        <li class="nav-item @ViewData["SalesParameterActive"]">
+            <a class="nav-link" data-toggle="collapse" href="#SalesParameters" role="button" aria-expanded="false" aria-controls="SalesParameters">
+                <i class="link-icon" data-feather="server"></i>
+                <span class="link-title">Parameters</span>
+                <i class="link-arrow" data-feather="chevron-down"></i>
+            </a>
+            <div class="collapse @ViewData["SalesParameterShow"]" id="SalesParameters">
+                <ul class="nav sub-menu">
+                    <li class="nav-item">
+                        <a asp-area="Sales"
+                           asp-controller="CustomerCategory"
+                           asp-action="Index" class="nav-link @ViewData["CustomerCategoryActive"]">Customer Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-area="Sales"
+                           asp-controller="CustomerGroup"
+                           asp-action="Index" class="nav-link @ViewData["CustomerGroupActive"]">Customer Groups</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-area="Sales"
+                           asp-controller="Customer"
+                           asp-action="Index" class="nav-link @ViewData["CustomerActive"]">Customers</></a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+
+        @*Content*@
+
+        <li class="nav-item nav-category">Content</li>
+        <li class="nav-item @ViewData["SlideBannerActive"]">
+            <a asp-area="Content"
+               asp-controller="SlideBanner"
+               asp-action="Index"
+               class="nav-link">
+                <i class="link-icon" data-feather="film"></i>
+                <span class="link-title">Slide Banners</span>
+            </a>
+        </li>
+        <li class="nav-item @ViewData["PageContentActive"]">
+            <a class="nav-link" data-toggle="collapse" href="#PageContent" role="button" aria-expanded="false" aria-controls="PageContent">
+                <i class="link-icon" data-feather="book"></i>
+                <span class="link-title">Page Contents</span>
+                <i class="link-arrow" data-feather="chevron-down"></i>
+            </a>
+            <div class="collapse @ViewData["PageContentShow"]" id="PageContent">
+                <ul class="nav sub-menu">
+                    <li class="nav-item">
+                        <a asp-area="Content"
+                           asp-controller="MetaTag"
+                           asp-action="Index" class="nav-link @ViewData["MetaTagActive"]">Page Tags</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-area="Content"
+                           asp-controller="SectionText"
+                           asp-action="Index" class="nav-link @ViewData["SectionTextActive"]">Section Text</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+      
+        @*Administration*@
+
+        <li class="nav-item nav-category">Administration</li>
+
+        <li class="nav-item @ViewData["SettingsActive"]">
+            <a class="nav-link" data-toggle="collapse" href="#settings" role="button" aria-expanded="false" aria-controls="SalesParameters">
+                <i class="link-icon" data-feather="settings"></i>
+                <span class="link-title">Settings</span>
+                <i class="link-arrow" data-feather="chevron-down"></i>
+            </a>
+            <div class="collapse @ViewData["SettingShowActive"]" id="settings">
+                <ul class="nav sub-menu">
+                    
+                    <li class="nav-item">
+                        <a asp-area="Admin"
+                           asp-controller="EmailSettings"
+                           asp-action="Index" class="nav-link @ViewData["EmailSettingsActive"]">Email Settings</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </li>
+
+        <li class="nav-item @ViewData["UserActive"]">
+            <a asp-area="Admin"
+               asp-controller="User"
+               asp-action="Index"
+               class="nav-link">
+                <i class="link-icon" data-feather="user"></i>
+                <span class="link-title">Users</span>
+            </a>
+        </li>
+
+    </ul>
+</div>

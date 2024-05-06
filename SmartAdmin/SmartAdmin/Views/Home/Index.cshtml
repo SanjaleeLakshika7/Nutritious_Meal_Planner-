@@ -1,0 +1,376 @@
+﻿@model DashboardInfo
+@{
+    ViewData["Title"] = "Dashboard";
+
+    ViewData["DashboardActive"] = "active";
+
+    int completedCount = 0;
+    int inProgressCount = 0;
+    int pendingCount = 0;
+    int rejectedCount = 0;
+    int cancelledCount = 0;
+    int totalCount = 0;
+    int customercount = 0;
+    int recentcustomercount = 0;
+    int recentordersinfocount = 0;
+    foreach (var item in Model.saleOrders)
+    {
+        switch (item.OrderStatus)
+        {
+            case "C":
+                completedCount++;
+                break;
+            case "A":
+                inProgressCount++;
+                break;
+            case "P":
+                pendingCount++;
+                break;
+            case "R":
+                rejectedCount++;
+                break;
+            case "N":
+                cancelledCount++;
+                break;
+            default:
+                // Handle unknown status if necessary
+                break;
+        }
+        totalCount++;
+    }
+
+
+    foreach (var item in Model.customer)
+    {
+         
+        customercount++;
+    }
+}
+
+
+<div class="d-flex justify-content-between align-items-center flex-wrap grid-margin pt-3">
+    <div>
+        <h4 class="mb-3 mb-md-0">Dashboard </h4>
+    </div>
+    <div class="d-flex align-items-center flex-wrap text-nowrap">
+        <div class="input-group date datepicker dashboard-date mr-2 mb-2 mb-md-0  " id="dashboardDate">
+            <span class="input-group-addon bg-transparent"><i data-feather="calendar" class=" text-primary"></i></span>
+            <input type="text" class="form-control">
+        </div>
+        <button type="button" class="btn btn-outline-info btn-icon-text mr-2 d-none">
+            <i class="btn-icon-prepend" data-feather="download"></i>
+            Import
+        </button>
+        <button type="button" class="btn btn-outline-primary btn-icon-text mr-2 mb-2 mb-md-0 d-none ">
+            <i class="btn-icon-prepend" data-feather="printer"></i>
+            Print
+        </button>
+        <button type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0 d-none">
+            <i class="btn-icon-prepend" data-feather="download-cloud"></i>
+            Download Report
+        </button>
+    </div>
+</div>
+ 
+<div class="row">
+    <div class="col-12 col-xl-12 stretch-card">
+        <div class="row flex-grow">
+            <div class="col-md-3 grid-margin stretch-card">
+                <div class="card">
+                    <a href="@Url.Action("Index", "Item", new { Area = "Catelog"  })">
+
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            <h6 class="card-title mb-0">Items</h6>
+                           
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-12 col-xl-12">
+                                    <h3 class=" text-dark">@Model.ItemCount.ToString("N0") </h3>
+                                
+                            </div>
+                           
+                        </div>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 grid-margin stretch-card">
+                <div class="card">
+                    <a href="@Url.Action("Index", "Customer", new { Area = "Sales"  })">
+
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            <h6 class="card-title mb-0">Customer</h6>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-12 col-xl-12">
+                                    <h3 class="text-dark ">@customercount.ToString("N0")</h3>
+                            </div>
+
+                        </div>
+                    </div>
+                    </a>
+
+                </div>
+            </div>
+             <div class="col-md-3 grid-margin stretch-card">
+                <div class="card">
+                    <a href="@Url.Action("Index", "SaleOrder", new { Area = "Sales", OrderStatus="P"  })">
+
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            <h6 class="card-title mb-0">Pending Orders</h6>  
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-12 col-xl-12">
+                                    <h3 class=" text-dark">@pendingCount.ToString("N0")</h3>
+                                
+                            </div>
+                           
+                        </div>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 grid-margin stretch-card">
+                <div class="card">
+                    <a href="@Url.Action("Index", "SaleOrder", new { Area = "Sales", OrderStatus="A"  })">
+
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            <h6 class="card-title mb-0">In-Progress Orders</h6>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-12 col-xl-12">
+                                <h3 class=" text-dark">@inProgressCount.ToString("N0")</h3>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div> <!-- row -->
+<div class="row">
+    <div class="col-lg-7 col-xl-8   grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-baseline mb-2">
+                    <h6 class="card-title mb-0">Monthly orders</h6>
+                    
+                </div>
+                <p class="text-muted mb-4">Progress of orders received against past 12 months.</p>
+                <div class="monthly-sales-chart-wrapper">
+                    <canvas id="monthly-sales-chart"></canvas>
+                </div>
+            </div>
+        </div> 
+    </div>
+    <div class="col-lg-5 col-xl-4  grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-baseline mb-2">
+                    <h6 class="card-title mb-0">Completed Order</h6>
+                      
+                </div>
+                <div id="progressbar1" class="mx-auto"></div>
+                <div class="row mt-2 mb-2">
+                    <div class="col-6 d-flex justify-content-end">
+                        <div>
+                            <label class="d-flex align-items-center justify-content-end tx-10 text-uppercase font-weight-medium">Completed<span class="p-1 ml-1 rounded-circle bg-success"></span></label>
+                            <h5 class="font-weight-bold mb-0 text-right">@completedCount</h5>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div>
+                            <label class="d-flex align-items-center tx-10 text-uppercase font-weight-medium"><span class="p-1 mr-1 rounded-circle bg-primary"></span>In-Progress</label>
+                            <h5 class="font-weight-bold mb-0">@inProgressCount</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2 mb-2">
+                    <div class="col-6 d-flex justify-content-end">
+                        <div>
+                            <label class="d-flex align-items-center justify-content-end tx-10 text-uppercase font-weight-medium">Pending<span class="p-1 ml-1 rounded-circle bg-warning"></span></label>
+                            <h5 class="font-weight-bold mb-0 text-right">@pendingCount</h5>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div>
+                            <label class="d-flex align-items-center tx-10 text-uppercase font-weight-medium"><span class="p-1 mr-1 rounded-circle bg-danger"></span>Rejected</label>
+                            <h5 class="font-weight-bold mb-0">@rejectedCount</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2 mb-2">
+                    <div class="col-12 d-flex justify-content-center">
+                        <div>
+                            <label class="d-flex align-items-center justify-content-end tx-10 text-uppercase font-weight-medium">Cancelled<span class="p-1 ml-1 rounded-circle bg-dark"></span></label>
+                            <h5 class="font-weight-bold mb-0 text-center">@cancelledCount</h5>
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center d-none">
+                        <div>
+                            <input type="hidden" id="txttotal" value="@totalCount" />
+                            <input type="hidden" id="txtcompleted" value="@completedCount" />
+                            <input type="hidden" id="txtinProgress" value="@inProgressCount" />
+                            <input type="hidden" id="txtpending" value="@pendingCount" />
+                            <input type="hidden" id="txtrejected" value="@rejectedCount" />
+                            <input type="hidden" id="txtcancelled" value="@cancelledCount" />
+                        </div>
+                    </div>
+                </div>
+                <a href="@Url.Action("Index","SaleOrder", new { Area = "Sales" })" class="btn btn-primary btn-block">Manage Orders (@totalCount)</a>
+            </div>
+        </div>
+    </div>
+</div> <!-- row -->
+
+<div class="row">
+    <div class="col-lg-5 col-xl-4 grid-margin grid-margin-xl-0  ">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-baseline mb-2">
+                    <h6 class="card-title mb-0">Recent Customer (<span >@Model.customer.OrderByDescending(c => c.CreatedDate).Take(5).Count()</span>)</h6>
+
+                </div>
+                <div class="d-flex flex-column">
+
+
+                    @{
+                        var sortedCustomers = Model.customer.OrderByDescending(c => c.CreatedDate).Take(5);
+                    }
+
+                    @foreach (var item in sortedCustomers)
+                    {
+                        <a href="@Url.Action("Edit", "Customer", new { Area = "Sales", id = item.CustomerID })" class="d-flex align-items-center border-bottom pb-2 pt-2">
+                            <div class="w-100">
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="text-body mb-2">@item.CustomerDisplay</h6>
+                                    <p class="text-muted tx-12">@item.CreatedDate.ToString("d' 'MMM' 'yyyy")</p>
+                                </div>
+                                <p class="text-muted tx-13">@item.AddressShortDisplay</p>
+                            </div>
+                        </a>
+                        
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-7 col-xl-8  ">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-baseline mb-2">
+                    <h6 class="card-title mb-0">Recent Orders (<span id="txtrecentordersinfocount"></span>)</h6>
+                
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>@Html.DisplayNameFor(model => model.saleOrders.First().OrderDateDisplay)</th>
+                                <th>@Html.DisplayNameFor(model => model.saleOrders.First().CustomerName)</th>
+                                <th class="d-none">@Html.DisplayNameFor(model => model.saleOrders.First().AddressShortDisplay)</th>
+                                <th class="d-none">@Html.DisplayNameFor(model => model.saleOrders.First().TelephoneMobile)</th>
+                                <th>@Html.DisplayNameFor(model => model.saleOrders.First().ItemTotalDisplay)</th>
+                                <th>@Html.DisplayNameFor(model => model.saleOrders.First().OrderStatusText)</th>
+                                <th>@Html.DisplayNameFor(model => model.saleOrders.First().PaidStatusText)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                var sortedsaleOrders = Model.saleOrders.OrderByDescending(c => c.OrderDate).Take(10);
+                            }
+                            @foreach (var item in sortedsaleOrders)
+                            {
+                                <tr id="row_@item.OrderID">
+                                    <td><a href="@Url.Action("Details","SaleOrder", new { Area = "Sales", id = item.OrderID })">@Html.DisplayFor(modelItem => item.OrderID)</a></td>
+                                    <td>@item.OrderDate.ToString("d' 'MMM' 'yyyy")</td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CustomerName) <br />
+                                        @Html.DisplayFor(modelItem => item.TelephoneMobile)
+                                    </td>
+                                    <td class="d-none">@Html.DisplayFor(modelItem => item.AddressShortDisplay)</td>
+                                    <td class="d-none">@Html.DisplayFor(modelItem => item.TelephoneMobile)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.ItemTotalDisplay)</td>
+                                    <td><span class="badge badge-@item.OrderStatusClass">@item.OrderStatusText</span></td>
+                                    <td><span class="badge badge-@item.PaidStatusClass">@item.PaidStatusText</span></td>
+                                </tr>
+                                recentordersinfocount++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="txtJan" value="@Model.Jan" />
+    <input type="hidden" id="txtFeb" value="@Model.Feb" />
+    <input type="hidden" id="txtMar" value="@Model.Mar" />
+    <input type="hidden" id="txtApr" value="@Model.Apr" />
+    <input type="hidden" id="txtMay" value="@Model.May" />
+    <input type="hidden" id="txtJun" value="@Model.Jun" />
+    <input type="hidden" id="txtJul" value="@Model.Jul" />
+    <input type="hidden" id="txtAug" value="@Model.Aug" />
+    <input type="hidden" id="txtSep" value="@Model.Sep" />
+    <input type="hidden" id="txtOct" value="@Model.Oct" />
+    <input type="hidden" id="txtNov" value="@Model.Nov" />
+    <input type="hidden" id="txtDec" value="@Model.Dec" />
+</div> <!-- row -->
+
+@section Scripts {
+    //@{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+    <script src="~/lib/chartjs/Chart.min.js"></script>
+    <script src="~/lib/jquery.flot/jquery.flot.js"></script>
+    <script src="~/lib/jquery.flot/jquery.flot.resize.js"></script>
+    <script src="~/lib/apexcharts/apexcharts.min.js"></script>
+    <script src="~/lib/progressbar.js/progressbar.min.js"></script>
+    <script src="~/js/dashboard.js"></script>
+    <script src="~/js/datepicker.js"></script>
+
+    <script title="DashboardInfo">
+        $(document).ready(function () {
+            var results ={}
+
+            results.total = $("#txttotal").val();
+            results.completed = $("#txtcompleted").val();
+            results.inProgress = $("#txtinProgress").val();
+            results.pending = $("#txtpending").val();
+            results.rejected = $("#txtrejected").val();
+            results.cancelled = $("#txtcancelled").val();
+            results.Jan = $("#txtJan").val();
+            results.Feb = $("#txtFeb").val();
+            results.Mar = $("#txtMar").val();
+            results.Apr = $("#txtApr").val();
+            results.May = $("#txtMay").val();
+            results.Jun = $("#txtJun").val();
+            results.Jul = $("#txtJul").val();
+            results.Aug = $("#txtAug").val();
+            results.Sep = $("#txtSep").val();
+            results.Oct = $("#txtOct").val();
+            results.Nov = $("#txtNov").val();
+            results.Dec = $("#txtDec").val();
+            var jsonData = JSON.stringify(results);
+            console.log(results)
+            ChartsDisplay(jsonData);
+            $("#txtrecentcustomercount").html(@recentcustomercount)
+            $("#txtrecentordersinfocount").html(@recentordersinfocount)
+            
+        });
+       
+    </script>
+
+}
+
+
+

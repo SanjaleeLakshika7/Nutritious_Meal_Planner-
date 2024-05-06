@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "Settings";
+    ViewData["TitleNavbar"] = "Settings";
+
+    ViewData["APISettingsActive"] = "active";
+}
+
+@inject DropDown.ICommonDDL CommonDDL
+@{
+
+    var WebUrl = CommonDDL.GetWebURL();
+}
+
+
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">This section shows you all API endpoints to manage APIKey Settings related data</h6>
+                <div id="accordion" class="accordion" role="tablist">
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingOne">
+                            <h6 class="mb-0">
+                                <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <span class="text-black ">API/Settings/Validate</span> <span class="m-1 text-small text-left  text-small">(Validate API Key Settings)</span>
+                                </a>
+                            </h6>
+                        </div>
+                        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+                                <p class="card-text text-gray mb-2 ">This endpoint is used to check the API Keys.</p>
+                                <p class="card-text text-gray">
+                                    <ul class="card-text  text-gray mb-2">
+                                        <li class="mb-2">Request structure: <b class="text-success"> {MainURL}/API/Settings/Validate?APIKey={Your_API_Key</b>  </li>
+                                        <li class="mb-2">Example request URL: <b class="text-primary">@WebUrl/API/Settings/Validate?APIKey=0000</b></li>
+
+                                        <li class="mb-2">
+                                            Parameters
+                                            <ul class="">
+
+                                                <li class=""><b class="text-primary">APIKey </b><span class="text-danger">[Required]</span> - Your API Key to check valid or not</li>
+                                                
+                                            </ul>
+                                        </li>
+
+                                        <li class="mb-2">
+                                            Results (JSon)
+                                            <ul class="">
+
+                                                <li class=""><b class="text-primary">Success </b>- True of false to indicate the success status of the request</li>
+                                                <li class=""><b class="text-primary">ErrorMessage </b> - Displays any error message related to the request or parameters (If there is any error message, then success status will always show as false and Data eliment will not show) </li>
+                                                <li class=""><b class="text-primary">Data </b> - Displays the APIKey  if the request status is success. (This section will not show if the Success status is False)</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>

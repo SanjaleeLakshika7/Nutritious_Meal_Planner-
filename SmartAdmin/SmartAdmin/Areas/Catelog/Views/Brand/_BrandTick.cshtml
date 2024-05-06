@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Brand>
+
+@{
+    Layout = null;
+}
+
+<div class="table-responsive">
+    <table class="table table-centered table-nowrap table-striped">
+        <thead>
+            <tr>
+                <th width="20"></th>
+                <th class="d-none">@Html.DisplayNameFor(model => model.First().BrandID)</th>
+                <th>@Html.DisplayNameFor(model => model.First().BrandName)</th>
+            </tr>
+        </thead>
+        <tbody id="tblSelectBody">
+            @foreach (var item in Model)
+            {
+            <tr id="row_@item.BrandID">
+                <td><input class="chkTick" type="checkbox" data-id="@item.BrandID" data-name="@item.BrandName" /></td>
+                <td class="d-none">@Html.DisplayFor(modelItem => item.BrandID)</td>
+                <td>@Html.DisplayFor(modelItem => item.BrandName)</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+

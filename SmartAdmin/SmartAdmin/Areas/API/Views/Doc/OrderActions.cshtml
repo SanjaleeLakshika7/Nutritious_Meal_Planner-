@@ -1,0 +1,263 @@
+﻿@{
+    ViewData["Title"] = "Order Actions";
+    ViewData["TitleNavbar"] = "Order Actions";
+    ViewData["APISalesDocumentationActive"] = "active";
+    ViewData["APISalesDocumentatioShow"] = "show";
+    ViewData["APIOrderActionsActive"] = "active";
+}
+@inject DropDown.ICommonDDL CommonDDL
+@{
+
+    var WebUrl = CommonDDL.GetWebURL();
+}
+
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">This section shows you all API endpoints to manage Order Actions related data</h6>
+                <div id="accordion" class="accordion" role="tablist">
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingOne">
+                            <h6 class="mb-0">
+                                <a data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                    <span class="text-black ">API/OrderAction/GetList</span> <span class="m-1 text-small text-left  text-small">(Get a list of Order Actions  records)</span>
+                                </a>
+                            </h6>
+                        </div>
+                        <div id="collapseOne" class="collapse " role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+                                <p class="card-text text-gray mb-2 ">This endpoint is used to list down the Order Actions with filtering options and pagination.</p>
+                                <p class="card-text text-gray">
+                                    <ul class="card-text  text-gray mb-2">
+                                        <li class="mb-2">
+                                            Request structure: <b class="text-success">
+                                                {MainURL}/API/OrderAction/GetList?APIKey={Your_API_Key}&KeyW={Search_Keyword}&OrderID={Order_ID}&
+                                                Page={Page_Number}&PageSize={Records_Per_Page}
+                                            </b>
+                                        </li>
+                                        <li class="mb-2">
+                                            Example request URL: <b class="text-primary">
+                                                @WebUrl/API/OrderItem/GetList?APIKey=0000&KeyW=New&OrderID=ORD_0000&
+                                                Page=0&PageSize=99999
+                                            </b>
+                                        </li>
+
+                                        <li class="mb-2">
+                                            Parameters
+                                            <ul class="">
+
+                                                <li class=""><b class="text-primary">APIKey </b><span class="text-danger">[Required]</span> - Your API Key</li>
+                                                <li class=""><b class="text-primary">KeyW  </b><span class="text-info">[Optional - Default as '']</span> - Filter the list based on search keyword</li>
+                                                <li class=""><b class="text-primary">OrderID  </b><span class="text-info">[Optional - Default as '']</span> - Filter the list based on Order ID</li>
+
+                                                <li class=""><b class="text-primary">Page  </b><span class="text-info">[Optional - Default as 0] </span> - Get records for specific page number with the help of PageSize parameter</li>
+                                                <li class=""><b class="text-primary">PageSize   </b><span class="text-info">[Optional - Default as 99999]</span> - Set the number of records per page for this list</li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="mb-2">
+                                            Results (JSon)
+                                            <ul class="">
+
+                                                <li class=""><b class="text-primary">Success </b>- True of false to indicate the success status of the request</li>
+                                                <li class=""><b class="text-primary">ErrorMessage </b> - Displays any error message related to the request or parameters (If there is any error message, then success status will always show as false and Data eliment will not show) </li>
+                                                <li class=""><b class="text-primary">Data </b> - Displays the list of records as JSon array if the request status is success. (This section will not show if the Success status is False)</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingTwo">
+                            <h6 class="mb-0">
+                                <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <span class="text-black ">API/OrderAction/GetCount </span> <span class="m-1 text-small text-left  text-small">(Get the number of Order Actions records)</span>
+                                </a>
+                            </h6>
+                        </div>
+                        <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+                            <div class="card-body">
+                                <p class="card-text text-gray mb-2 ">This endpoint is used to get the number of Order Actions  with filtering options </p>
+                                <p class="card-text text-gray">
+                                    <ul class="card-text  text-gray mb-2">
+                                        <li class="mb-2">Request structure: <b class="text-success">{MainURL}/API/OrderAction/GetCount?APIKey={Your_API_Key}&KeyW={Search_Keyword}&OrderID={Order_ID}</b>  </li>
+                                        <li class="mb-2">Example request URL: <b class="text-primary">@WebUrl/API/OrderAction/GetCount?APIKey=0000&KeyW=New&OrderID=ORD_0000</b></li>
+
+                                        <li class="mb-2">
+                                            Parameters
+                                            <ul class="">
+
+                                                <li class=""><b class="text-primary">APIKey </b><span class="text-danger">[Required]</span> - Your API Key</li>
+                                                <li class=""><b class="text-primary">KeyW  </b><span class="text-info">[Optional - Default as '']</span> - Filter the list based on search keyword</li>
+                                                <li class=""><b class="text-primary">OrderID  </b><span class="text-info">[Optional - Default as '']</span> - Filter the list based on Order ID</li>
+
+
+                                            </ul>
+                                        </li>
+
+                                        <li class="mb-2">
+                                            Results (JSon)
+                                            <ul class="">
+
+                                                <li class=""><b class="text-primary">Success </b>- True of false to indicate the success status of the request</li>
+                                                <li class=""><b class="text-primary">ErrorMessage </b> - Displays any error message related to the request or parameters (If there is any error message, then success status will always show as false and Data eliment will not show) </li>
+                                                <li class=""><b class="text-primary">Data </b> -  Displays the numberic value as a result if the request status is success. (This section will not show if the Success status is False)</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingThree">
+                            <h6 class="mb-0">
+                                <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <span class="text-black ">API/OrderAction/Get</span> <span class="m-1 text-small text-left  text-small">(Get details of a single Order Action record)</span>
+                                </a>
+                            </h6>
+                        </div>
+                        <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
+                            <div class="card-body">
+                                <p class="card-text text-gray mb-2 ">This endpoint is used to get details of a single Order Action records for any given OrderAction ID.</p>
+                                <p class="card-text text-gray">
+                                    <ul class="card-text  text-gray mb-2">
+                                        <li class="mb-2">Request structure: <b class="text-success">{MainURL}/OrderAction/Get?APIKey={Your_API_Key}&ID={Order_ID}</b>  </li>
+                                        <li class="mb-2">Example request URL: <b class="text-primary">@WebUrl/API/OrderAction/Get?APIKey=0000&ID=OTM_0000 </b></li>
+
+                                        <li class="mb-2">
+                                            Parameters
+                                            <ul class="">
+
+                                                <li class=""><b class="text-primary">APIKey </b><span class="text-danger">[Required]</span> - Your API Key</li>
+                                                <li class=""><b class="text-primary">ID  </b><span class="text-danger">[Required]</span> - Used to find the specific OrderAction using OrderActionID field</li>
+
+                                            </ul>
+                                        </li>
+
+                                        <li class="mb-2">
+                                            Results (JSon)
+                                            <ul class="">
+
+                                                <li class=""><b class="text-primary">Success </b>- True of false to indicate the success status of the request</li>
+                                                <li class=""><b class="text-primary">ErrorMessage </b> - Displays any error message related to the request or parameters (If there is any error message, then success status will always show as false and Data eliment will not show) </li>
+                                                <li class=""><b class="text-primary">Data </b> - Displays the details of the records as JSon array if the request status is success. (This section will not show if the Success status is False)</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingfour">
+                            <h6 class="mb-0">
+                                <a class="collapsed" data-toggle="collapse" href="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
+                                    <span class="text-black ">API/OrderAction/AddEdit </span> <span class="m-1 text-small text-left  text-small">(Add or Edit a Order Actions record)</span>
+                                </a>
+                            </h6>
+                        </div>
+                        <div id="collapsefour" class="collapse" role="tabpanel" aria-labelledby="headingfour" data-parent="#accordion">
+                            <div class="card-body">
+                                <p class="card-text text-gray mb-2 ">This endpoint is used add a new Order Actions or update any Order Actions record. If the OrderActionID parameter is null or empty, it adds the record, otherwise it will update the Order Action record.</p>
+                                <p class="card-text text-gray">
+                                    <ul class="card-text  text-gray mb-2">
+                                        <li class="mb-2">
+                                            Request structure: <b class="text-success">
+                                                {MainURL}/OrderAction/AddEdit?APIKey={Your_API_Key}&OrderActionID={OrderAction_ID}&
+                                                OrderID = {Order_ID}&ActionDate = {Action_Date}&ActionType = {Action_Type}&Remarks = {Remarks}&UserID = {User_ID}
+                                            </b>
+                                        </li>
+                                        <li class="mb-2">
+                                            Example request URL: <b class="text-primary">
+                                                @WebUrl/API/OrderAction/AddEdit?APIKey=0000&OrderActionID=ORA_0000&OrderID=ORD_0000&
+                                                ActionDate = {Action_Date}&ActionType = {Action_Type}&Remarks = {Remarks}&UserID = {User_ID}
+                                            </b>
+                                        </li>
+
+                                        <li class="mb-2">
+                                            Parameters
+                                            <ul class="">
+
+                                                <li class=""><b class="text-primary">APIKey </b><span class="text-danger">[Required]</span> - Your API Key</li>
+                                                <li class=""><b class="text-primary">OrderActionID  </b><span class="text-danger">[Required]</span> - OrderAction ID (Set this as blank to add a new Order Action)</li>
+                                                <li class=""><b class="text-primary">OrderID </b><span class="text-danger">[Required]</span> - Order ID which OrderAction should create under</li>
+                                                <li class=""><b class="text-primary">ActionDate </b><span class="text-danger">[Required]</span> -  Set the ActionDate for the OrderAction in YYYY-MM-DD format</li>
+
+                                                <li class=""><b class="text-primary">ActionType </b><span class="text-danger">[Required]</span> - Type of the Order Action [P = Pending / A = In Progress / D - On Delivery / C - Completed / R - Rejected / N - Cancelled ]</li>
+                                                <li class=""><b class="text-primary">Remarks </b><span class="text-danger">[Required]</span> - Remarks for the Order Action</li>
+                                                <li class=""><b class="text-primary">UserID </b><span class="text-danger">[Required]</span> -  User ID who adds or edits this record</li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="mb-2">
+                                            Results (JSon)
+                                            <ul class="">
+
+                                                <li class=""><b class="text-primary">Success </b>- True of false to indicate the success status of the request</li>
+                                                <li class=""><b class="text-primary">ErrorMessage </b> - Displays any error message related to the request or parameters (If there is any error message, then success status will always show as false and Data eliment will not show) </li>
+                                                <li class=""><b class="text-primary">Data </b> - Displays newly created OrderAction ID or updated OrderAction ID as a JSon result if the request status is success. (This section will not show if the Success status is False)</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingfive">
+                            <h6 class="mb-0">
+                                <a class="collapsed" data-toggle="collapse" href="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
+                                    <span class="text-black ">API/OrderAction/Delete  </span> <span class="m-1 text-small text-left  text-small">(Delete Order Actions record)</span>
+                                </a>
+                            </h6>
+                        </div>
+                        <div id="collapsefive" class="collapse" role="tabpanel" aria-labelledby="headingfive" data-parent="#accordion">
+                            <div class="card-body">
+                                <p class="card-text text-gray mb-2 ">This endpoint is used to delete a Order Actions record.</p>
+                                <p class="card-text text-gray">
+                                    <ul class="card-text  text-gray mb-2">
+                                        <li class="mb-2">Request structure: <b class="text-success">{MainURL}/OrderAction/Delete?APIKey={Your_API_Key}&ID={OrderAction_ID}</b>  </li>
+                                        <li class="mb-2">Example request URL: <b class="text-primary"> @WebUrl/API/OrderAction/Delete?APIKey=0000&ID=OTM_000 </b></li>
+
+                                        <li class="mb-2">
+                                            Parameters
+                                            <ul class="">
+
+                                                <li class=""><b class="text-primary">APIKey </b><span class="text-danger">[Required]</span> - Your API Key</li>
+                                                <li class=""><b class="text-primary">ID  </b><span class="text-danger">[Required]</span> - Order Action ID of the OrderAction to be deleted</li>
+
+                                            </ul>
+                                        </li>
+
+                                        <li class="mb-2">
+                                            Results (JSon)
+                                            <ul class="">
+
+                                                <li class=""><b class="text-primary">Success </b>- True of false to indicate the success status of the request</li>
+                                                <li class=""><b class="text-primary">ErrorMessage </b> - Displays any error message related to the request or parameters (If there is any error message, then success status will always show as false and Data eliment will not show) </li>
+                                                <li class=""><b class="text-primary">Data </b> - Displays deleted OrderAction ID as a JSon result if the request status is success. (This section will not show if the Success status is False)</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>

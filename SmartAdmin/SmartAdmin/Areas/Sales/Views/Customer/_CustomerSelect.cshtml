@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Customer>
+
+@{
+    Layout = null;
+}
+
+<div class="table-responsive">
+    <table class="table table-centered table-nowrap table-striped">
+        <thead>
+            <tr>
+                <th class="d-none">@Html.DisplayNameFor(model => model.First().CustomerID)</th>
+                <th>@Html.DisplayNameFor(model => model.First().CustomerDisplay)</th>
+                <th>@Html.DisplayNameFor(model => model.First().CustomerCategoryName)</th>
+                <th>@Html.DisplayNameFor(model => model.First().TelephoneMobile)</th>
+            </tr>
+        </thead>
+        <tbody id="tblSelectBody">
+            @foreach (var item in Model)
+            {
+            <tr id="row_@item.CustomerID">
+                <td class="d-none">@Html.DisplayFor(modelItem => item.CustomerID)</td>
+                <td>
+                    <a href="javascript:void(0);" onclick="CustomerSelected('@item.CustomerID','@(item.CustomerDisplay)')" class="text-dark font-weight-semibold">
+                        @Html.DisplayFor(modelItem => item.CustomerDisplay)
+                    </a>
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.CustomerCategoryName)</td>
+                <td>@Html.DisplayFor(modelItem => item.TelephoneMobile)</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+

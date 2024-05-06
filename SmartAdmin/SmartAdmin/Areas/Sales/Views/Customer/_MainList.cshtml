@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Customer>
+
+@{
+    Layout = null;
+}
+
+<div class="table-responsive">
+    <table class="table table-centered table-nowrap table-striped">
+        <thead>
+            <tr>
+                <th class="d-none">@Html.DisplayNameFor(model => model.First().CustomerID)</th>
+                <th>@Html.DisplayNameFor(model => model.First().CustomerDisplay)</th>
+                <th>@Html.DisplayNameFor(model => model.First().TelephoneMobile)</th>
+                <th>@Html.DisplayNameFor(model => model.First().AddressShortDisplay)</th>
+                <th>@Html.DisplayNameFor(model => model.First().CustomerCategoryName)</th>
+                <th>@Html.DisplayNameFor(model => model.First().PriceTypeText)</th>
+                <th>@Html.DisplayNameFor(model => model.First().CreatedDateDisplay)</th>
+                <th>@Html.DisplayNameFor(model => model.First().ActiveStatusText)</th>
+                <th style="width:70px;">Action</th>
+            </tr>
+        </thead>
+        <tbody id="tblBody">
+            @foreach (var item in Model)
+            {
+            <tr id="row_@item.CustomerID">
+                <td class="d-none">@Html.DisplayFor(modelItem => item.CustomerID)</td>
+                <td>@Html.DisplayFor(modelItem => item.CustomerDisplay)</td>
+                <td>@Html.DisplayFor(modelItem => item.TelephoneMobile)</td>
+                <td>@Html.DisplayFor(modelItem => item.AddressShortDisplay)</td>
+                <td>@Html.DisplayFor(modelItem => item.CustomerCategoryName)</td>
+                <td>@Html.DisplayFor(modelItem => item.PriceTypeText)</td>
+                <td>@Html.DisplayFor(modelItem => item.CreatedDateDisplay)</td>
+                <td><span class="badge badge-@item.ActiveStatusClass">@item.ActiveStatusText</span></td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = item.CustomerID })" class="table-icon text-primary"><i class="mdi mdi-square-edit-outline"></i></a>
+                    <a href="javascript:void(0);" onclick="ConfirmDelete('@item.CustomerID','@Url.Action("Delete")')" class="table-icon text-danger"> <i class="mdi mdi-delete"></i></a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+

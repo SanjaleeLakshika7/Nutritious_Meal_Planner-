@@ -1,0 +1,39 @@
+﻿@model IEnumerable<MetaTag>
+
+@{
+    Layout = null;
+}
+
+<div class="table-responsive">
+    <table class="table table-centered table-nowrap table-striped">
+        <thead>
+            <tr>
+                <th class="d-none">@Html.DisplayNameFor(model => model.First().PageID)</th>
+                <th>@Html.DisplayNameFor(model => model.First().PageName)</th>
+                <th>@Html.DisplayNameFor(model => model.First().TitleTag)</th>
+                <th>@Html.DisplayNameFor(model => model.First().DescriptionTag)</th>
+                <th></th>
+                <th style="width:70px;">Action</th>
+            </tr>
+        </thead>
+        <tbody id="tblBody">
+            @foreach (var item in Model)
+            {
+            <tr id="row_@item.PageID">
+                <td class="d-none">@Html.DisplayFor(modelItem => item.PageID)</td>
+                <td>@Html.DisplayFor(modelItem => item.PageName)</td>
+                <td>@Html.DisplayFor(modelItem => item.TitleTag)</td>
+                <td title="@item.DescriptionTag">@item.DescriptionTag.ToShort(36)</td>
+                <td></td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = item.PageID })" class="table-icon text-primary"><i class="mdi mdi-square-edit-outline"></i></a>
+                    <a href="javascript:void(0);" onclick="ConfirmDelete('@item.PageID','@Url.Action("Delete")')" class="table-icon text-danger"> <i class="mdi mdi-delete"></i></a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
